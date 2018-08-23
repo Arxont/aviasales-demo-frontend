@@ -40,6 +40,9 @@ function PopularDirections(props) {
   );
 }
 
+const FlexBox = styled.div`
+  display: flex;
+`;
 const WhereToBlock = styled.div`
   display: flex;
   justify-content: space-evenly;
@@ -76,33 +79,71 @@ function BestPrices(props) {
   );
 }
 
-const CityNames = [
-  "Москвы",
-  "Санкт-Петербурга",
-  "Новосибирска",
-  "Екатиринбурга",
-  "Челябинска"
+const FromCity = [
+  { cityNames: "Москвы", ticketPrice: "4813" },
+  { cityNames: "Санкт-Петербурга", ticketPrice: "7857" },
+  { cityNames: "Новосибирска", ticketPrice: "15127" },
+  { cityNames: "Екатиринбурга", ticketPrice: "9275" },
+  { cityNames: "Челябинска", ticketPrice: "9148" }
 ];
-const TicketPrice = [4813, 7857, 15127, 9275, 9148];
+/* тестовый блок с другими массивами и логикой
 
-const listItems = CityNames.map(CityNames => <div>Из {CityNames}</div>);
-const itemsPrice = TicketPrice.map(TicketPrice => <div>От {TicketPrice}р</div>);
+const Country = [
+  {
+    countryName: "Россия",
+    Id: "1000",
+    countryFlag: "flag-ru.svg"
+  },
+  {
+    countryName: "Испания",
+    Id: "1001",
+    countryFlag: "flag-spa.svg"
+  }
+];
+const Сity = [
+  {
+    cityName: "Москва",
+    Id: "1",
+    countryId: "1000"
+  },
+  {
+    cityName: "Симферополь",
+    Id: "2",
+    countryId: "1000"
+  },
+  {
+    cityName: "Барселона",
+    Id: "3",
+    countryId: "1001"
+  }
+];
+
+const FromTo = [
+  {
+    fromId: "1",
+    toId: "2",
+    ticketPrice: "4813"
+  }
+];
+
+*/
+const Prices = FromCity.map(FromCity => (
+  <div>
+    Из {FromCity.cityNames} От {FromCity.ticketPrice} Р
+  </div>
+));
 
 function BestTickets(props) {
   return (
     <div>
       <div>
-        <div>
-          <img src={props.flag} alt={props.alt} />
+        <FlexBox>
+          <img src={props.img} alt={props.alt} />
           <h2>{props.city}</h2>
           <p>{props.country}</p>
-        </div>
-        <div />
+        </FlexBox>
         <div>
-          <ul>
-            {listItems}
-            {itemsPrice}
-          </ul>
+          <ul>{Prices}</ul>
         </div>
       </div>
     </div>
@@ -153,7 +194,7 @@ export default function Body() {
         />
       </WhereToBlock>
       <BestPrices img={calen} />
-      <BestTickets img={flagru} />
+      <BestTickets img={flagru} city="Крым" country="Крым" />
     </div>
   );
 }
