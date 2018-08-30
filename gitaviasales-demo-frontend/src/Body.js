@@ -88,7 +88,7 @@ const FromCity = [
 ];
 */
 
-var Country = [
+const Country = [
   {
     countryName: "Россия",
     Id: 1000,
@@ -116,7 +116,7 @@ var Country = [
   }
 ];
 
-var City = [
+const City = [
   {
     cityName: "Москва",
     Id: 1,
@@ -194,7 +194,7 @@ var City = [
   }
 ];
 
-var FromTo = [
+const routes = [
   {
     fromId: 1,
     toId: 2,
@@ -242,7 +242,7 @@ var FromTo = [
   }
 ];
 
-var Moscow = FromTo.filter(function(Id) {
+var Moscow = routes.filter(function(Id) {
   return Id.fromId === 1 && Id.toId === 2;
 });
 
