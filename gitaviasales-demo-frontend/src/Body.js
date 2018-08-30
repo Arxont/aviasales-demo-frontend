@@ -9,7 +9,7 @@ import kids from "./images/kids.svg";
 import compass from "./images/compass.svg";
 import pen from "./images/pen.png";
 import calen from "./images/calen.svg";
-import flagru from "./images/flagru.svg";
+import flagRu from "./images/flagru.svg";
 
 const PapularW = styled.div`
   display: flex;
@@ -78,7 +78,7 @@ function BestPrices(props) {
     </PapularW>
   );
 }
-
+/*
 const FromCity = [
   { cityNames: "Москвы", ticketPrice: "4813" },
   { cityNames: "Санкт-Петербурга", ticketPrice: "7857" },
@@ -86,53 +86,182 @@ const FromCity = [
   { cityNames: "Екатиринбурга", ticketPrice: "9275" },
   { cityNames: "Челябинска", ticketPrice: "9148" }
 ];
-/* тестовый блок с другими массивами и логикой
+*/
 
-const Country = [
+var Country = [
   {
     countryName: "Россия",
-    Id: "1000",
-    countryFlag: "flag-ru.svg"
+    Id: 1000,
+    countryFlag: "flagRu.svg"
   },
   {
     countryName: "Испания",
-    Id: "1001",
-    countryFlag: "flag-spa.svg"
+    Id: 1001,
+    countryFlag: "flagSpa.svg"
+  },
+  {
+    countryName: "Армения",
+    Id: 1002,
+    countryFlag: "flagArm.svg"
+  },
+  {
+    countryName: "Молдавия",
+    Id: 1003,
+    countryFlag: "flagMol.svg"
+  },
+  {
+    countryName: "Крым",
+    Id: 1004,
+    countryFlag: "flagRu.svg"
   }
 ];
-const Сity = [
+
+var City = [
   {
     cityName: "Москва",
-    Id: "1",
+    Id: 1,
     countryId: "1000"
   },
   {
     cityName: "Симферополь",
-    Id: "2",
-    countryId: "1000"
+    Id: 2,
+    countryId: "1004"
   },
   {
     cityName: "Барселона",
-    Id: "3",
+    Id: 3,
     countryId: "1001"
-  }
-];
-
-const FromTo = [
+  },
   {
-    fromId: "1",
-    toId: "2",
-    ticketPrice: "4813"
+    cityName: "Санк-Петербург",
+    Id: 4,
+    countryId: "1000"
+  },
+  {
+    cityName: "Краснодар",
+    Id: 5,
+    countryId: "1000"
+  },
+  {
+    cityName: "Сочи",
+    Id: 6,
+    countryId: "1000"
+  },
+  {
+    cityName: "Минеральные воды",
+    Id: 7,
+    countryId: "1000"
+  },
+  {
+    cityName: "Новосибирск",
+    Id: 8,
+    countryId: "1000"
+  },
+  {
+    cityName: "Екатерингбург",
+    Id: 9,
+    countryId: "1000"
+  },
+  {
+    cityName: "Челябинск",
+    Id: 10,
+    countryId: "1000"
+  },
+  {
+    cityName: "Ростов на дону",
+    Id: 11,
+    countryId: "1000"
+  },
+  {
+    cityName: "Сургут",
+    Id: 12,
+    countryId: "1000"
+  },
+  {
+    cityName: "Новый Уренгой",
+    Id: 13,
+    countryId: "1000"
+  },
+  {
+    cityName: "Кишинёв",
+    Id: 14,
+    countryId: "1003"
+  },
+  {
+    cityName: "Ереван",
+    Id: 15,
+    countryId: "1002"
   }
 ];
 
-*/
+var FromTo = [
+  {
+    fromId: 1,
+    toId: 2,
+    ticketPrice: "4813"
+  },
+  {
+    fromId: 1,
+    toId: 2,
+    ticketPrice: "1200"
+  },
+  {
+    fromId: 1,
+    toId: 3,
+    ticketPrice: "4814"
+  },
+  {
+    fromId: 1,
+    toId: 2,
+    ticketPrice: "5813"
+  },
+  {
+    fromId: 4,
+    toId: 2,
+    ticketPrice: "7857"
+  },
+  {
+    fromId: 4,
+    toId: 2,
+    ticketPrice: "7858"
+  },
+  {
+    fromId: 8,
+    toId: 2,
+    ticketPrice: "15127"
+  },
+  {
+    fromId: 9,
+    toId: 2,
+    ticketPrice: "9275"
+  },
+  {
+    fromId: 10,
+    toId: 2,
+    ticketPrice: "9148"
+  }
+];
+
+var Moscow = FromTo.filter(function(Id) {
+  return Id.fromId === 1 && Id.toId === 2;
+});
+
+const minPrice = Math.min.apply(
+  Math,
+  Moscow.map(function(lowest) {
+    return lowest.ticketPrice;
+  })
+);
+
+/*
 const Prices = FromCity.map(FromCity => (
   <div>
     Из {FromCity.cityNames} От {FromCity.ticketPrice} Р
   </div>
 ));
+*/
 
+const PriceInfo = Moscow.map(Moscow => <div>{Moscow.ticketPrice}</div>);
 function BestTickets(props) {
   return (
     <div>
@@ -143,7 +272,7 @@ function BestTickets(props) {
           <p>{props.country}</p>
         </FlexBox>
         <div>
-          <ul>{Prices}</ul>
+          <p>{minPrice}</p>
         </div>
       </div>
     </div>
@@ -194,7 +323,7 @@ export default function Body() {
         />
       </WhereToBlock>
       <BestPrices img={calen} />
-      <BestTickets img={flagru} city="Крым" country="Крым" />
+      <BestTickets img={flagRu} city="Крым" country="Крым" />
     </div>
   );
 }
