@@ -10,6 +10,7 @@ import compass from "./images/compass.svg";
 import pen from "./images/pen.png";
 import calen from "./images/calen.svg";
 import flagRu from "./images/flagru.svg";
+import pobeda from "./images/pobeda.png";
 
 const PapularW = styled.div`
   display: flex;
@@ -92,27 +93,27 @@ const Country = [
   {
     countryName: "Россия",
     Id: 1000,
-    countryFlag: "flagRu.svg"
+    countryFlag: "flag-ru.svg"
   },
   {
     countryName: "Испания",
     Id: 1001,
-    countryFlag: "flagSpa.svg"
+    countryFlag: "flag-spa.svg"
   },
   {
     countryName: "Армения",
     Id: 1002,
-    countryFlag: "flagArm.svg"
+    countryFlag: "flag-arm.svg"
   },
   {
     countryName: "Молдавия",
     Id: 1003,
-    countryFlag: "flagMol.svg"
+    countryFlag: "flag-mol.svg"
   },
   {
     countryName: "Крым",
     Id: 1004,
-    countryFlag: "flagRu.svg"
+    countryFlag: "flag-ru.svg"
   }
 ];
 
@@ -120,125 +121,124 @@ const City = [
   {
     cityName: "Москва",
     Id: 1,
-    countryId: "1000"
+    countryId: 1000
   },
   {
     cityName: "Симферополь",
     Id: 2,
-    countryId: "1004"
+    countryId: 1004
   },
   {
     cityName: "Барселона",
     Id: 3,
-    countryId: "1001"
+    countryId: 1001
   },
   {
     cityName: "Санк-Петербург",
     Id: 4,
-    countryId: "1000"
+    countryId: 1000
   },
   {
     cityName: "Краснодар",
     Id: 5,
-    countryId: "1000"
+    countryId: 1000
   },
   {
     cityName: "Сочи",
     Id: 6,
-    countryId: "1000"
+    countryId: 1000
   },
   {
     cityName: "Минеральные воды",
     Id: 7,
-    countryId: "1000"
+    countryId: 1000
   },
   {
     cityName: "Новосибирск",
     Id: 8,
-    countryId: "1000"
+    countryId: 1000
   },
   {
     cityName: "Екатерингбург",
     Id: 9,
-    countryId: "1000"
+    countryId: 1000
   },
   {
     cityName: "Челябинск",
     Id: 10,
-    countryId: "1000"
+    countryId: 1000
   },
   {
     cityName: "Ростов на дону",
     Id: 11,
-    countryId: "1000"
+    countryId: 1000
   },
   {
     cityName: "Сургут",
     Id: 12,
-    countryId: "1000"
+    countryId: 1000
   },
   {
     cityName: "Новый Уренгой",
     Id: 13,
-    countryId: "1000"
+    countryId: 1000
   },
   {
     cityName: "Кишинёв",
     Id: 14,
-    countryId: "1003"
+    countryId: 1003
   },
   {
     cityName: "Ереван",
     Id: 15,
-    countryId: "1002"
+    countryId: 1002
   }
 ];
-
 const routes = [
   {
     fromId: 1,
     toId: 2,
-    ticketPrice: "4813"
+    ticketPrice: 4813
   },
   {
     fromId: 1,
     toId: 2,
-    ticketPrice: "1200"
+    ticketPrice: 1200
   },
   {
     fromId: 1,
     toId: 3,
-    ticketPrice: "4814"
+    ticketPrice: 4814
   },
   {
     fromId: 1,
     toId: 2,
-    ticketPrice: "5813"
+    ticketPrice: 5813
   },
   {
     fromId: 4,
     toId: 2,
-    ticketPrice: "7857"
+    ticketPrice: 7857
   },
   {
     fromId: 4,
     toId: 2,
-    ticketPrice: "7858"
+    ticketPrice: 7858
   },
   {
     fromId: 8,
     toId: 2,
-    ticketPrice: "15127"
+    ticketPrice: 15127
   },
   {
     fromId: 9,
     toId: 2,
-    ticketPrice: "9275"
+    ticketPrice: 9275
   },
   {
     fromId: 10,
     toId: 2,
-    ticketPrice: "9148"
+    ticketPrice: 9148
   }
 ];
 
@@ -276,6 +276,92 @@ function BestTickets(props) {
         </div>
       </div>
     </div>
+  );
+}
+
+const SpecialOffersBackGround = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: blue;
+`;
+const SpecialOfferBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+`;
+const SpecialOfferHeader = styled.div`
+  display: flex;
+  height: 50px;
+  background-color: red;
+  color: white;
+  flex-direction: row;
+  justify-content: space-around;
+`;
+const SpecialOfferBody = styled.div`
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+`;
+const SpecialOfferFooter = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+`;
+const SpecialOfferButton = styled.button`
+  color: red;
+  background-color: white;
+  border-style: solid;
+  border-color: red;
+`;
+
+const SpecialOffersWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+`;
+
+function SpecialOffers(props) {
+  return (
+    <SpecialOfferBlock>
+      <SpecialOfferHeader>
+        <p>Билеты от {props.price} Рублей!</p>
+        <img src={props.img} alt={props.alt} />
+      </SpecialOfferHeader>
+      <SpecialOfferBody>
+        <div>
+          <img src={props.CompanyLogo} alt="Company Logo" />
+        </div>
+        <div>
+          <p>От {props.price} ₽</p>
+          <p>Осталось {props.timeLeft}</p>
+        </div>
+      </SpecialOfferBody>
+      <SpecialOfferFooter>
+        <p>
+          Билеты от {props.price} рублей! Специальное предложение от
+          авиакомпании {props.companyName}
+        </p>
+        <SpecialOfferButton>
+          <p>Узнать подробности</p>
+        </SpecialOfferButton>
+      </SpecialOfferFooter>
+    </SpecialOfferBlock>
+  );
+}
+
+const WatchAllOffersWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: white;
+`;
+
+function WatchAllOffers(props) {
+  return (
+    <WatchAllOffersWrapper>
+      <a href="123.com">Смотреть все предложения</a>
+      <p>* Средняя цена по направлению</p>
+    </WatchAllOffersWrapper>
   );
 }
 
@@ -324,6 +410,32 @@ export default function Body() {
       </WhereToBlock>
       <BestPrices img={calen} />
       <BestTickets img={flagRu} city="Крым" country="Крым" />
+      <SpecialOffersBackGround>
+        <h2>Спецпредложения на авиабилеты</h2>
+        <SpecialOffersWrapper>
+          <SpecialOffers
+            price="499"
+            CompanyLogo={pobeda}
+            timeLeft="45 дней"
+            companyName="Победа"
+          />
+          <SpecialOffers
+            price="20 680"
+            img={calen}
+            CompanyLogo={pobeda}
+            timeLeft="10 дней"
+            companyName="Lufthansa"
+          />
+          <SpecialOffers
+            price="20 360"
+            img={calen}
+            CompanyLogo={pobeda}
+            timeLeft="19 дней"
+            companyName="Lufthansa"
+          />
+        </SpecialOffersWrapper>
+        <WatchAllOffers />
+      </SpecialOffersBackGround>
     </div>
   );
 }

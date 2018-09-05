@@ -189,12 +189,17 @@ filter создает новый массив который содержит е
 map- одержит в себе пары ключ+значение
 */
 
-const findCityById = testId => ;
-/*создаем константу findTopRoutesByCityId которой присваем значение cityId которое в свою очередь является функцией создающей новый массив из
+/* const findCityById = testId => ;
+создаем константу findTopRoutesByCityId которой присваем значение cityId которое в свою очередь является функцией создающей новый массив из
 элементов fromId массива routes где fromId равен cityId первых 9 элементов(с нуля по 8й) и создает обьект map седержащий в себе значение toId и
 ticketPrice  */
 const findTopRoutesByCityId = cityId =>
-  routes.filter(({ fromId }) => fromId === cityId).slice(0, 9).map(({ toId, ticketPrice }) /* => ({ticketPrice, city: findCityById(toId)})*/);
+  routes
+    .filter(({ fromId }) => fromId === cityId)
+    .slice(0, 9)
+    .map(
+      { toId, ticketPrice } /* => ({ticketPrice, city: findCityById(toId)})*/
+    );
 
 const Results = ({ fromCityId }) => {
   const topRoutes = findTopRoutesByCityId(fromCityId);
