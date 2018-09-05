@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Slide } from "react-slideshow-image";
 import earth from "./images/earth.svg";
 import sun from "./images/sun.svg";
 import shopping from "./images/shopping.svg";
@@ -278,6 +279,110 @@ function BestTickets(props) {
     </div>
   );
 }
+const AdditionalInfoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+`;
+function AdditionalInfo() {
+  return (
+    <AdditionalInfoWrapper>
+      <p>
+        Мы знаем, где купить авиабилеты дешево. Билеты на самолет в 220 стран
+        мира.
+      </p>
+      <p>
+        Поиск и сравнение цен на авиабилеты среди 100 агенств и 728
+        авиакомпаний.
+      </p>
+      <p>
+        Цены найденные пользователями за последние 48 часов не являются офертой.
+      </p>
+    </AdditionalInfoWrapper>
+  );
+}
+
+const properties = {
+  duration: 5000,
+  transitionDuration: 500,
+  infinite: true,
+  indicators: true
+};
+const SlideWrapper = styled.div`
+display:flex;
+flex-direction-column;
+justify-content: space-between;
+`;
+const SlideImgWrapper = styled.div`
+  margin-right: 5%;
+  margin-left: 5%;
+`;
+const SliderBorder = styled.div`
+  border-bottom: solid;
+  border-image: url("/rectangle.png") 30 / 19px round;
+  margin-bottom: 5%;
+`;
+const Slideshow = () => {
+  return (
+    <SliderBorder>
+      <Slide {...properties}>
+        <SlideWrapper>
+          <SlideImgWrapper>
+            <img src="/agenciesAgencyLogo.png" alt="hoba" />
+          </SlideImgWrapper>
+          <div>
+            <img src="/agenciesAgencyLogo1.png" alt="hoba" />
+          </div>
+          <div>
+            <img src="/agenciesAgencyLogo2.png" alt="hoba" />
+          </div>
+          <div>
+            <img src="/agenciesAgencyLogo3.png" alt="hoba" />
+          </div>
+          <SlideImgWrapper>
+            <img src="/agenciesAgencyLogo4.png" alt="hoba" />
+          </SlideImgWrapper>
+        </SlideWrapper>
+
+        <SlideWrapper>
+          <SlideImgWrapper>
+            <img src="/agenciesAgencyLogo.png" alt="hoba" />
+          </SlideImgWrapper>
+          <div>
+            <img src="/agenciesAgencyLogo1.png" alt="hoba" />
+          </div>
+          <div>
+            <img src="/agenciesAgencyLogo2.png" alt="hoba" />
+          </div>
+          <div>
+            <img src="/agenciesAgencyLogo3.png" alt="hoba" />
+          </div>
+          <SlideImgWrapper>
+            <img src="/agenciesAgencyLogo4.png" alt="hoba" />
+          </SlideImgWrapper>
+        </SlideWrapper>
+
+        <SlideWrapper>
+          <SlideImgWrapper>
+            <img src="/agenciesAgencyLogo.png" alt="hoba" />
+          </SlideImgWrapper>
+          <div>
+            <img src="/agenciesAgencyLogo1.png" alt="hoba" />
+          </div>
+          <div>
+            <img src="/agenciesAgencyLogo2.png" alt="hoba" />
+          </div>
+          <div>
+            <img src="/agenciesAgencyLogo3.png" alt="hoba" />
+          </div>
+          <SlideImgWrapper>
+            <img src="/agenciesAgencyLogo4.png" alt="hoba" />
+          </SlideImgWrapper>
+        </SlideWrapper>
+      </Slide>
+    </SliderBorder>
+  );
+};
 
 const SpecialOffersBackGround = styled.div`
   display: flex;
@@ -410,6 +515,8 @@ export default function Body() {
       </WhereToBlock>
       <BestPrices img={calen} />
       <BestTickets img={flagRu} city="Крым" country="Крым" />
+      <AdditionalInfo />
+      <Slideshow />
       <SpecialOffersBackGround>
         <h2>Спецпредложения на авиабилеты</h2>
         <SpecialOffersWrapper>
