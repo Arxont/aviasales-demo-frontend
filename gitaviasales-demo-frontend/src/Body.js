@@ -12,6 +12,13 @@ import pen from "./images/pen.png";
 import calen from "./images/calen.svg";
 import flagRu from "./images/flagru.svg";
 import pobeda from "./images/pobeda.png";
+import fb from "./images/faceBook.png";
+import vk from "./images/vk.png";
+import rss from "./images/rss.png";
+import twit from "./images/twitter.png";
+import emailIcon from "./images/emailIcon.png";
+import planeIcon from "./images/planeIcon.png";
+import booksIcon from "./images/booksIcon.png";
 
 const PapularW = styled.div`
   display: flex;
@@ -308,6 +315,13 @@ const properties = {
   infinite: true,
   indicators: true
 };
+
+const SliderBorder = styled.div`
+  border-bottom: solid;
+  border-image: url("/rectangle.png") 30 / 19px round;
+  padding-top: 50px;
+  padding-bottom: 50px;
+`;
 const SlideWrapper = styled.div`
 display:flex;
 flex-direction-column;
@@ -317,11 +331,7 @@ const SlideImgWrapper = styled.div`
   margin-right: 5%;
   margin-left: 5%;
 `;
-const SliderBorder = styled.div`
-  border-bottom: solid;
-  border-image: url("/rectangle.png") 30 / 19px round;
-  margin-bottom: 5%;
-`;
+
 const Slideshow = () => {
   return (
     <SliderBorder>
@@ -343,7 +353,6 @@ const Slideshow = () => {
             <img src="/agenciesAgencyLogo4.png" alt="hoba" />
           </SlideImgWrapper>
         </SlideWrapper>
-
         <SlideWrapper>
           <SlideImgWrapper>
             <img src="/agenciesAgencyLogo.png" alt="hoba" />
@@ -361,7 +370,6 @@ const Slideshow = () => {
             <img src="/agenciesAgencyLogo4.png" alt="hoba" />
           </SlideImgWrapper>
         </SlideWrapper>
-
         <SlideWrapper>
           <SlideImgWrapper>
             <img src="/agenciesAgencyLogo.png" alt="hoba" />
@@ -383,6 +391,49 @@ const Slideshow = () => {
     </SliderBorder>
   );
 };
+
+const SubscribeWrapper = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+`;
+const LinkWrapper = styled.div`
+  display: flex;
+`;
+const SendEmailButton = styled.button`
+  background-color: orange;
+`;
+
+function Subscribe(props) {
+  return (
+    <SubscribeWrapper>
+      <div>
+        <h2>Хотите знать все о скидках на авиабилеты?</h2>
+        <p>
+          Вы можете подписаться на нашу рассылку через социальные сети или по
+          электронной почте
+        </p>
+      </div>
+      <LinkWrapper>
+        <a href="123.com">
+          <img src={props.twit} alt="twit" />
+        </a>
+        <a href="123.com">
+          <img src={props.fb} alt="Fb" />
+        </a>
+        <a href="123.com">
+          <img src={props.vk} alt="Vk" />
+        </a>
+        <a href="123.com">
+          <img src={props.rss} alt="rss" />
+        </a>
+        <div>
+          <input type="text" name="Email" value="Ваш email" />
+          <SendEmailButton>Подписаться</SendEmailButton>
+        </div>
+      </LinkWrapper>
+    </SubscribeWrapper>
+  );
+}
 
 const SpecialOffersBackGround = styled.div`
   display: flex;
@@ -470,6 +521,106 @@ function WatchAllOffers(props) {
   );
 }
 
+const TextWrapper = styled.span`
+  overflow: hidden;
+  height: 2em;
+  line-height: 1em;
+`;
+const HeadingWrapper = styled.div`
+  display: flex;
+`;
+
+/*http://jsfiddle.net/Feid/yptwsg21/4/  пример функции с текстом на жкверях*/
+function SomeInfo(props) {
+  return (
+    <div>
+      <div>
+        <HeadingWrapper>
+          <img src={props.plane} alt="plane" />
+          <h2>Как купить дешевые авиабилеты</h2>
+        </HeadingWrapper>
+        <TextWrapper>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nibh
+          nulla, sollicitudin nec interdum sed, porta nec ex. Fusce iaculis odio
+          tristique sem mattis, ut finibus augue aliquam. Pellentesque interdum
+          turpis a dolor interdum mollis. Vestibulum finibus, mi in faucibus
+          egestas, erat lorem luctus ipsum, vitae eleifend mauris mi et massa.
+          Duis congue nibh ut leo pretium, sed convallis est placerat. Aenean
+          eget est eu tellus finibus sagittis eu elementum tortor. Suspendisse
+          et turpis eu nisl eleifend egestas. In congue dui elit, id lacinia sem
+          mollis vitae. Curabitur accumsan vitae arcu et imperdiet. Praesent
+          accumsan pellentesque felis eget eleifend. Nullam est velit, placerat
+          dictum rutrum in, porta vitae nisl. Cras tempus ante nunc, non iaculis
+          odio tristique non. Etiam nec dolor nibh. Sed aliquet hendrerit lorem
+          quis pharetra. Nulla iaculis ac mi vel varius. Etiam malesuada
+          dignissim nisi, non bibendum urna tincidunt eget. Integer consectetur
+          risus nisl, nec aliquet nulla convallis sed. Maecenas luctus gravida
+          augue ac finibus. Fusce sagittis ac velit in cursus. Vestibulum
+          hendrerit justo in efficitur malesuada. Vestibulum gravida sed ligula
+          vel interdum. Quisque elementum accumsan neque eget efficitur. Sed
+          tincidunt dolor in leo aliquam pretium.
+        </TextWrapper>
+        <a href="123.com">Подробнее</a>
+      </div>
+      <div>
+        <HeadingWrapper>
+          <img src={props.hint} alt="@" />
+          <h2>электронный авиабилет</h2>
+        </HeadingWrapper>
+        <TextWrapper>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nibh
+          nulla, sollicitudin nec interdum sed, porta nec ex. Fusce iaculis odio
+          tristique sem mattis, ut finibus augue aliquam. Pellentesque interdum
+          turpis a dolor interdum mollis. Vestibulum finibus, mi in faucibus
+          egestas, erat lorem luctus ipsum, vitae eleifend mauris mi et massa.
+          Duis congue nibh ut leo pretium, sed convallis est placerat. Aenean
+          eget est eu tellus finibus sagittis eu elementum tortor. Suspendisse
+          et turpis eu nisl eleifend egestas. In congue dui elit, id lacinia sem
+          mollis vitae. Curabitur accumsan vitae arcu et imperdiet. Praesent
+          accumsan pellentesque felis eget eleifend. Nullam est velit, placerat
+          dictum rutrum in, porta vitae nisl. Cras tempus ante nunc, non iaculis
+          odio tristique non. Etiam nec dolor nibh. Sed aliquet hendrerit lorem
+          quis pharetra. Nulla iaculis ac mi vel varius. Etiam malesuada
+          dignissim nisi, non bibendum urna tincidunt eget. Integer consectetur
+          risus nisl, nec aliquet nulla convallis sed. Maecenas luctus gravida
+          augue ac finibus. Fusce sagittis ac velit in cursus. Vestibulum
+          hendrerit justo in efficitur malesuada. Vestibulum gravida sed ligula
+          vel interdum. Quisque elementum accumsan neque eget efficitur. Sed
+          tincidunt dolor in leo aliquam pretium.
+          <span>Тест</span>
+        </TextWrapper>
+      </div>
+      <div>
+        <HeadingWrapper>
+          <img src={props.book} alt="book" />
+          <h2>20 советов авиапутешественникам</h2>
+        </HeadingWrapper>
+        <TextWrapper>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nibh
+          nulla, sollicitudin nec interdum sed, porta nec ex. Fusce iaculis odio
+          tristique sem mattis, ut finibus augue aliquam. Pellentesque interdum
+          turpis a dolor interdum mollis. Vestibulum finibus, mi in faucibus
+          egestas, erat lorem luctus ipsum, vitae eleifend mauris mi et massa.
+          Duis congue nibh ut leo pretium, sed convallis est placerat. Aenean
+          eget est eu tellus finibus sagittis eu elementum tortor. Suspendisse
+          et turpis eu nisl eleifend egestas. In congue dui elit, id lacinia sem
+          mollis vitae. Curabitur accumsan vitae arcu et imperdiet. Praesent
+          accumsan pellentesque felis eget eleifend. Nullam est velit, placerat
+          dictum rutrum in, porta vitae nisl. Cras tempus ante nunc, non iaculis
+          odio tristique non. Etiam nec dolor nibh. Sed aliquet hendrerit lorem
+          quis pharetra. Nulla iaculis ac mi vel varius. Etiam malesuada
+          dignissim nisi, non bibendum urna tincidunt eget. Integer consectetur
+          risus nisl, nec aliquet nulla convallis sed. Maecenas luctus gravida
+          augue ac finibus. Fusce sagittis ac velit in cursus. Vestibulum
+          hendrerit justo in efficitur malesuada. Vestibulum gravida sed ligula
+          vel interdum. Quisque elementum accumsan neque eget efficitur. Sed
+          tincidunt dolor in leo aliquam pretium.
+        </TextWrapper>
+      </div>
+    </div>
+  );
+}
+
 export default function Body() {
   return (
     <div>
@@ -517,6 +668,7 @@ export default function Body() {
       <BestTickets img={flagRu} city="Крым" country="Крым" />
       <AdditionalInfo />
       <Slideshow />
+      <Subscribe vk={vk} twit={twit} fb={fb} rss={rss} />
       <SpecialOffersBackGround>
         <h2>Спецпредложения на авиабилеты</h2>
         <SpecialOffersWrapper>
@@ -543,6 +695,7 @@ export default function Body() {
         </SpecialOffersWrapper>
         <WatchAllOffers />
       </SpecialOffersBackGround>
+      <SomeInfo plane={planeIcon} hint={emailIcon} book={booksIcon} />
     </div>
   );
 }
