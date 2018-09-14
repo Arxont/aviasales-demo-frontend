@@ -49,9 +49,6 @@ function PopularDirections(props) {
   );
 }
 
-const FlexBox = styled.div`
-  display: flex;
-`;
 const WhereToBlock = styled.div`
   display: flex;
   justify-content: space-evenly;
@@ -79,6 +76,120 @@ function WhereTo(props) {
     </WhereToWrap>
   );
 }
+
+const ticketInfo = [
+  {
+    cityFrom: "Москва",
+    cityTo: "Симферополь",
+    countryFrom: "Россия",
+    countryTo: "Крым",
+    dateStart: (1, 9, 2018),
+    dateEnd: (9, 9, 2018),
+    countryFromFlag: "flagru",
+    ticketPrice: 4813
+  },
+  {
+    cityFrom: "Москва",
+    cityTo: "Симферополь",
+    countryFrom: "Россия",
+    countryTo: "Крым",
+    dateStart: (1, 9, 2018),
+    dateEnd: (9, 9, 2018),
+    countryFromFlag: "flagru",
+    ticketPrice: 1200
+  },
+  {
+    cityFrom: "Симферополь",
+    cityTo: "Барселона",
+    countryFrom: "Крым",
+    countryTo: "Испания",
+    dateStart: (1, 9, 2018),
+    dateEnd: (9, 9, 2018),
+    countryFromFlag: "flagru",
+    ticketPrice: 1200
+  },
+  {
+    cityFrom: "Москва",
+    cityTo: "Симферополь",
+    countryFrom: "Россия",
+    countryTo: "Крым",
+    dateStart: (1, 9, 2018),
+    dateEnd: (9, 9, 2018),
+    countryFromFlag: "flagru",
+    ticketPrice: 4814
+  },
+  {
+    cityFrom: "Москва",
+    cityTo: "Симферополь",
+    countryFrom: "Россия",
+    countryTo: "Крым",
+    dateStart: (1, 9, 2018),
+    dateEnd: (9, 9, 2018),
+    countryFromFlag: "flagru",
+    ticketPrice: 5813
+  },
+  {
+    cityFrom: "Санк-Петербург",
+    cityTo: "Симферополь",
+    countryFrom: "Россия",
+    countryTo: "Крым",
+    dateStart: (1, 9, 2018),
+    dateEnd: (9, 9, 2018),
+    countryFromFlag: "flagru",
+    ticketPrice: 7857
+  },
+  {
+    cityFrom: "Санк-Петербург",
+    cityTo: "Симферополь",
+    countryFrom: "Россия",
+    countryTo: "Крым",
+    dateStart: (1, 9, 2018),
+    dateEnd: (9, 9, 2018),
+    countryFromFlag: "flagru",
+    ticketPrice: 7860
+  },
+  {
+    cityFrom: "Новосибирск",
+    cityTo: "Симферополь",
+    countryFrom: "Россия",
+    countryTo: "Крым",
+    dateStart: (1, 9, 2018),
+    dateEnd: (9, 9, 2018),
+    countryFromFlag: "flagru",
+    ticketPrice: 15127
+  },
+  {
+    cityFrom: "Екатеринбург",
+    cityTo: "Симферополь",
+    countryFrom: "Россия",
+    countryTo: "Крым",
+    dateStart: (1, 9, 2018),
+    dateEnd: (9, 9, 2018),
+    countryFromFlag: "flagru",
+    ticketPrice: 9275
+  },
+  {
+    cityFrom: "Челябинск",
+    cityTo: "Симферополь",
+    countryFrom: "Россия",
+    countryTo: "Крым",
+    dateStart: (1, 9, 2018),
+    dateEnd: (9, 9, 2018),
+    countryFromFlag: "flagru",
+    ticketPrice: 9148
+  },
+  {
+    cityFrom: "Москва",
+    cityTo: "Ереван",
+    countryFrom: "Россия",
+    countryTo: "Армения",
+    dateStart: (1, 9, 2018),
+    dateEnd: (9, 9, 2018),
+    countryFromFlag: "flagru",
+    ticketPrice: 8713
+  }
+];
+
 function BestPrices(props) {
   return (
     <PapularW>
@@ -97,195 +208,6 @@ const FromCity = [
 ];
 */
 
-const Country = [
-  {
-    countryName: "Россия",
-    Id: 1000,
-    countryFlag: "flag-ru.svg"
-  },
-  {
-    countryName: "Испания",
-    Id: 1001,
-    countryFlag: "flag-spa.svg"
-  },
-  {
-    countryName: "Армения",
-    Id: 1002,
-    countryFlag: "flag-arm.svg"
-  },
-  {
-    countryName: "Молдавия",
-    Id: 1003,
-    countryFlag: "flag-mol.svg"
-  },
-  {
-    countryName: "Крым",
-    Id: 1004,
-    countryFlag: "flag-ru.svg"
-  }
-];
-
-const City = [
-  {
-    cityName: "Москва",
-    Id: 1,
-    countryId: 1000
-  },
-  {
-    cityName: "Симферополь",
-    Id: 2,
-    countryId: 1004
-  },
-  {
-    cityName: "Барселона",
-    Id: 3,
-    countryId: 1001
-  },
-  {
-    cityName: "Санк-Петербург",
-    Id: 4,
-    countryId: 1000
-  },
-  {
-    cityName: "Краснодар",
-    Id: 5,
-    countryId: 1000
-  },
-  {
-    cityName: "Сочи",
-    Id: 6,
-    countryId: 1000
-  },
-  {
-    cityName: "Минеральные воды",
-    Id: 7,
-    countryId: 1000
-  },
-  {
-    cityName: "Новосибирск",
-    Id: 8,
-    countryId: 1000
-  },
-  {
-    cityName: "Екатерингбург",
-    Id: 9,
-    countryId: 1000
-  },
-  {
-    cityName: "Челябинск",
-    Id: 10,
-    countryId: 1000
-  },
-  {
-    cityName: "Ростов на дону",
-    Id: 11,
-    countryId: 1000
-  },
-  {
-    cityName: "Сургут",
-    Id: 12,
-    countryId: 1000
-  },
-  {
-    cityName: "Новый Уренгой",
-    Id: 13,
-    countryId: 1000
-  },
-  {
-    cityName: "Кишинёв",
-    Id: 14,
-    countryId: 1003
-  },
-  {
-    cityName: "Ереван",
-    Id: 15,
-    countryId: 1002
-  }
-];
-const routes = [
-  {
-    fromId: 1,
-    toId: 2,
-    ticketPrice: 4813
-  },
-  {
-    fromId: 1,
-    toId: 2,
-    ticketPrice: 1200
-  },
-  {
-    fromId: 1,
-    toId: 3,
-    ticketPrice: 4814
-  },
-  {
-    fromId: 1,
-    toId: 2,
-    ticketPrice: 5813
-  },
-  {
-    fromId: 4,
-    toId: 2,
-    ticketPrice: 7857
-  },
-  {
-    fromId: 4,
-    toId: 2,
-    ticketPrice: 7858
-  },
-  {
-    fromId: 8,
-    toId: 2,
-    ticketPrice: 15127
-  },
-  {
-    fromId: 9,
-    toId: 2,
-    ticketPrice: 9275
-  },
-  {
-    fromId: 10,
-    toId: 2,
-    ticketPrice: 9148
-  }
-];
-
-var Moscow = routes.filter(function(Id) {
-  return Id.fromId === 1 && Id.toId === 2;
-});
-
-const minPrice = Math.min.apply(
-  Math,
-  Moscow.map(function(lowest) {
-    return lowest.ticketPrice;
-  })
-);
-
-/*
-const Prices = FromCity.map(FromCity => (
-  <div>
-    Из {FromCity.cityNames} От {FromCity.ticketPrice} Р
-  </div>
-));
-*/
-
-const PriceInfo = Moscow.map(Moscow => <div>{Moscow.ticketPrice}</div>);
-function BestTickets(props) {
-  return (
-    <div>
-      <div>
-        <FlexBox>
-          <img src={props.img} alt={props.alt} />
-          <h2>{props.city}</h2>
-          <p>{props.country}</p>
-        </FlexBox>
-        <div>
-          <p>{minPrice}</p>
-        </div>
-      </div>
-    </div>
-  );
-}
 const AdditionalInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -665,7 +587,6 @@ export default function Body() {
         />
       </WhereToBlock>
       <BestPrices img={calen} />
-      <BestTickets img={flagRu} city="Крым" country="Крым" />
       <AdditionalInfo />
       <Slideshow />
       <Subscribe vk={vk} twit={twit} fb={fb} rss={rss} />
