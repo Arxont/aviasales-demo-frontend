@@ -189,10 +189,8 @@ const ticketInfo = [
     ticketPrice: 8713
   }
 ];
-
-var toSimpLowestPrice = {};
-var i = 0;
-for (i = 0; i < ticketInfo.length; i++) {
+let toSimpLowestPrice = {};
+for (let i = 0; i < ticketInfo.length; i++) {
   if (
     ticketInfo[i].cityTo === "Симферополь" &&
     ticketInfo[i].ticketPrice ===
@@ -201,25 +199,88 @@ for (i = 0; i < ticketInfo.length; i++) {
     toSimpLowestPrice = ticketInfo[i];
   }
 }
-console.log(toSimpLowestPrice);
-
-function Testing(props) {
+const FlyTocityBlock = styled.div`
+  box-shadow: 0 3px 8px -3px grey;
+  width: 45%;
+  margin-bottom: 1%;
+`;
+const FlyTocityWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+const FlyTocityInfoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+const FlyTocityAddInfo = styled.span`
+  color: grey;
+`;
+function FlyTocity(props) {
   return (
-    <div>
+    <FlyTocityBlock>
       <img src="/simpferopol.jpg" alt="Simpferopol" />
-      <div>
-        <div>
+      <FlyTocityWrapper>
+        <FlyTocityInfoWrapper>
           {props.cityTo}
-          <span>{toSimpLowestPrice.countryTo}</span>
-        </div>
-        <div>
-          <a href="123.com">Найти от {toSimpLowestPrice.ticketPrice} Р</a>
-          <span>{toSimpLowestPrice.dateStart}</span>
-        </div>
-      </div>
-    </div>
+          <FlyTocityAddInfo>{props.countryTo}</FlyTocityAddInfo>
+        </FlyTocityInfoWrapper>
+        <FlyTocityInfoWrapper>
+          <a href="123.com">Найти от {props.ticketPrice} ₽</a>
+          <FlyTocityAddInfo>{props.dateStart}</FlyTocityAddInfo>
+        </FlyTocityInfoWrapper>
+      </FlyTocityWrapper>
+    </FlyTocityBlock>
   );
 }
+const GetTopCityByPriceBlock = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+`;
+
+function GetTopCityByPrice() {
+  return (
+    <GetTopCityByPriceBlock>
+      <FlyTocity
+        cityTo={toSimpLowestPrice.cityTo}
+        countryTo={toSimpLowestPrice.countryTo}
+        ticketPrice={toSimpLowestPrice.ticketPrice}
+        dateStart={toSimpLowestPrice.dateStart}
+      />
+      <FlyTocity
+        cityTo={toSimpLowestPrice.cityTo}
+        countryTo={toSimpLowestPrice.countryTo}
+        ticketPrice={toSimpLowestPrice.ticketPrice}
+        dateStart={toSimpLowestPrice.dateStart}
+      />
+      <FlyTocity
+        cityTo={toSimpLowestPrice.cityTo}
+        countryTo={toSimpLowestPrice.countryTo}
+        ticketPrice={toSimpLowestPrice.ticketPrice}
+        dateStart={toSimpLowestPrice.dateStart}
+      />
+      <FlyTocity
+        cityTo={toSimpLowestPrice.cityTo}
+        countryTo={toSimpLowestPrice.countryTo}
+        ticketPrice={toSimpLowestPrice.ticketPrice}
+        dateStart={toSimpLowestPrice.dateStart}
+      />
+      <FlyTocity
+        cityTo={toSimpLowestPrice.cityTo}
+        countryTo={toSimpLowestPrice.countryTo}
+        ticketPrice={toSimpLowestPrice.ticketPrice}
+        dateStart={toSimpLowestPrice.dateStart}
+      />
+      <FlyTocity
+        cityTo={toSimpLowestPrice.cityTo}
+        countryTo={toSimpLowestPrice.countryTo}
+        ticketPrice={toSimpLowestPrice.ticketPrice}
+        dateStart={toSimpLowestPrice.dateStart}
+      />
+    </GetTopCityByPriceBlock>
+  );
+}
+
 function BestPrices(props) {
   return (
     <PapularW>
@@ -608,8 +669,8 @@ export default function Body() {
           WhereHref="123.com"
         />
       </WhereToBlock>
+      <GetTopCityByPrice />
       <BestPrices img={calen} />
-      <Testing cityTo={toSimpLowestPrice.cityTo} />
       <AdditionalInfo />
       <Slideshow />
       <Subscribe vk={vk} twit={twit} fb={fb} rss={rss} />
