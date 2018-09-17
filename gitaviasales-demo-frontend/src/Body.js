@@ -190,6 +190,36 @@ const ticketInfo = [
   }
 ];
 
+var toSimpLowestPrice = {};
+var i = 0;
+for (i = 0; i < ticketInfo.length; i++) {
+  if (
+    ticketInfo[i].cityTo === "Симферополь" &&
+    ticketInfo[i].ticketPrice ===
+      Math.min.apply(Math, ticketInfo.map(min => min.ticketPrice))
+  ) {
+    toSimpLowestPrice = ticketInfo[i];
+  }
+}
+console.log(toSimpLowestPrice);
+
+function Testing(props) {
+  return (
+    <div>
+      <img src="/simpferopol.jpg" alt="Simpferopol" />
+      <div>
+        <div>
+          {props.cityTo}
+          <span>{toSimpLowestPrice.countryTo}</span>
+        </div>
+        <div>
+          <a href="123.com">Найти от {toSimpLowestPrice.ticketPrice} Р</a>
+          <span>{toSimpLowestPrice.dateStart}</span>
+        </div>
+      </div>
+    </div>
+  );
+}
 function BestPrices(props) {
   return (
     <PapularW>
@@ -198,15 +228,6 @@ function BestPrices(props) {
     </PapularW>
   );
 }
-/*
-const FromCity = [
-  { cityNames: "Москвы", ticketPrice: "4813" },
-  { cityNames: "Санкт-Петербурга", ticketPrice: "7857" },
-  { cityNames: "Новосибирска", ticketPrice: "15127" },
-  { cityNames: "Екатиринбурга", ticketPrice: "9275" },
-  { cityNames: "Челябинска", ticketPrice: "9148" }
-];
-*/
 
 const AdditionalInfoWrapper = styled.div`
   display: flex;
@@ -239,8 +260,9 @@ const properties = {
 };
 
 const SliderBorder = styled.div`
-  border-bottom: solid;
-  border-image: url("/rectangle.png") 30 / 19px round;
+  border: 10px solid transparent;
+  border-top-style: none;
+  border-image: url("/border.png") 30 round;
   padding-top: 50px;
   padding-bottom: 50px;
 `;
@@ -587,6 +609,7 @@ export default function Body() {
         />
       </WhereToBlock>
       <BestPrices img={calen} />
+      <Testing cityTo={toSimpLowestPrice.cityTo} />
       <AdditionalInfo />
       <Slideshow />
       <Subscribe vk={vk} twit={twit} fb={fb} rss={rss} />
