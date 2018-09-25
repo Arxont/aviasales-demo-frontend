@@ -77,128 +77,310 @@ function WhereTo(props) {
   );
 }
 
-const ticketInfo = [
+const country = [
   {
-    cityFrom: "Москва",
-    cityTo: "Симферополь",
-    countryFrom: "Россия",
-    countryTo: "Крым",
-    dateStart: (1, 9, 2018),
-    dateEnd: (9, 9, 2018),
-    countryFromFlag: "flagru",
-    ticketPrice: 4813
+    countryName: "Россия",
+    Id: 1000,
+    countryFlag: "flag-ru.svg"
   },
   {
-    cityFrom: "Москва",
-    cityTo: "Симферополь",
-    countryFrom: "Россия",
-    countryTo: "Крым",
-    dateStart: (1, 9, 2018),
-    dateEnd: (9, 9, 2018),
-    countryFromFlag: "flagru",
-    ticketPrice: 1200
+    countryName: "Испания",
+    Id: 1001,
+    countryFlag: "flag-spa.svg"
   },
   {
-    cityFrom: "Симферополь",
-    cityTo: "Барселона",
-    countryFrom: "Крым",
-    countryTo: "Испания",
-    dateStart: (1, 9, 2018),
-    dateEnd: (9, 9, 2018),
-    countryFromFlag: "flagru",
-    ticketPrice: 1200
+    countryName: "Армения",
+    Id: 1002,
+    countryFlag: "flag-arm.svg"
   },
   {
-    cityFrom: "Москва",
-    cityTo: "Симферополь",
-    countryFrom: "Россия",
-    countryTo: "Крым",
-    dateStart: (1, 9, 2018),
-    dateEnd: (9, 9, 2018),
-    countryFromFlag: "flagru",
-    ticketPrice: 4814
+    countryName: "Молдавия",
+    Id: 1003,
+    countryFlag: "flag-mol.svg"
   },
   {
-    cityFrom: "Москва",
-    cityTo: "Симферополь",
-    countryFrom: "Россия",
-    countryTo: "Крым",
-    dateStart: (1, 9, 2018),
-    dateEnd: (9, 9, 2018),
-    countryFromFlag: "flagru",
-    ticketPrice: 5813
-  },
-  {
-    cityFrom: "Санк-Петербург",
-    cityTo: "Симферополь",
-    countryFrom: "Россия",
-    countryTo: "Крым",
-    dateStart: (1, 9, 2018),
-    dateEnd: (9, 9, 2018),
-    countryFromFlag: "flagru",
-    ticketPrice: 7857
-  },
-  {
-    cityFrom: "Санк-Петербург",
-    cityTo: "Симферополь",
-    countryFrom: "Россия",
-    countryTo: "Крым",
-    dateStart: (1, 9, 2018),
-    dateEnd: (9, 9, 2018),
-    countryFromFlag: "flagru",
-    ticketPrice: 7860
-  },
-  {
-    cityFrom: "Новосибирск",
-    cityTo: "Симферополь",
-    countryFrom: "Россия",
-    countryTo: "Крым",
-    dateStart: (1, 9, 2018),
-    dateEnd: (9, 9, 2018),
-    countryFromFlag: "flagru",
-    ticketPrice: 15127
-  },
-  {
-    cityFrom: "Екатеринбург",
-    cityTo: "Симферополь",
-    countryFrom: "Россия",
-    countryTo: "Крым",
-    dateStart: (1, 9, 2018),
-    dateEnd: (9, 9, 2018),
-    countryFromFlag: "flagru",
-    ticketPrice: 9275
-  },
-  {
-    cityFrom: "Челябинск",
-    cityTo: "Симферополь",
-    countryFrom: "Россия",
-    countryTo: "Крым",
-    dateStart: (1, 9, 2018),
-    dateEnd: (9, 9, 2018),
-    countryFromFlag: "flagru",
-    ticketPrice: 9148
-  },
-  {
-    cityFrom: "Москва",
-    cityTo: "Ереван",
-    countryFrom: "Россия",
-    countryTo: "Армения",
-    dateStart: (1, 9, 2018),
-    dateEnd: (9, 9, 2018),
-    countryFromFlag: "flagru",
-    ticketPrice: 8713
+    countryName: "Крым",
+    Id: 1004,
+    countryFlag: "flag-ru.svg"
   }
 ];
-let toSimpLowestPrice = {};
-for (let i = 0; i < ticketInfo.length; i++) {
-  if (
-    ticketInfo[i].cityTo === "Симферополь" &&
-    ticketInfo[i].ticketPrice ===
-      Math.min.apply(Math, ticketInfo.map(min => min.ticketPrice))
-  ) {
-    toSimpLowestPrice = ticketInfo[i];
+
+const city = [
+  {
+    cityName: "Москва",
+    Id: 1,
+    countryId: 1000
+  },
+  {
+    cityName: "Симферополь",
+    Id: 2,
+    countryId: 1004
+  },
+  {
+    cityName: "Барселона",
+    Id: 3,
+    countryId: 1001
+  },
+  {
+    cityName: "Санк-Петербург",
+    Id: 4,
+    countryId: 1000
+  },
+  {
+    cityName: "Краснодар",
+    Id: 5,
+    countryId: 1000
+  },
+  {
+    cityName: "Сочи",
+    Id: 6,
+    countryId: 1000
+  },
+  {
+    cityName: "Минеральные воды",
+    Id: 7,
+    countryId: 1000
+  },
+  {
+    cityName: "Новосибирск",
+    Id: 8,
+    countryId: 1000
+  },
+  {
+    cityName: "Екатерингбург",
+    Id: 9,
+    countryId: 1000
+  },
+  {
+    cityName: "Челябинск",
+    Id: 10,
+    countryId: 1000
+  },
+  {
+    cityName: "Ростов на дону",
+    Id: 11,
+    countryId: 1000
+  },
+  {
+    cityName: "Сургут",
+    Id: 12,
+    countryId: 1000
+  },
+  {
+    cityName: "Новый Уренгой",
+    Id: 13,
+    countryId: 1000
+  },
+  {
+    cityName: "Кишинёв",
+    Id: 14,
+    countryId: 1003
+  },
+  {
+    cityName: "Ереван",
+    Id: 15,
+    countryId: 1002
   }
+];
+
+const routes = [
+  {
+    fromId: 1,
+    toId: 2,
+    ticketPrice: 4813,
+    dateStart: (1, 9, 2018),
+    dateEnd: (9, 9, 2018)
+  },
+  {
+    fromId: 1,
+    toId: 6,
+    ticketPrice: 1334,
+    dateStart: (1, 9, 2018),
+    dateEnd: (9, 9, 2018)
+  },
+  {
+    fromId: 1,
+    toId: 4,
+    ticketPrice: 1508,
+    dateStart: (1, 9, 2018),
+    dateEnd: (9, 9, 2018)
+  },
+  {
+    fromId: 1,
+    toId: 7,
+    ticketPrice: 2074,
+    dateStart: (1, 9, 2018),
+    dateEnd: (9, 9, 2018)
+  },
+  {
+    fromId: 1,
+    toId: 2,
+    ticketPrice: 2407,
+    dateStart: (1, 9, 2018),
+    dateEnd: (9, 9, 2018)
+  },
+  {
+    fromId: 1,
+    toId: 3,
+    ticketPrice: 4247,
+    dateStart: (1, 9, 2018),
+    dateEnd: (9, 9, 2018)
+  },
+  {
+    fromId: 1,
+    toId: 5,
+    ticketPrice: 1212,
+    dateStart: (1, 9, 2018),
+    dateEnd: (9, 9, 2018)
+  },
+  {
+    fromId: 15,
+    toId: 2,
+    ticketPrice: 4813,
+    dateStart: (1, 9, 2018),
+    dateEnd: (9, 9, 2018)
+  },
+  {
+    fromId: 1,
+    toId: 2,
+    ticketPrice: 2503,
+    dateStart: (1, 9, 2018),
+    dateEnd: (9, 9, 2018)
+  },
+  {
+    fromId: 2,
+    toId: 1,
+    ticketPrice: 2489,
+    dateStart: (1, 9, 2018),
+    dateEnd: (9, 9, 2018)
+  },
+  {
+    fromId: 1,
+    toId: 3,
+    ticketPrice: 4814,
+    dateStart: (1, 9, 2018),
+    dateEnd: (9, 9, 2018)
+  },
+  {
+    fromId: 1,
+    toId: 2,
+    ticketPrice: 5813,
+    dateStart: (1, 9, 2018),
+    dateEnd: (9, 9, 2018)
+  },
+  {
+    fromId: 4,
+    toId: 2,
+    ticketPrice: 7857,
+    dateStart: (1, 9, 2018),
+    dateEnd: (9, 9, 2018)
+  },
+  {
+    fromId: 4,
+    toId: 2,
+    ticketPrice: 7858,
+    dateStart: (1, 9, 2018),
+    dateEnd: (9, 9, 2018)
+  },
+  {
+    fromId: 8,
+    toId: 2,
+    ticketPrice: 15127,
+    dateStart: (1, 9, 2018),
+    dateEnd: (9, 9, 2018)
+  },
+  {
+    fromId: 9,
+    toId: 2,
+    ticketPrice: 9275,
+    dateStart: (1, 9, 2018),
+    dateEnd: (9, 9, 2018)
+  },
+  {
+    fromId: 10,
+    toId: 2,
+    ticketPrice: 9148,
+    dateStart: (1, 9, 2018),
+    dateEnd: (9, 9, 2018)
+  },
+  {
+    fromId: 1,
+    toId: 15,
+    ticketPrice: 8713,
+    dateStart: (1, 9, 2018),
+    dateEnd: (9, 9, 2018)
+  }
+];
+
+function join(lookupTable, mainTable, lookupKey, mainKey, select) {
+  var l = lookupTable.length,
+    m = mainTable.length,
+    lookupIndex = [],
+    output = [];
+  for (var i = 0; i < l; i++) {
+    var row = lookupTable[i];
+    lookupIndex[row[lookupKey]] = row;
+  }
+  for (var j = 0; j < m; j++) {
+    var y = mainTable[j];
+    var x = lookupIndex[y[mainKey]];
+    output.push(select(y, x));
+  }
+  return output;
 }
+
+let CityWithCountryJoin = join(country, city, "Id", "countryId", function(
+  City,
+  Country
+) {
+  return {
+    cityName: City.cityName,
+    Id: City.Id,
+    countryId: Country !== undefined ? Country.countryName : null
+  };
+});
+
+let RoutesFrom = join(CityWithCountryJoin, routes, "Id", "fromId", function(
+  route,
+  City
+) {
+  return {
+    fromId: City !== undefined ? City.cityName : null,
+    toId: route.toId,
+    ticketPrice: route.ticketPrice,
+    countryFrom: City.countryId,
+    dateStart: route.dateStart,
+    dateEnd: route.dateEnd
+  };
+});
+
+let FullInfoAboutFly = join(
+  CityWithCountryJoin,
+  RoutesFrom,
+  "Id",
+  "toId",
+  function(RF, CC) {
+    return {
+      cityFrom: RF.fromId,
+      toCity: CC !== undefined ? CC.cityName : null,
+      ticketPrice: RF.ticketPrice,
+      countryFrom: RF.countryFrom,
+      countryTo: CC.countryId,
+      dateStart: RF.dateStart,
+      dateEnd: RF.dateEnd
+    };
+  }
+);
+
+let LovestPriceToSimpferopol = FullInfoAboutFly.filter(a => {
+  return a.toCity === "Симферополь" && a.cityFrom === "Москва";
+})
+  .sort(function(a, b) {
+    return a.ticketPrice - b.ticketPrice;
+  })
+  .find(a => {
+    return (a = [0]);
+  });
 const FlyTocityBlock = styled.div`
   box-shadow: 0 3px 8px -3px grey;
   width: 45%;
@@ -242,40 +424,40 @@ function GetTopCityByPrice() {
   return (
     <GetTopCityByPriceBlock>
       <FlyTocity
-        cityTo={toSimpLowestPrice.cityTo}
-        countryTo={toSimpLowestPrice.countryTo}
-        ticketPrice={toSimpLowestPrice.ticketPrice}
-        dateStart={toSimpLowestPrice.dateStart}
+        cityTo={LovestPriceToSimpferopol.toCity}
+        countryTo={LovestPriceToSimpferopol.countryTo}
+        ticketPrice={LovestPriceToSimpferopol.ticketPrice}
+        dateStart={LovestPriceToSimpferopol.dateStart}
       />
       <FlyTocity
-        cityTo={toSimpLowestPrice.cityTo}
-        countryTo={toSimpLowestPrice.countryTo}
-        ticketPrice={toSimpLowestPrice.ticketPrice}
-        dateStart={toSimpLowestPrice.dateStart}
+        cityTo={LovestPriceToSimpferopol.toCity}
+        countryTo={LovestPriceToSimpferopol.countryTo}
+        ticketPrice={LovestPriceToSimpferopol.ticketPrice}
+        dateStart={LovestPriceToSimpferopol.dateStart}
       />
       <FlyTocity
-        cityTo={toSimpLowestPrice.cityTo}
-        countryTo={toSimpLowestPrice.countryTo}
-        ticketPrice={toSimpLowestPrice.ticketPrice}
-        dateStart={toSimpLowestPrice.dateStart}
+        cityTo={LovestPriceToSimpferopol.toCity}
+        countryTo={LovestPriceToSimpferopol.countryTo}
+        ticketPrice={LovestPriceToSimpferopol.ticketPrice}
+        dateStart={LovestPriceToSimpferopol.dateStart}
       />
       <FlyTocity
-        cityTo={toSimpLowestPrice.cityTo}
-        countryTo={toSimpLowestPrice.countryTo}
-        ticketPrice={toSimpLowestPrice.ticketPrice}
-        dateStart={toSimpLowestPrice.dateStart}
+        cityTo={LovestPriceToSimpferopol.toCity}
+        countryTo={LovestPriceToSimpferopol.countryTo}
+        ticketPrice={LovestPriceToSimpferopol.ticketPrice}
+        dateStart={LovestPriceToSimpferopol.dateStart}
       />
       <FlyTocity
-        cityTo={toSimpLowestPrice.cityTo}
-        countryTo={toSimpLowestPrice.countryTo}
-        ticketPrice={toSimpLowestPrice.ticketPrice}
-        dateStart={toSimpLowestPrice.dateStart}
+        cityTo={LovestPriceToSimpferopol.toCity}
+        countryTo={LovestPriceToSimpferopol.countryTo}
+        ticketPrice={LovestPriceToSimpferopol.ticketPrice}
+        dateStart={LovestPriceToSimpferopol.dateStart}
       />
       <FlyTocity
-        cityTo={toSimpLowestPrice.cityTo}
-        countryTo={toSimpLowestPrice.countryTo}
-        ticketPrice={toSimpLowestPrice.ticketPrice}
-        dateStart={toSimpLowestPrice.dateStart}
+        cityTo={LovestPriceToSimpferopol.toCity}
+        countryTo={LovestPriceToSimpferopol.countryTo}
+        ticketPrice={LovestPriceToSimpferopol.ticketPrice}
+        dateStart={LovestPriceToSimpferopol.dateStart}
       />
     </GetTopCityByPriceBlock>
   );
@@ -290,6 +472,25 @@ function BestPrices(props) {
   );
 }
 
+let TopFiveLowestTickets = FullInfoAboutFly.filter(a => {
+  return a.toCity === "Симферополь";
+})
+  .sort(function(a, b) {
+    return a.ticketPrice - b.ticketPrice;
+  })
+  .slice(0, 5);
+
+const listItems = TopFiveLowestTickets.map(top => (
+  <div>
+    <li>
+      Из {top.cityFrom} от {top.ticketPrice} ₽
+    </li>
+  </div>
+));
+
+function Test() {
+  return <div>{listItems}</div>;
+}
 const AdditionalInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -632,7 +833,7 @@ export default function Body() {
       <PopularDirections
         img={compass}
         alt="compass"
-        CityFrom="Kiev"
+        CityFrom="Moskow"
         CityHref="123.com"
       />
       <WhereToBlock>
@@ -671,6 +872,7 @@ export default function Body() {
       </WhereToBlock>
       <GetTopCityByPrice />
       <BestPrices img={calen} />
+      <Test />
       <AdditionalInfo />
       <Slideshow />
       <Subscribe vk={vk} twit={twit} fb={fb} rss={rss} />
