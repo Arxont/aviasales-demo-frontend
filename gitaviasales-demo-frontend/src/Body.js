@@ -372,7 +372,7 @@ let FullInfoAboutFly = join(
   }
 );
 
-let LovestPriceToSimpferopol = FullInfoAboutFly.filter(a => {
+let LowestPriceToSimpferopol = FullInfoAboutFly.filter(a => {
   return a.toCity === "Симферополь" && a.cityFrom === "Москва";
 })
   .sort(function(a, b) {
@@ -424,40 +424,40 @@ function GetTopCityByPrice() {
   return (
     <GetTopCityByPriceBlock>
       <FlyTocity
-        cityTo={LovestPriceToSimpferopol.toCity}
-        countryTo={LovestPriceToSimpferopol.countryTo}
-        ticketPrice={LovestPriceToSimpferopol.ticketPrice}
-        dateStart={LovestPriceToSimpferopol.dateStart}
+        cityTo={LowestPriceToSimpferopol.toCity}
+        countryTo={LowestPriceToSimpferopol.countryTo}
+        ticketPrice={LowestPriceToSimpferopol.ticketPrice}
+        dateStart={LowestPriceToSimpferopol.dateStart}
       />
       <FlyTocity
-        cityTo={LovestPriceToSimpferopol.toCity}
-        countryTo={LovestPriceToSimpferopol.countryTo}
-        ticketPrice={LovestPriceToSimpferopol.ticketPrice}
-        dateStart={LovestPriceToSimpferopol.dateStart}
+        cityTo={LowestPriceToSimpferopol.toCity}
+        countryTo={LowestPriceToSimpferopol.countryTo}
+        ticketPrice={LowestPriceToSimpferopol.ticketPrice}
+        dateStart={LowestPriceToSimpferopol.dateStart}
       />
       <FlyTocity
-        cityTo={LovestPriceToSimpferopol.toCity}
-        countryTo={LovestPriceToSimpferopol.countryTo}
-        ticketPrice={LovestPriceToSimpferopol.ticketPrice}
-        dateStart={LovestPriceToSimpferopol.dateStart}
+        cityTo={LowestPriceToSimpferopol.toCity}
+        countryTo={LowestPriceToSimpferopol.countryTo}
+        ticketPrice={LowestPriceToSimpferopol.ticketPrice}
+        dateStart={LowestPriceToSimpferopol.dateStart}
       />
       <FlyTocity
-        cityTo={LovestPriceToSimpferopol.toCity}
-        countryTo={LovestPriceToSimpferopol.countryTo}
-        ticketPrice={LovestPriceToSimpferopol.ticketPrice}
-        dateStart={LovestPriceToSimpferopol.dateStart}
+        cityTo={LowestPriceToSimpferopol.toCity}
+        countryTo={LowestPriceToSimpferopol.countryTo}
+        ticketPrice={LowestPriceToSimpferopol.ticketPrice}
+        dateStart={LowestPriceToSimpferopol.dateStart}
       />
       <FlyTocity
-        cityTo={LovestPriceToSimpferopol.toCity}
-        countryTo={LovestPriceToSimpferopol.countryTo}
-        ticketPrice={LovestPriceToSimpferopol.ticketPrice}
-        dateStart={LovestPriceToSimpferopol.dateStart}
+        cityTo={LowestPriceToSimpferopol.toCity}
+        countryTo={LowestPriceToSimpferopol.countryTo}
+        ticketPrice={LowestPriceToSimpferopol.ticketPrice}
+        dateStart={LowestPriceToSimpferopol.dateStart}
       />
       <FlyTocity
-        cityTo={LovestPriceToSimpferopol.toCity}
-        countryTo={LovestPriceToSimpferopol.countryTo}
-        ticketPrice={LovestPriceToSimpferopol.ticketPrice}
-        dateStart={LovestPriceToSimpferopol.dateStart}
+        cityTo={LowestPriceToSimpferopol.toCity}
+        countryTo={LowestPriceToSimpferopol.countryTo}
+        ticketPrice={LowestPriceToSimpferopol.ticketPrice}
+        dateStart={LowestPriceToSimpferopol.dateStart}
       />
     </GetTopCityByPriceBlock>
   );
@@ -474,13 +474,26 @@ function BestPrices(props) {
 
 let TopFiveLowestTickets = FullInfoAboutFly.filter(a => {
   return a.toCity === "Симферополь";
-})
-  .sort(function(a, b) {
-    return a.ticketPrice - b.ticketPrice;
-  })
-  .slice(0, 5);
+}).sort(function(a, b) {
+  return a.ticketPrice - b.ticketPrice;
+});
 
-const listItems = TopFiveLowestTickets.map(top => (
+function removeDuplicates(arr, prop) {
+  var obj = {};
+  for (var i = 0, len = arr.length; i < len; i++) {
+    if (!obj[arr[i][prop]]) obj[arr[i][prop]] = arr[i];
+  }
+  var newArr = [];
+  for (var key in obj) newArr.push(obj[key]);
+  return newArr;
+}
+let FilteredTopFiveLowestTickets = removeDuplicates(
+  TopFiveLowestTickets,
+  "cityFrom"
+);
+FilteredTopFiveLowestTickets.slice(0, 5);
+
+const listItems = FilteredTopFiveLowestTickets.map(top => (
   <div>
     <li>
       Из {top.cityFrom} от {top.ticketPrice} ₽
@@ -488,8 +501,18 @@ const listItems = TopFiveLowestTickets.map(top => (
   </div>
 ));
 
-function Test() {
-  return <div>{listItems}</div>;
+const BestPriceTicketsListWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+function BestPriceTicketsList() {
+  return (
+    <BestPriceTicketsListWrapper>
+      <div>{listItems}</div>
+      <div>{listItems}</div>
+      <div>{listItems}</div>
+    </BestPriceTicketsListWrapper>
+  );
 }
 const AdditionalInfoWrapper = styled.div`
   display: flex;
@@ -872,7 +895,7 @@ export default function Body() {
       </WhereToBlock>
       <GetTopCityByPrice />
       <BestPrices img={calen} />
-      <Test />
+      <BestPriceTicketsList />
       <AdditionalInfo />
       <Slideshow />
       <Subscribe vk={vk} twit={twit} fb={fb} rss={rss} />
