@@ -208,12 +208,24 @@ function CompanyInfoFooter() {
     </CompanyInfoFooterWrapper>
   );
 }
+
+function TestURL() {
+  return (
+    <div>
+      <a href="./TestingGround.js" alt="Second Page">
+        {" "}
+        CLICK ME{" "}
+      </a>
+    </div>
+  );
+}
 export default function Footer() {
   return (
     <div>
       <MobileAd apple={apple} android={android} wf={wf} />
       <FooterInfoList />
       <CompanyInfoFooter />
+      <TestURL />
     </div>
   );
 }
