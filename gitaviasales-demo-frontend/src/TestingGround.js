@@ -8,8 +8,9 @@ import {
   AccordionItemTitle,
   AccordionItemBody
 } from "react-accessible-accordion";
-import "react-accessible-accordion/dist/fancy-example.css";
+import "react-accessible-accordion/dist/minimal-example.css";
 import Footer from "./Footer";
+import plane from "./images/plane.svg";
 
 const Test = styled.div`
   width: 100%;
@@ -18,12 +19,19 @@ const TestDiv = styled.div`
   display: flex;
   flex-direction: column;
 `;
+const SomeP = styled.div`
+  background-color: red;
+`;
 const Hoba = { one: "Москва", two: "Барселона" };
 const Example = props => (
   <Accordion>
     <AccordionItem>
       <AccordionItemTitle>
-        <h3>Пересадки</h3>
+        <SomeP>
+          <img src={plane} alt="plane" />
+          Пересадки
+          <button type="button">X</button>
+        </SomeP>
       </AccordionItemTitle>
       <AccordionItemBody>
         <div>
@@ -52,7 +60,7 @@ const Example = props => (
             *картинка*
             {Hoba.two}
           </h4>
-          Вылет из {props.from}:<RangeSlider />
+          Вылет из {props.from}:<RangeSlider minValue={20} maxValue={300} />
           Прибытие в {props.to}:<RangeSlider />
         </div>
         <div>
@@ -97,7 +105,9 @@ const Example = props => (
           <input name="isGoing" type="checkbox" />
           Несколько авиакомпаний
           <p>
-            Показывать билеты с перелетами, выполняемыми несколькими
+            Показывать билеты с перелетами,
+            <br /> выполняемыми несколькими
+            <br />
             авиакомпаниями включая выбранную
           </p>
           <h2>Альянсы</h2>
@@ -183,7 +193,7 @@ function FindTickets(props) {
     <MenuWrap>
       <TicketButton>
         <FindTicket>Найти билеты</FindTicket>
-        <img src={props.img} alt="plane" />
+        <img src={plane} alt="plane" />
       </TicketButton>
     </MenuWrap>
   );
@@ -198,7 +208,7 @@ function FlySettings() {
   return (
     <FlySettingsWrapper>
       <Test>
-        <RangeSlider />
+        <RangeSlider maxValue={300} />
       </Test>
       <Test>
         <RangeSlider />
