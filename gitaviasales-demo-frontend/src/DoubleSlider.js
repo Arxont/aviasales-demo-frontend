@@ -2,14 +2,14 @@ import React from "react";
 import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
 
-class DoubleRangeSlider extends React.Component {
+export default class DoubleRangeSlider extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       value5: {
-        min: 0,
-        max: 50
+        min: props.minValue,
+        max: props.maxValue
       }
     };
   }
@@ -19,8 +19,8 @@ class DoubleRangeSlider extends React.Component {
       <form>
         <InputRange
           draggableTrack
-          maxValue={50}
-          minValue={0}
+          maxValue={this.props.maxValue}
+          minValue={this.props.minValue}
           onChange={value => this.setState({ value5: value })}
           onChangeComplete={value => console.log(value)}
           value={this.state.value5}
@@ -28,8 +28,4 @@ class DoubleRangeSlider extends React.Component {
       </form>
     );
   }
-}
-
-export default function RangeSlider() {
-  return <DoubleRangeSlider />;
 }
