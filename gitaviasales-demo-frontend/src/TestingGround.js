@@ -329,7 +329,7 @@ const Test2 = styled.div`
   width: 100%;
   margin-left: 5%;
 `;
-function Body() {
+export default function TicketsBody() {
   return (
     <BodyWrapper>
       <Example from={Hoba.one} to={Hoba.two} />
@@ -340,15 +340,3 @@ function Body() {
     </BodyWrapper>
   );
 }
-
-function AviaSales2() {
-  return (
-    <div>
-      <Header />
-      <Body />
-      <Footer />
-    </div>
-  );
-}
-
-export default AviaSales2;
