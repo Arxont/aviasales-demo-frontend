@@ -1,6 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+
+
 import { Slide } from "react-slideshow-image";
+
+
 import earth from "./images/earth.svg";
 import sun from "./images/sun.svg";
 import shopping from "./images/shopping.svg";

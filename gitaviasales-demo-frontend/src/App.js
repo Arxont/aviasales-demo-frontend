@@ -1,18 +1,33 @@
 import React from "react";
 import Header from "./Header";
 import Body from "./Body";
+import Error from "./components/Error";
 import TicketsBody from "./TestingGround";
 import Footer from "./Footer";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from "react-router-dom";
+
+function MainPage() {
+  return (
+    <div>
+      <Header />
+      <Body />
+      <Footer />
+    </div>
+  );
+}
 
 function AviaSales() {
   return (
     <Router>
       <div>
-        <Route path="/" component={Header} />
-        <Route path="/" component={Body} exact />
-        <Route path="/buyTickets" component={TicketsBody} />
-        <Route path="/" component={Footer} />
+        <Switch>
+          <Route path="/" exact component={MainPage} />
+        </Switch>
       </div>
     </Router>
   );
