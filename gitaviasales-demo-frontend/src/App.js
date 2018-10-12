@@ -11,24 +11,33 @@ import {
   Redirect
 } from "react-router-dom";
 
-function MainPage() {
+function BodyThatCanChange() {
+  return (
+    <Router>
+      <Switch>
+        <Route exact path="/" component={Body} />
+        <Route path="/Tickets" component={TicketsBody} />
+        <Route component={Error} />
+      </Switch>
+    </Router>
+  );
+}
+function FirstPage() {
   return (
     <div>
       <Header />
-      <Body />
+      <BodyThatCanChange />
       <Footer />
     </div>
   );
 }
-
 function AviaSales() {
   return (
     <Router>
-      <div>
-        <Switch>
-          <Route path="/" exact component={MainPage} />
-        </Switch>
-      </div>
+      <Switch>
+        <Route exact path="/" component={FirstPage} />
+        <Route component={Error} />
+      </Switch>
     </Router>
   );
 }
