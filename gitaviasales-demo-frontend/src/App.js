@@ -10,6 +10,7 @@ import {
   Switch,
   Redirect
 } from "react-router-dom";
+import Test from "./components/TestApp";
 
 function BodyThatCanChange() {
   return (
@@ -36,6 +37,7 @@ function AviaSales() {
     <Router>
       <Switch>
         <Route exact path="/" component={FirstPage} />
+        <Route exact path="/test" component={Test} />
         <Route component={Error} />
       </Switch>
     </Router>
