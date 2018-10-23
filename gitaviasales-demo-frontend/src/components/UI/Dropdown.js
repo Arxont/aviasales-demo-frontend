@@ -43,9 +43,7 @@ class Cities extends React.Component {
   }
 }
 
-const ContentDiv = styled.div`
-  display: none;
-`;
+const ContentDiv = styled.div``;
 
 class DropdownList extends React.Component {
   constructor() {
@@ -73,7 +71,7 @@ class DropdownList extends React.Component {
           onChange={this.updateSearch.bind(this)}
         />
 
-        <ContentDiv id="HiddenContent">
+        <ContentDiv>
           <ul>
             {filteredCities.map(item => {
               return <Cities data={item} key={item.id} />;
