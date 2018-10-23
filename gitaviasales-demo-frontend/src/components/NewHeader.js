@@ -30,6 +30,7 @@ let CityWithCountryJoin = join(country, city, "Id", "countryId", function(
     test: City.test
   };
 });
+
 let NewCountryWithText = CityWithCountryJoin.map(
   ({ cityName: text, Id: value, ...rest }) => ({ text, value, ...rest })
 );

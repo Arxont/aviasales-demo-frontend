@@ -1,6 +1,10 @@
 import React from "react";
-import CityFromDropdown from "./NewHeader";
+import { DropdownList } from "./UI/Dropdown";
 
 export default function Test() {
-  return <CityFromDropdown />;
+  return (
+    <div>
+      <DropdownList />
+    </div>
+  );
 }
