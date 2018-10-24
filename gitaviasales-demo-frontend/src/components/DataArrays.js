@@ -23,13 +23,7 @@ const country = [
     countryName: "Крым",
     id: 1004,
     countryFlag: "flag-ru.svg"
-  },
-  {
-    text: "Russia",
-    id: 1004,
-    countryFlag: "flag-ru.svg"
-  },
-  { key: "af", value: "af", flag: "af", text: "Afghanistan" }
+  }
 ];
 
 const city = [
@@ -120,6 +114,12 @@ const city = [
   {
     cityName: "Ереван",
     cityAbbreviation: "ERV",
+    id: 15,
+    countryId: 1002
+  },
+  {
+    cityName: "Супер длинное имя города",
+    cityAbbreviation: "SUP",
     id: 15,
     countryId: 1002
   }

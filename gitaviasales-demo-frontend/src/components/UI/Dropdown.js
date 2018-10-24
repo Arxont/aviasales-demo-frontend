@@ -31,56 +31,161 @@ let cityAndCountry = join(country, city, "id", "countryId", function(
   };
 });
 
+const CitiesWrapper = styled.div`
+  position: relative;
+`;
+const CityNameAndCountryWrapper = styled.div`
+  display: inline-block;
+  left: auto;
+  margin: 5px 0;
+  width: 70%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  height: 17px;
+`;
+const CityAbbreviationWrapper = styled.div`
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  margin: 5px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  height: 17px;
+`;
 class Cities extends React.Component {
   render() {
     return (
-      <li>
-        {this.props.data.cityName}
-        ____
-        {this.props.data.countryId}_{this.props.data.CityAbbreviation}
-      </li>
+      <CitiesWrapper>
+        <CityNameAndCountryWrapper>
+          {this.props.data.cityName},{this.props.data.countryId}
+        </CityNameAndCountryWrapper>{" "}
+        <CityAbbreviationWrapper>
+          {this.props.data.CityAbbreviation}
+        </CityAbbreviationWrapper>
+      </CitiesWrapper>
     );
   }
 }
-
-const ContentDiv = styled.div``;
-
+const DropdownWrapper = styled.div`
+  width: 220px;
+`;
+const ContentDiv = styled.div`
+  width: 100%;
+`;
+const CityInput = styled.input`
+  width: 100%;
+  cursor: pointer;
+`;
 class DropdownList extends React.Component {
   constructor() {
     super();
     this.state = {
-      search: ""
+      search: "",
+      hiddenDiv: true
     };
+    this.showDiwOnClick = this.showDiwOnClick.bind(this);
+  }
+  showDiwOnClick(event) {
+    this.setState({ hiddenDiv: false });
   }
   updateSearch(event) {
     this.setState({ search: event.target.value.substr(0, 50) });
   }
+
   render() {
-    let filteredCities = cityAndCountry.filter(data => {
-      return (
-        data.cityName.toLowerCase().indexOf(this.state.search.toLowerCase()) !==
-        -1
-      );
-    });
+    let filteredCities = cityAndCountry
+      .filter(data => {
+        return (
+          data.cityName
+            .toUpperCase()
+            .indexOf(this.state.search.toUpperCase()) !== -1
+        );
+      })
+      .slice(0, 6);
+    const HideDiv = this.state.hiddenDiv ? { display: "none" } : {};
+
     return (
-      <div>
-        <input
+      <DropdownWrapper>
+        <CityInput
           type="text"
           placeholder="Выберите город"
           value={this.state.search}
           onChange={this.updateSearch.bind(this)}
+          onClick={this.showDiwOnClick}
         />
 
-        <ContentDiv>
-          <ul>
+        <ContentDiv style={HideDiv}>
+          <div>
             {filteredCities.map(item => {
               return <Cities data={item} key={item.id} />;
             })}
-          </ul>
+          </div>
         </ContentDiv>
-      </div>
+      </DropdownWrapper>
     );
   }
 }
+class DropdownListWithFlyAnyWhere extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      search: "",
+      hiddenDiv: true,
+      hiddenFlyAnywhereBlock: true
+    };
+    this.showDiwOnClick = this.showDiwOnClick.bind(this);
+    this.ShowHiddenFlyAnywhereBlockOnClick = this.ShowHiddenFlyAnywhereBlockOnClick.bind(
+      this
+    );
+  }
+  showDiwOnClick(event) {
+    this.setState({ hiddenDiv: false });
+  }
+  ShowHiddenFlyAnywhereBlockOnClick(event) {
+    this.setState({ hiddenFlyAnywhereBlock: false });
+  }
+  updateSearch(event) {
+    this.setState({ search: event.target.value.substr(0, 50) });
+  }
 
-export { DropdownList };
+  render() {
+    let filteredCities = cityAndCountry
+      .filter(data => {
+        return (
+          data.cityName
+            .toUpperCase()
+            .indexOf(this.state.search.toUpperCase()) !== -1
+        );
+      })
+      .slice(0, 6);
+    const HideDiv = this.state.hiddenDiv ? { display: "none" } : {};
+    const HideTest = this.state.hiddenFlyAnywhereBlock
+      ? { display: "none" }
+      : {};
+
+    return (
+      <DropdownWrapper>
+        <CityInput
+          type="text"
+          placeholder="Выберите город"
+          value={this.state.search}
+          onChange={this.updateSearch.bind(this)}
+          onClick={this.ShowHiddenFlyAnywhereBlockOnClick}
+          onKeyDown={this.showDiwOnClick}
+        />
+
+        <ContentDiv style={HideDiv}>
+          <div>
+            {filteredCities.map(item => {
+              return <Cities data={item} key={item.id} />;
+            })}
+          </div>
+        </ContentDiv>
+        <div style={HideTest}>Куда угодно</div>
+      </DropdownWrapper>
+    );
+  }
+}
+export { DropdownList, DropdownListWithFlyAnyWhere };
