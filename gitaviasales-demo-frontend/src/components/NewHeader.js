@@ -1,47 +1,43 @@
 import React from "react";
-import { Dropdown } from "semantic-ui-react";
-import { country, city } from "./DataArrays";
+import styled from "styled-components";
+import plane from "../images/plane.svg";
 
-function join(lookupTable, mainTable, lookupKey, mainKey, select) {
-  var l = lookupTable.length,
-    m = mainTable.length,
-    lookupIndex = [],
-    output = [];
-  for (var i = 0; i < l; i++) {
-    var row = lookupTable[i];
-    lookupIndex[row[lookupKey]] = row;
+const TicketButton = styled.button`
+ display: inline-block
+  background-color: orange;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  border-style: none;
+  @media (max-width: 400px) {
+    width:100%;
   }
-  for (var j = 0; j < m; j++) {
-    var y = mainTable[j];
-    var x = lookupIndex[y[mainKey]];
-    output.push(select(y, x));
-  }
-  return output;
+`;
+
+function FindTicketsButton() {
+  return (
+    <TicketButton>
+      Найти билеты <img src={plane} alt="plane" />
+    </TicketButton>
+  );
 }
 
-let CityWithCountryJoin = join(country, city, "Id", "countryId", function(
-  City,
-  Country
-) {
-  return {
-    cityName: City.cityName,
-    Id: City.Id,
-    countryId: Country !== undefined ? Country.countryName : null,
-    test: City.test
-  };
-});
+const HeaderWrapper = styled.div`
+  background-color: blue;
+  height: 300px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
 
-let NewCountryWithText = CityWithCountryJoin.map(
-  ({ cityName: text, Id: value, ...rest }) => ({ text, value, ...rest })
-);
-let CityFromDropdown = () => (
-  <Dropdown
-    placeholder="Select CIty"
-    fluid
-    search
-    selection
-    options={NewCountryWithText}
-  />
-);
+const HeaderHeadlineWrapper = styled.div``;
+function Header() {
+  return (
+    <HeaderWrapper>
+      <div>Поиск дешевых авиабилетов</div>
+      <div>Лучший способ купить авиабилеты дешево</div>
+      <FindTicketsButton />
+    </HeaderWrapper>
+  );
+}
 
-export default CityFromDropdown;
+export default Header;
