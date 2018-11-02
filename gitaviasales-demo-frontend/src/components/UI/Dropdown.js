@@ -68,14 +68,12 @@ class Cities extends React.Component {
     );
   }
 }
-const DropdownWrapper = styled.div`
-  width: 220px;
-`;
+const DropdownWrapper = styled.div``;
 const ContentDiv = styled.div`
-  width: 100%;
+  width: 200px;
 `;
 const CityInput = styled.input`
-  width: 100%;
+  width: 220px;
   cursor: pointer;
 `;
 class DropdownList extends React.Component {
