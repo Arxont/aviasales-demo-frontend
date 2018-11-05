@@ -68,13 +68,14 @@ class Cities extends React.Component {
     );
   }
 }
-const DropdownWrapper = styled.div``;
+
 const ContentDiv = styled.div`
-  width: 200px;
+  width: 180px;
 `;
 const CityInput = styled.input`
-  width: 220px;
   cursor: pointer;
+  margin: auto;
+  margin-bottom: 2px;
 `;
 class DropdownList extends React.Component {
   constructor() {
@@ -105,7 +106,7 @@ class DropdownList extends React.Component {
     const HideDiv = this.state.hiddenDiv ? { display: "none" } : {};
 
     return (
-      <DropdownWrapper>
+      <div>
         <CityInput
           type="text"
           placeholder="Выберите город"
@@ -121,7 +122,7 @@ class DropdownList extends React.Component {
             })}
           </div>
         </ContentDiv>
-      </DropdownWrapper>
+      </div>
     );
   }
 }
@@ -164,10 +165,10 @@ class DropdownListWithFlyAnyWhere extends React.Component {
       : {};
 
     return (
-      <DropdownWrapper>
+      <div>
         <CityInput
           type="text"
-          placeholder="Выберите город"
+          placeholder="Город прибытия"
           value={this.state.search}
           onChange={this.updateSearch.bind(this)}
           onClick={this.ShowHiddenFlyAnywhereBlockOnClick}
@@ -182,7 +183,7 @@ class DropdownListWithFlyAnyWhere extends React.Component {
           </div>
         </ContentDiv>
         <div style={HideTest}>Куда угодно</div>
-      </DropdownWrapper>
+      </div>
     );
   }
 }

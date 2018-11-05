@@ -6,13 +6,14 @@ import "flexboxgrid2";
 
 const TicketButton = styled.button`
   background-color: orange;
+  width: 100%;
   border-style: none;
+  margin: auto;
   margin-top: 2%;
   margin-bottom: 5%;
-  width: 300px;
   height: 64px;
-  @media (max-width: 500px) {
-    width: 100%;
+  @media (min-width: 500px) {
+    width: 300px;
   }
 `;
 
@@ -27,15 +28,15 @@ function FindTicketsButton() {
 const TicketChoiceWrapper = styled.div`
   display: flex;
   margin: auto;
+  justify-content: space-around;
   background-color: red;
-  @media (max-width: 700px) {
+  @media (max-width: 768px) {
     flex-wrap: wrap;
   }
 `;
-
 function TicketChoice() {
   return (
-    <TicketChoiceWrapper className="col-xl-10 col-lg-10 col-md-10 col-xs-12">
+    <TicketChoiceWrapper>
       <DropdownList />
       <DropdownListWithFlyAnyWhere />
       <DropdownList />
@@ -46,36 +47,34 @@ function TicketChoice() {
   );
 }
 
-const HeaderWrapper = styled.div`
+const HeaderBackground = styled.div`
   background-color: blue;
   width: 100%;
 `;
-const HeaderHeadline = styled.h2`
+const Headline = styled.div`
   margin: auto;
+`;
+const HeadlineInfo = styled.p`
   text-align: center;
 `;
-const HeaderHeadline2 = styled.h3`
-  margin: auto;
-  text-align: center;
-  @media (max-width: 600px) {
-    display: none;
-  }
-`;
-
 function Header() {
   return (
-    <HeaderWrapper>
-      <div className="col-xl-12">
-        <HeaderHeadline className="col-xl-6">
-          Поиск дешевых авиабилетов
-        </HeaderHeadline>
-        <HeaderHeadline2 className="col-xl-6">
-          Лучший способ купить авиабилеты дешево
-        </HeaderHeadline2>
-        <TicketChoice />
-        <FindTicketsButton />
+    <HeaderBackground>
+      <div className="container">
+        <div className="col-xl-12">
+          <div className="row">
+            <Headline>
+              <HeadlineInfo>Поиск дешевых авиабилетов</HeadlineInfo>
+              <HeadlineInfo className="hidden-xs hidden-sm">
+                Лучший способ купить авиабилеты дешево
+              </HeadlineInfo>
+            </Headline>
+            <TicketChoice />
+            <FindTicketsButton />
+          </div>
+        </div>
       </div>
-    </HeaderWrapper>
+    </HeaderBackground>
   );
 }
 

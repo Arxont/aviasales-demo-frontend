@@ -1,15 +1,13 @@
 import React from "react";
+import "normalize.css";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 import Header from "./Header";
 import Body from "./Body";
 import Error from "./components/Error";
 import TicketsBody from "./TestingGround";
 import Footer from "./Footer";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect
-} from "react-router-dom";
+
 import Test from "./components/TestApp";
 
 function BodyThatCanChange() {
