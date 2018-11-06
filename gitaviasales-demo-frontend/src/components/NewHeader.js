@@ -36,7 +36,7 @@ const TicketChoiceWrapper = styled.div`
 `;
 function TicketChoice() {
   return (
-    <TicketChoiceWrapper>
+    <TicketChoiceWrapper className="col-xl-10">
       <DropdownList />
       <DropdownListWithFlyAnyWhere />
       <DropdownList />
@@ -63,12 +63,14 @@ function Header() {
       <div className="container">
         <div className="col-xl-12">
           <div className="row">
+            <div className="start-xl">LOGO</div>
             <Headline>
               <HeadlineInfo>Поиск дешевых авиабилетов</HeadlineInfo>
               <HeadlineInfo className="hidden-xs hidden-sm">
                 Лучший способ купить авиабилеты дешево
               </HeadlineInfo>
             </Headline>
+
             <TicketChoice />
             <FindTicketsButton />
           </div>
