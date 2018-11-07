@@ -116,12 +116,6 @@ const city = [
     cityAbbreviation: "ERV",
     id: 15,
     countryId: 1002
-  },
-  {
-    cityName: "Супер длинное имя города",
-    cityAbbreviation: "SUP",
-    id: 15,
-    countryId: 1002
   }
 ];
 
@@ -249,6 +243,83 @@ const routes = [
     fromId: 1,
     toId: 15,
     ticketPrice: 8713,
+    dateStart: (1, 9, 2018),
+    dateEnd: (9, 9, 2018)
+  },
+  {
+    fromId: 2,
+    toId: 15,
+    ticketPrice: 7220,
+    dateStart: (1, 9, 2018),
+    dateEnd: (9, 9, 2018)
+  },
+  {
+    fromId: 14,
+    toId: 15,
+    ticketPrice: 10218,
+    dateStart: (1, 9, 2018),
+    dateEnd: (9, 9, 2018)
+  },
+  {
+    fromId: 7,
+    toId: 15,
+    ticketPrice: 6201,
+    dateStart: (1, 9, 2018),
+    dateEnd: (9, 9, 2018)
+  },
+  {
+    fromId: 5,
+    toId: 15,
+    ticketPrice: 12242,
+    dateStart: (1, 9, 2018),
+    dateEnd: (9, 9, 2018)
+  },
+  {
+    fromId: 9,
+    toId: 15,
+    ticketPrice: 9299,
+    dateStart: (1, 9, 2018),
+    dateEnd: (9, 9, 2018)
+  },
+  {
+    fromId: 3,
+    toId: 14,
+    ticketPrice: 6713,
+    dateStart: (1, 9, 2018),
+    dateEnd: (9, 9, 2018)
+  },
+  {
+    fromId: 7,
+    toId: 14,
+    ticketPrice: 5220,
+    dateStart: (1, 9, 2018),
+    dateEnd: (9, 9, 2018)
+  },
+  {
+    fromId: 15,
+    toId: 14,
+    ticketPrice: 7218,
+    dateStart: (1, 9, 2018),
+    dateEnd: (9, 9, 2018)
+  },
+  {
+    fromId: 8,
+    toId: 14,
+    ticketPrice: 4201,
+    dateStart: (1, 9, 2018),
+    dateEnd: (9, 9, 2018)
+  },
+  {
+    fromId: 11,
+    toId: 14,
+    ticketPrice: 9242,
+    dateStart: (1, 9, 2018),
+    dateEnd: (9, 9, 2018)
+  },
+  {
+    fromId: 9,
+    toId: 14,
+    ticketPrice: 6299,
     dateStart: (1, 9, 2018),
     dateEnd: (9, 9, 2018)
   }
