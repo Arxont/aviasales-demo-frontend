@@ -372,16 +372,299 @@ function BestPriceTicketsList() {
   );
 }
 
+const AdditionalInfoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+`;
+function AdditionalInfo() {
+  return (
+    <AdditionalInfoWrapper>
+      <p>
+        Мы знаем, где купить авиабилеты дешево. Билеты на самолет в 220 стран
+        мира.
+      </p>
+      <p>
+        Поиск и сравнение цен на авиабилеты среди 100 агенств и 728
+        авиакомпаний.
+      </p>
+      <p>
+        Цены найденные пользователями за последние 48 часов не являются офертой.
+      </p>
+    </AdditionalInfoWrapper>
+  );
+}
+const SubscribeWrapper = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+`;
+const LinkWrapper = styled.div`
+  display: flex;
+`;
+const SendEmailButton = styled.button`
+  background-color: orange;
+`;
+
+function Subscribe(props) {
+  return (
+    <SubscribeWrapper>
+      <div>
+        <h2>Хотите знать все о скидках на авиабилеты?</h2>
+        <p>
+          Вы можете подписаться на нашу рассылку через социальные сети или по
+          электронной почте
+        </p>
+      </div>
+      <LinkWrapper>
+        <a href="123.com">
+          <img src={props.twit} alt="twit" />
+        </a>
+        <a href="123.com">
+          <img src={props.fb} alt="Fb" />
+        </a>
+        <a href="123.com">
+          <img src={props.vk} alt="Vk" />
+        </a>
+        <a href="123.com">
+          <img src={props.rss} alt="rss" />
+        </a>
+        <div>
+          <input type="text" name="Email" value="Ваш email" />
+          <SendEmailButton>Подписаться</SendEmailButton>
+        </div>
+      </LinkWrapper>
+    </SubscribeWrapper>
+  );
+}
+
+const SpecialOffersBackGround = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: blue;
+`;
+const SpecialOfferBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+`;
+const SpecialOfferHeader = styled.div`
+  display: flex;
+  height: 50px;
+  background-color: red;
+  color: white;
+  flex-direction: row;
+  justify-content: space-around;
+`;
+const SpecialOfferBody = styled.div`
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+`;
+const SpecialOfferFooter = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+`;
+const SpecialOfferButton = styled.button`
+  color: red;
+  background-color: white;
+  border-style: solid;
+  border-color: red;
+`;
+
+const SpecialOffersWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: auto;
+`;
+
+function SpecialOffers(props) {
+  return (
+    <SpecialOfferBlock>
+      <SpecialOfferHeader>
+        <p>Билеты от {props.price} Рублей!</p>
+        <img src={props.img} alt={props.alt} />
+      </SpecialOfferHeader>
+      <SpecialOfferBody>
+        <div>
+          <img src={props.CompanyLogo} alt="Company Logo" />
+        </div>
+        <div>
+          <p>От {props.price} ₽</p>
+          <p>Осталось {props.timeLeft}</p>
+        </div>
+      </SpecialOfferBody>
+      <SpecialOfferFooter>
+        <p>
+          Билеты от {props.price} рублей! Специальное предложение от
+          авиакомпании {props.companyName}
+        </p>
+        <SpecialOfferButton>
+          <p>Узнать подробности</p>
+        </SpecialOfferButton>
+      </SpecialOfferFooter>
+    </SpecialOfferBlock>
+  );
+}
+
+const WatchAllOffersWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: white;
+`;
+
+function WatchAllOffers(props) {
+  return (
+    <WatchAllOffersWrapper>
+      <a href="123.com">Смотреть все предложения</a>
+      <p>* Средняя цена по направлению</p>
+    </WatchAllOffersWrapper>
+  );
+}
+
+let str =
+  "111Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nibh nulla, sollicitudin nec interdum sed, porta nec ex. Fusce iaculis odio tristique sem mattis, ut finibus augue aliquam. Pellentesque interdum turpis a dolor interdum mollis. Vestibulum finibus, mi in faucibus egestas, erat lorem luctus ipsum, vitae eleifend mauris mi et massa. Duis congue nibh ut leo pretium, sed convallis est placerat. Aenean eget est eu tellus finibus sagittis eu elementum tortor. Suspendisse et turpis eu nisl eleifend egestas. In congue dui elit, id lacinia sem mollis vitae. Curabitur accumsan vitae arcu et imperdiet. Praesent accumsan pellentesque felis eget eleifend. Nullam est velit, placerat dictum rutrum in, porta vitae nisl. Cras tempus ante nunc, non iaculis odio tristique non. Etiam nec dolor nibh. Sed aliquet hendrerit lorem quis pharetra. Nulla iaculis ac mi vel varius. Etiam malesuada dignissim nisi, non bibendum urna tincidunt eget. Integer consectetur risus nisl, nec aliquet nulla convallis sed. Maecenas luctus gravida augue ac finibus. Fusce sagittis ac velit in cursus. Vestibulum hendrerit justo in efficitur malesuada. Vestibulum gravida sed ligula vel interdum. Quisque elementum accumsan neque eget efficitur. Sed tincidunt dolor in leo aliquam pretium.";
+
+const HeadingWrapper = styled.div`
+  display: flex;
+`;
+
+
+
+function SomeInfo(props) {
+  return (
+    <div>
+      <div>
+        <HeadingWrapper>
+          <img src={props.plane} alt="plane" />
+          <h2>Как купить дешевые авиабилеты</h2>
+        </HeadingWrapper>
+        <div>{str}</div>
+        <button>Подробнее</button>
+      </div>
+      <div>
+        <HeadingWrapper>
+          <img src={props.hint} alt="@" />
+          <h2>электронный авиабилет</h2>
+        </HeadingWrapper>
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nibh
+          nulla, sollicitudin nec interdum sed, porta nec ex. Fusce iaculis odio
+          tristique sem mattis, ut finibus augue aliquam. Pellentesque interdum
+          turpis a dolor interdum mollis. Vestibulum finibus, mi in faucibus
+          egestas, erat lorem luctus ipsum, vitae eleifend mauris mi et massa.
+          Duis congue nibh ut leo pretium, sed convallis est placerat. Aenean
+          eget est eu tellus finibus sagittis eu elementum tortor. Suspendisse
+          et turpis eu nisl eleifend egestas. In congue dui elit, id lacinia sem
+          mollis vitae. Curabitur accumsan vitae arcu et imperdiet. Praesent
+          accumsan pellentesque felis eget eleifend. Nullam est velit, placerat
+          dictum rutrum in, porta vitae nisl. Cras tempus ante nunc, non iaculis
+          odio tristique non. Etiam nec dolor nibh. Sed aliquet hendrerit lorem
+          quis pharetra. Nulla iaculis ac mi vel varius. Etiam malesuada
+          dignissim nisi, non bibendum urna tincidunt eget. Integer consectetur
+          risus nisl, nec aliquet nulla convallis sed. Maecenas luctus gravida
+          augue ac finibus. Fusce sagittis ac velit in cursus. Vestibulum
+          hendrerit justo in efficitur malesuada. Vestibulum gravida sed ligula
+          vel interdum. Quisque elementum accumsan neque eget efficitur. Sed
+          tincidunt dolor in leo aliquam pretium.
+          <span>Тест</span>
+        </div>
+      </div>
+      <div>
+        <HeadingWrapper>
+          <img src={props.book} alt="book" />
+          <h2>20 советов авиапутешественникам</h2>
+        </HeadingWrapper>
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nibh
+          nulla, sollicitudin nec interdum sed, porta nec ex. Fusce iaculis odio
+          tristique sem mattis, ut finibus augue aliquam. Pellentesque interdum
+          turpis a dolor interdum mollis. Vestibulum finibus, mi in faucibus
+          egestas, erat lorem luctus ipsum, vitae eleifend mauris mi et massa.
+          Duis congue nibh ut leo pretium, sed convallis est placerat. Aenean
+          eget est eu tellus finibus sagittis eu elementum tortor. Suspendisse
+          et turpis eu nisl eleifend egestas. In congue dui elit, id lacinia sem
+          mollis vitae. Curabitur accumsan vitae arcu et imperdiet. Praesent
+          accumsan pellentesque felis eget eleifend. Nullam est velit, placerat
+          dictum rutrum in, porta vitae nisl. Cras tempus ante nunc, non iaculis
+          odio tristique non. Etiam nec dolor nibh. Sed aliquet hendrerit lorem
+          quis pharetra. Nulla iaculis ac mi vel varius. Etiam malesuada
+          dignissim nisi, non bibendum urna tincidunt eget. Integer consectetur
+          risus nisl, nec aliquet nulla convallis sed. Maecenas luctus gravida
+          augue ac finibus. Fusce sagittis ac velit in cursus. Vestibulum
+          hendrerit justo in efficitur malesuada. Vestibulum gravida sed ligula
+          vel interdum. Quisque elementum accumsan neque eget efficitur. Sed
+          tincidunt dolor in leo aliquam pretium.
+        </div>
+      </div>
+    </div>
+  );
+}
+fetch(
+  "http://autocomplete.travelpayouts.com/places2?term=Mos&locale=ru&types[]=city"
+)
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(myJson) {
+    console.log(JSON.stringify(myJson));
+  });
+
 function Body() {
   return (
-    <div className="container">
-      <div className="col-xl-12">
-        <div className="row">
-          <MostPopularPlacesFromMyCity CityFrom="Киев" />
-          <CategoriesMenu />
-          <GetTopCityByPrice />
-          <BestTicketsPriceInThisMonth />
-          <BestPriceTicketsList />
+    <div>
+      <div className="container">
+        <div className="col-xl-12">
+          <div className="row">
+            <MostPopularPlacesFromMyCity CityFrom="Киев" />
+            <CategoriesMenu />
+            <GetTopCityByPrice />
+            <BestTicketsPriceInThisMonth />
+            <BestPriceTicketsList />
+            <AdditionalInfo />
+            <Subscribe vk={vk} twit={twit} fb={fb} rss={rss} />
+          </div>
+        </div>
+      </div>
+      <SpecialOffersBackGround>
+        <div className="container">
+          <div className="col-xl-12">
+            <div className="row">
+              <h2 className="col-xl-10">Спецпредложения на авиабилеты</h2>
+              <SpecialOffersWrapper className="col-xl-10">
+                <SpecialOffers
+                  price="499"
+                  CompanyLogo={pobeda}
+                  timeLeft="45 дней"
+                  companyName="Победа"
+                />
+                <SpecialOffers
+                  price="20 680"
+                  img={calen}
+                  CompanyLogo={pobeda}
+                  timeLeft="10 дней"
+                  companyName="Lufthansa"
+                />
+                <SpecialOffers
+                  price="20 360"
+                  img={calen}
+                  CompanyLogo={pobeda}
+                  timeLeft="19 дней"
+                  companyName="Lufthansa"
+                />
+              </SpecialOffersWrapper>
+              <WatchAllOffers />
+            </div>
+          </div>
+        </div>
+      </SpecialOffersBackGround>
+      <div className="container">
+        <div className="col-xl-12">
+          <div className="row">
+            <SomeInfo plane={planeIcon} hint={emailIcon} book={booksIcon} />
+          </div>
         </div>
       </div>
     </div>
