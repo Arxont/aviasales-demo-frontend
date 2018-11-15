@@ -524,14 +524,70 @@ function WatchAllOffers(props) {
   );
 }
 
-let str =
-  "111Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nibh nulla, sollicitudin nec interdum sed, porta nec ex. Fusce iaculis odio tristique sem mattis, ut finibus augue aliquam. Pellentesque interdum turpis a dolor interdum mollis. Vestibulum finibus, mi in faucibus egestas, erat lorem luctus ipsum, vitae eleifend mauris mi et massa. Duis congue nibh ut leo pretium, sed convallis est placerat. Aenean eget est eu tellus finibus sagittis eu elementum tortor. Suspendisse et turpis eu nisl eleifend egestas. In congue dui elit, id lacinia sem mollis vitae. Curabitur accumsan vitae arcu et imperdiet. Praesent accumsan pellentesque felis eget eleifend. Nullam est velit, placerat dictum rutrum in, porta vitae nisl. Cras tempus ante nunc, non iaculis odio tristique non. Etiam nec dolor nibh. Sed aliquet hendrerit lorem quis pharetra. Nulla iaculis ac mi vel varius. Etiam malesuada dignissim nisi, non bibendum urna tincidunt eget. Integer consectetur risus nisl, nec aliquet nulla convallis sed. Maecenas luctus gravida augue ac finibus. Fusce sagittis ac velit in cursus. Vestibulum hendrerit justo in efficitur malesuada. Vestibulum gravida sed ligula vel interdum. Quisque elementum accumsan neque eget efficitur. Sed tincidunt dolor in leo aliquam pretium.";
-
 const HeadingWrapper = styled.div`
   display: flex;
 `;
 
+class HiddenTxt extends React.Component {
+  constructor() {
+    super();
 
+    this.state = {
+      hidden: true,
+      show: false
+    };
+    this.showComponentOnClick = this.showComponentOnClick.bind(this);
+    this.hideComponentOnClick = this.hideComponentOnClick.bind(this);
+    this.hideButton = this.hideButton.bind(this);
+    this.showButton = this.showButton.bind(this);
+  }
+  showComponentOnClick(event) {
+    this.setState({ hidden: false });
+  }
+  hideComponentOnClick(event) {
+    this.setState({ show: true });
+  }
+  hideButton(event) {
+    this.setState({ hidden: true });
+  }
+  showButton(event) {
+    this.setState({ show: false });
+  }
+
+  render(props) {
+    let ShowHiddenComponent = this.state.hidden ? { display: "none" } : {};
+    let hideHComponent = this.state.show ? { display: "none" } : {};
+    let moreTxt = "...Show more";
+    let lesstxt = "...Show less";
+
+    return (
+      <div>
+        {this.props.shownText}
+        <span style={ShowHiddenComponent}>
+          {this.props.hiddentext}
+        </span>
+        <a
+          onClick={e => {
+            this.showComponentOnClick(e);
+            this.hideComponentOnClick(e);
+          }}
+          style={hideHComponent}
+        >
+          {moreTxt}
+        </a>
+        <a
+          onClick={e => {
+            this.hideButton();
+            this.showButton();
+          }}
+          style={ShowHiddenComponent}
+        >
+          {lesstxt}
+        </a>
+      </div>
+    );
+  }
+}
 
 function SomeInfo(props) {
   return (
@@ -541,63 +597,43 @@ function SomeInfo(props) {
           <img src={props.plane} alt="plane" />
           <h2>Как купить дешевые авиабилеты</h2>
         </HeadingWrapper>
-        <div>{str}</div>
-        <button>Подробнее</button>
+        <HiddenTxt
+          shownText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nibh
+        nulla, sollicitudin nec interdum sed, porta nec ex. Fusce iaculis odio
+        tristique sem mattis, ut finibus augue aliquam. Pellentesque interdum
+        turpis a dolor interdum mollis."
+          hiddentext="Vestibulum finibus, mi in faucibus egestas, erat lorem luctus ipsum,
+          vitae eleifend mauris mi et massa. Duis congue nibh ut leo pretium,
+          sed convallis est placerat. Aenean eget est eu tellus finibus sagittis
+          eu elementum tortor. Suspendisse et turpis eu nisl eleifend egestas.
+          In congue dui elit, id lacinia sem mollis vitae. Curabitur accumsan
+          vitae arcu et imperdiet. Praesent accumsan pellentesque felis eget
+          eleifend. Nullam est velit, placerat dictum rutrum in, porta vitae
+          nisl. Cras tempus ante nunc, non iaculis odio tristique non. Etiam nec
+          dolor nibh. Sed aliquet hendrerit lorem quis pharetra. Nulla iaculis
+          ac mi vel varius. Etiam malesuada dignissim nisi, non bibendum urna
+          tincidunt eget. Integer consectetur risus nisl, nec aliquet nulla
+          convallis sed. Maecenas luctus gravida augue ac finibus. Fusce
+          sagittis ac velit in cursus. Vestibulum hendrerit justo in efficitur
+          malesuada. Vestibulum gravida sed ligula vel interdum. Quisque
+          elementum accumsan neque eget efficitur. Sed tincidunt dolor in leo
+          aliquam pretium."
+        />
       </div>
       <div>
         <HeadingWrapper>
           <img src={props.hint} alt="@" />
           <h2>электронный авиабилет</h2>
         </HeadingWrapper>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nibh
-          nulla, sollicitudin nec interdum sed, porta nec ex. Fusce iaculis odio
-          tristique sem mattis, ut finibus augue aliquam. Pellentesque interdum
-          turpis a dolor interdum mollis. Vestibulum finibus, mi in faucibus
-          egestas, erat lorem luctus ipsum, vitae eleifend mauris mi et massa.
-          Duis congue nibh ut leo pretium, sed convallis est placerat. Aenean
-          eget est eu tellus finibus sagittis eu elementum tortor. Suspendisse
-          et turpis eu nisl eleifend egestas. In congue dui elit, id lacinia sem
-          mollis vitae. Curabitur accumsan vitae arcu et imperdiet. Praesent
-          accumsan pellentesque felis eget eleifend. Nullam est velit, placerat
-          dictum rutrum in, porta vitae nisl. Cras tempus ante nunc, non iaculis
-          odio tristique non. Etiam nec dolor nibh. Sed aliquet hendrerit lorem
-          quis pharetra. Nulla iaculis ac mi vel varius. Etiam malesuada
-          dignissim nisi, non bibendum urna tincidunt eget. Integer consectetur
-          risus nisl, nec aliquet nulla convallis sed. Maecenas luctus gravida
-          augue ac finibus. Fusce sagittis ac velit in cursus. Vestibulum
-          hendrerit justo in efficitur malesuada. Vestibulum gravida sed ligula
-          vel interdum. Quisque elementum accumsan neque eget efficitur. Sed
-          tincidunt dolor in leo aliquam pretium.
-          <span>Тест</span>
-        </div>
+        <HiddenTxt />
       </div>
       <div>
         <HeadingWrapper>
           <img src={props.book} alt="book" />
           <h2>20 советов авиапутешественникам</h2>
         </HeadingWrapper>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nibh
-          nulla, sollicitudin nec interdum sed, porta nec ex. Fusce iaculis odio
-          tristique sem mattis, ut finibus augue aliquam. Pellentesque interdum
-          turpis a dolor interdum mollis. Vestibulum finibus, mi in faucibus
-          egestas, erat lorem luctus ipsum, vitae eleifend mauris mi et massa.
-          Duis congue nibh ut leo pretium, sed convallis est placerat. Aenean
-          eget est eu tellus finibus sagittis eu elementum tortor. Suspendisse
-          et turpis eu nisl eleifend egestas. In congue dui elit, id lacinia sem
-          mollis vitae. Curabitur accumsan vitae arcu et imperdiet. Praesent
-          accumsan pellentesque felis eget eleifend. Nullam est velit, placerat
-          dictum rutrum in, porta vitae nisl. Cras tempus ante nunc, non iaculis
-          odio tristique non. Etiam nec dolor nibh. Sed aliquet hendrerit lorem
-          quis pharetra. Nulla iaculis ac mi vel varius. Etiam malesuada
-          dignissim nisi, non bibendum urna tincidunt eget. Integer consectetur
-          risus nisl, nec aliquet nulla convallis sed. Maecenas luctus gravida
-          augue ac finibus. Fusce sagittis ac velit in cursus. Vestibulum
-          hendrerit justo in efficitur malesuada. Vestibulum gravida sed ligula
-          vel interdum. Quisque elementum accumsan neque eget efficitur. Sed
-          tincidunt dolor in leo aliquam pretium.
-        </div>
+        <HiddenTxt />
+        <div />
       </div>
     </div>
   );
@@ -661,7 +697,7 @@ function Body() {
         </div>
       </SpecialOffersBackGround>
       <div className="container">
-        <div className="col-xl-12">
+        <div className="col-xl-10">
           <div className="row">
             <SomeInfo plane={planeIcon} hint={emailIcon} book={booksIcon} />
           </div>
