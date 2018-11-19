@@ -8,8 +8,6 @@ import Error from "./components/Error";
 import TicketsBody from "./TestingGround";
 import Footer from "./Footer";
 
-import Test from "./components/TestApp";
-
 function BodyThatCanChange() {
   return (
     <Router>
@@ -35,7 +33,7 @@ function AviaSales() {
     <Router>
       <Switch>
         <Route exact path="/" component={FirstPage} />
-        <Route exact path="/test" component={Test} />
+
         <Route component={Error} />
       </Switch>
     </Router>

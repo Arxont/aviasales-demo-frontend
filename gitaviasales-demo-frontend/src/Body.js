@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import "flexboxgrid2";
 
-import { city, country, routes } from "./components/DataArrays";
-import { Slide } from "react-slideshow-image";
+import FullInfoAboutFly from "./components/DataFilter";
 
 import earth from "./images/earth.svg";
 import sun from "./images/sun.svg";
@@ -23,122 +23,112 @@ import emailIcon from "./images/emailIcon.png";
 import planeIcon from "./images/planeIcon.png";
 import booksIcon from "./images/booksIcon.png";
 
-const PapularW = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-right: 25%;
-  margin-left: 25%;
-  margin-top: 50px;
-  margin-bottom: 100px;
-  align-items: center;
-`;
-const PopularText = styled.p`
-  margin-bottom: 0;
-  text-align: center;
+const SectionWrapper = styled.div`
+  margin: auto;
 `;
 
-function PopularDirections(props) {
+const MostPopularPlacesWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-center;
+  background-color: red;
+  margin: auto;
+  margin-top: 5%;
+`;
+
+const MostPopularPlacesTxtWrapper = styled.p`
+  text-align: center;
+`;
+const CityLink = styled.a`
+  @media (max-width: 300px) {
+    display: block;
+  }
+`;
+function MostPopularPlacesFromMyCity(props) {
   return (
-    <PapularW>
-      <img src={props.img} alt={props.alt} />
-      <PopularText>
-        Популярные направления перелетов из города
-        <a href={props.CityHref}>
-          {" "}
-          {props.CityFrom} <img src={pen} alt="pen" />
-        </a>
-      </PopularText>
-    </PapularW>
+    <MostPopularPlacesWrapper className="col-xl-10">
+      <img src={calen} alt="img" />
+      <MostPopularPlacesTxtWrapper>
+        Популярные направления
+        <br className="hidden-md hidden-lg hidden-xl" /> перелетов
+        <br className="hidden-sm hidden-xs" /> из города
+        <CityLink href="123.com">{props.CityFrom}</CityLink>
+        <img src={pen} alt="pen" />
+      </MostPopularPlacesTxtWrapper>
+    </MostPopularPlacesWrapper>
+  );
+}
+function BestTicketsPriceInThisMonth() {
+  return (
+    <MostPopularPlacesWrapper className="col-xl-10">
+      <img src={compass} alt="img" />
+      <MostPopularPlacesTxtWrapper>
+        Лучшие цены на авиабилеты
+        <br className="hidden-md hidden-lg hidden-xl" /> за последний месяц
+      </MostPopularPlacesTxtWrapper>
+    </MostPopularPlacesWrapper>
   );
 }
 
-const WhereToBlock = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  margin-right: 25%;
-  margin-left: 25%;
-`;
-const WhereToWrap = styled.div`
+const CategoryWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100px;
-  align-items: center;
+  justify-content: flex-center;
+  margin-top: 5px;
+  margin-bottom: 5px;
 `;
-const WhereText = styled.p`
-  margin-top: 20px;
-  margin-bottom: 0;
+const CategoryTxt = styled.p`
   text-align: center;
 `;
-function WhereTo(props) {
+
+function Category(props) {
   return (
-    <WhereToWrap>
-      <img src={props.img} alt={props.alt} />
-      <a href={props.WhereHref}>
-        <WhereText>{props.text}</WhereText>
-      </a>
-    </WhereToWrap>
+    <CategoryWrapper>
+      <img src={props.categoryImg} alt="img" />
+      <CategoryTxt>
+        {props.categoryTxt1}
+        <br />
+        {props.categoryTxt2}
+      </CategoryTxt>
+    </CategoryWrapper>
   );
 }
 
-function join(lookupTable, mainTable, lookupKey, mainKey, select) {
-  var l = lookupTable.length,
-    m = mainTable.length,
-    lookupIndex = [],
-    output = [];
-  for (var i = 0; i < l; i++) {
-    var row = lookupTable[i];
-    lookupIndex[row[lookupKey]] = row;
-  }
-  for (var j = 0; j < m; j++) {
-    var y = mainTable[j];
-    var x = lookupIndex[y[mainKey]];
-    output.push(select(y, x));
-  }
-  return output;
+const CategoriesMenuWrapper = styled.div`
+  margin: auto;
+  margin-top: 2%;
+  background-color: red;
+  display: flex;
+  justify-content: space-around;
+`;
+function CategoriesMenu() {
+  return (
+    <CategoriesMenuWrapper className="col-xl-6">
+      <Category categoryImg={earth} categoryTxt1="КУДА" categoryTxt2="УГОДНО" />
+      <Category categoryImg={sun} categoryTxt1="СОЛНЦЕ" categoryTxt2="И МОРЕ" />
+      <Category
+        categoryImg={shopping}
+        categoryTxt1="ШОПИНГ"
+        categoryTxt2="ГОРОД"
+      />
+      <Category
+        categoryImg={history}
+        categoryTxt1="КУЛЬТУРА"
+        categoryTxt2="И ИСТОРИЯ"
+      />
+      <Category
+        categoryImg={nightL}
+        categoryTxt1="НОЧНАЯ"
+        categoryTxt2="ЖИЗНЬ"
+      />
+      <Category
+        categoryImg={kids}
+        categoryTxt1="ОТДЫХ"
+        categoryTxt2="С ДЕТЬМИ"
+      />
+    </CategoriesMenuWrapper>
+  );
 }
-
-let CityWithCountryJoin = join(country, city, "id", "countryId", function(
-  City,
-  Country
-) {
-  return {
-    cityName: City.cityName,
-    id: City.id,
-    countryId: Country !== undefined ? Country.countryName : null
-  };
-});
-
-let RoutesFrom = join(CityWithCountryJoin, routes, "id", "fromId", function(
-  route,
-  City
-) {
-  return {
-    fromId: City !== undefined ? City.cityName : null,
-    toId: route.toId,
-    ticketPrice: route.ticketPrice,
-    countryFrom: City.countryId,
-    dateStart: route.dateStart,
-    dateEnd: route.dateEnd
-  };
-});
-
-let FullInfoAboutFly = join(
-  CityWithCountryJoin,
-  RoutesFrom,
-  "id",
-  "toId",
-  function(RF, CC) {
-    return {
-      cityFrom: RF.fromId,
-      toCity: CC !== undefined ? CC.cityName : null,
-      ticketPrice: RF.ticketPrice,
-      countryFrom: RF.countryFrom,
-      countryTo: CC.countryId,
-      dateStart: RF.dateStart,
-      dateEnd: RF.dateEnd
-    };
-  }
-);
 
 let LowestPriceToSimpferopol = FullInfoAboutFly.filter(a => {
   return a.toCity === "Симферополь" && a.cityFrom === "Москва";
@@ -149,102 +139,148 @@ let LowestPriceToSimpferopol = FullInfoAboutFly.filter(a => {
   .find(a => {
     return (a = [0]);
   });
-const FlyTocityBlock = styled.div`
+
+let LowestPriceToKrasnodar = FullInfoAboutFly.filter(a => {
+  return a.toCity === "Краснодар" && a.cityFrom === "Москва";
+})
+  .sort(function(a, b) {
+    return a.ticketPrice - b.ticketPrice;
+  })
+  .find(a => {
+    return (a = [0]);
+  });
+
+let LowestPriceToSochi = FullInfoAboutFly.filter(a => {
+  return a.toCity === "Сочи(Адлер)" && a.cityFrom === "Москва";
+})
+  .sort(function(a, b) {
+    return a.ticketPrice - b.ticketPrice;
+  })
+  .find(a => {
+    return (a = [0]);
+  });
+
+let LowestPriceToSaintPetersburg = FullInfoAboutFly.filter(a => {
+  return a.toCity === "Санк-Петербург" && a.cityFrom === "Москва";
+})
+  .sort(function(a, b) {
+    return a.ticketPrice - b.ticketPrice;
+  })
+  .find(a => {
+    return (a = [0]);
+  });
+
+let LowestPriceToMineralnieVody = FullInfoAboutFly.filter(a => {
+  return a.toCity === "Минеральные воды" && a.cityFrom === "Москва";
+})
+  .sort(function(a, b) {
+    return a.ticketPrice - b.ticketPrice;
+  })
+  .find(a => {
+    return (a = [0]);
+  });
+let LowestPriceToBarcelona = FullInfoAboutFly.filter(a => {
+  return a.toCity === "Барселона" && a.cityFrom === "Москва";
+})
+  .sort(function(a, b) {
+    return a.ticketPrice - b.ticketPrice;
+  })
+  .find(a => {
+    return (a = [0]);
+  });
+const FlyToCityBlock = styled.div`
   box-shadow: 0 3px 8px -3px grey;
-  width: 45%;
   margin-bottom: 1%;
 `;
-const FlyTocityWrapper = styled.div`
+const FlyToCityWrapper = styled.div`
   display: flex;
   justify-content: space-between;
 `;
-const FlyTocityInfoWrapper = styled.div`
+const FlyToCityInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const FlyTocityAddInfo = styled.span`
+const FlyToCityAddInfo = styled.span`
   color: grey;
 `;
-function FlyTocity(props) {
+const FlyToCityImg = styled.img`
+  width: 100%;
+  border-style: none;
+`;
+function FlyToCity(props) {
   return (
-    <FlyTocityBlock>
-      <img src="/simpferopol.jpg" alt="Simpferopol" />
-      <FlyTocityWrapper>
-        <FlyTocityInfoWrapper>
+    <FlyToCityBlock className="col-xl-6 col-lg-6 col-md-12">
+      <FlyToCityImg src={props.cityImg} alt="cityImage" />
+      <FlyToCityWrapper>
+        <FlyToCityInfoWrapper>
           {props.cityTo}
-          <FlyTocityAddInfo>{props.countryTo}</FlyTocityAddInfo>
-        </FlyTocityInfoWrapper>
-        <FlyTocityInfoWrapper>
+          <FlyToCityAddInfo>{props.countryTo}</FlyToCityAddInfo>
+        </FlyToCityInfoWrapper>
+        <FlyToCityInfoWrapper>
           <a href="123.com">Найти от {props.ticketPrice} ₽</a>
-          <FlyTocityAddInfo>{props.dateStart}</FlyTocityAddInfo>
-        </FlyTocityInfoWrapper>
-      </FlyTocityWrapper>
-    </FlyTocityBlock>
+          <FlyToCityAddInfo>{props.dateStart}</FlyToCityAddInfo>
+        </FlyToCityInfoWrapper>
+      </FlyToCityWrapper>
+    </FlyToCityBlock>
   );
 }
-const GetTopCityByPriceBlock = styled.div`
+
+const TopCityWrapper = styled.div`
   display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
   margin: auto;
+  margin-top: 2%;
 `;
 
 function GetTopCityByPrice() {
   return (
-    <GetTopCityByPriceBlock>
-      <FlyTocity
+    <TopCityWrapper className="col-xl-10">
+      <FlyToCity
+        cityImg="/krasnodar.png"
+        cityTo={LowestPriceToKrasnodar.toCity}
+        countryTo={LowestPriceToKrasnodar.countryTo}
+        ticketPrice={LowestPriceToKrasnodar.ticketPrice}
+        dateStart={LowestPriceToKrasnodar.dateStart}
+      />
+      <FlyToCity
+        cityImg="/sochi.png"
+        cityTo={LowestPriceToSochi.toCity}
+        countryTo={LowestPriceToSochi.countryTo}
+        ticketPrice={LowestPriceToSochi.ticketPrice}
+        dateStart={LowestPriceToSochi.dateStart}
+      />
+      <FlyToCity
+        cityImg="/piter.png"
+        cityTo={LowestPriceToSaintPetersburg.toCity}
+        countryTo={LowestPriceToSaintPetersburg.countryTo}
+        ticketPrice={LowestPriceToSaintPetersburg.ticketPrice}
+        dateStart={LowestPriceToSaintPetersburg.dateStart}
+      />
+      <FlyToCity
+        cityImg="/mineralvody.png"
+        cityTo={LowestPriceToMineralnieVody.toCity}
+        countryTo={LowestPriceToMineralnieVody.countryTo}
+        ticketPrice={LowestPriceToMineralnieVody.ticketPrice}
+        dateStart={LowestPriceToMineralnieVody.dateStart}
+      />
+      <FlyToCity
+        cityImg="/simpferopol.jpg"
         cityTo={LowestPriceToSimpferopol.toCity}
         countryTo={LowestPriceToSimpferopol.countryTo}
         ticketPrice={LowestPriceToSimpferopol.ticketPrice}
         dateStart={LowestPriceToSimpferopol.dateStart}
       />
-      <FlyTocity
-        cityTo={LowestPriceToSimpferopol.toCity}
-        countryTo={LowestPriceToSimpferopol.countryTo}
-        ticketPrice={LowestPriceToSimpferopol.ticketPrice}
-        dateStart={LowestPriceToSimpferopol.dateStart}
+      <FlyToCity
+        cityImg="/barcelona.png"
+        cityTo={LowestPriceToBarcelona.toCity}
+        countryTo={LowestPriceToBarcelona.countryTo}
+        ticketPrice={LowestPriceToBarcelona.ticketPrice}
+        dateStart={LowestPriceToBarcelona.dateStart}
       />
-      <FlyTocity
-        cityTo={LowestPriceToSimpferopol.toCity}
-        countryTo={LowestPriceToSimpferopol.countryTo}
-        ticketPrice={LowestPriceToSimpferopol.ticketPrice}
-        dateStart={LowestPriceToSimpferopol.dateStart}
-      />
-      <FlyTocity
-        cityTo={LowestPriceToSimpferopol.toCity}
-        countryTo={LowestPriceToSimpferopol.countryTo}
-        ticketPrice={LowestPriceToSimpferopol.ticketPrice}
-        dateStart={LowestPriceToSimpferopol.dateStart}
-      />
-      <FlyTocity
-        cityTo={LowestPriceToSimpferopol.toCity}
-        countryTo={LowestPriceToSimpferopol.countryTo}
-        ticketPrice={LowestPriceToSimpferopol.ticketPrice}
-        dateStart={LowestPriceToSimpferopol.dateStart}
-      />
-      <FlyTocity
-        cityTo={LowestPriceToSimpferopol.toCity}
-        countryTo={LowestPriceToSimpferopol.countryTo}
-        ticketPrice={LowestPriceToSimpferopol.ticketPrice}
-        dateStart={LowestPriceToSimpferopol.dateStart}
-      />
-    </GetTopCityByPriceBlock>
+    </TopCityWrapper>
   );
 }
-
-function BestPrices(props) {
-  return (
-    <PapularW>
-      <img src={props.img} alt={props.alt} />
-      <PopularText>Лучшие цены на билеты за последний месяц</PopularText>
-    </PapularW>
-  );
-}
-
-let TopFiveLowestTickets = FullInfoAboutFly.filter(a => {
-  return a.toCity === "Симферополь";
-}).sort(function(a, b) {
-  return a.ticketPrice - b.ticketPrice;
-});
 
 function removeDuplicates(arr, prop) {
   var obj = {};
@@ -255,33 +291,90 @@ function removeDuplicates(arr, prop) {
   for (var key in obj) newArr.push(obj[key]);
   return newArr;
 }
-let FilteredTopFiveLowestTickets = removeDuplicates(
-  TopFiveLowestTickets,
+
+let SimpferopolTopFiveLowestTickets = FullInfoAboutFly.filter(a => {
+  return a.toCity === "Симферополь";
+}).sort(function(a, b) {
+  return a.ticketPrice - b.ticketPrice;
+});
+
+let FilteredSimpferopolTopFiveLowestTickets = removeDuplicates(
+  SimpferopolTopFiveLowestTickets,
   "cityFrom"
 );
-FilteredTopFiveLowestTickets.slice(0, 5);
 
-const listItems = FilteredTopFiveLowestTickets.map(top => (
+let listSimpferopolTickets = FilteredSimpferopolTopFiveLowestTickets.slice(
+  0,
+  5
+).map(top => (
   <div>
     <li>
       Из {top.cityFrom} от {top.ticketPrice} ₽
     </li>
   </div>
 ));
+let ErevanTopFiveLowestTickets = FullInfoAboutFly.filter(a => {
+  return a.toCity === "Ереван";
+}).sort(function(a, b) {
+  return a.ticketPrice - b.ticketPrice;
+});
+
+let FilteredErevanTopFiveLowestTickets = removeDuplicates(
+  ErevanTopFiveLowestTickets,
+  "cityFrom"
+);
+
+let listErevanTickets = FilteredErevanTopFiveLowestTickets.slice(0, 5).map(
+  top => (
+    <div>
+      <li>
+        Из {top.cityFrom} от {top.ticketPrice} ₽
+      </li>
+    </div>
+  )
+);
+let KishenevTopFiveLowestTickets = FullInfoAboutFly.filter(a => {
+  return a.toCity === "Кишинёв";
+}).sort(function(a, b) {
+  return a.ticketPrice - b.ticketPrice;
+});
+
+let FilteredKishenevTopFiveLowestTickets = removeDuplicates(
+  KishenevTopFiveLowestTickets,
+  "cityFrom"
+);
+
+let listKishenevTickets = FilteredKishenevTopFiveLowestTickets.slice(0, 5).map(
+  top => (
+    <div>
+      <li>
+        Из {top.cityFrom} от {top.ticketPrice} ₽
+      </li>
+    </div>
+  )
+);
 
 const BestPriceTicketsListWrapper = styled.div`
   display: flex;
+  background-color: red;
+  margin: auto;
+  margin-top: 2%;
   justify-content: space-between;
+
+  @media (max-width: 400px) {
+    flex-direction: column;
+  }
 `;
 function BestPriceTicketsList() {
   return (
-    <BestPriceTicketsListWrapper>
-      <div>{listItems}</div>
-      <div>{listItems}</div>
-      <div>{listItems}</div>
+    <BestPriceTicketsListWrapper className="col-xl-10 col-lg-10 col-md-10 col-sm-12">
+      <div>{listSimpferopolTickets}</div>
+      <div>{listErevanTickets}</div>
+      <div>{listKishenevTickets}</div>
     </BestPriceTicketsListWrapper>
   );
 }
+
 const AdditionalInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -304,91 +397,6 @@ function AdditionalInfo() {
     </AdditionalInfoWrapper>
   );
 }
-
-const properties = {
-  duration: 5000,
-  transitionDuration: 500,
-  infinite: true,
-  indicators: true
-};
-
-const SliderBorder = styled.div`
-  border: 10px solid transparent;
-  border-top-style: none;
-  border-image: url("/border.png") 30 round;
-  padding-top: 50px;
-  padding-bottom: 50px;
-`;
-const SlideWrapper = styled.div`
-display:flex;
-flex-direction-column;
-justify-content: space-between;
-`;
-const SlideImgWrapper = styled.div`
-  margin-right: 5%;
-  margin-left: 5%;
-`;
-
-const Slideshow = () => {
-  return (
-    <SliderBorder>
-      <Slide {...properties}>
-        <SlideWrapper>
-          <SlideImgWrapper>
-            <img src="/agenciesAgencyLogo.png" alt="hoba" />
-          </SlideImgWrapper>
-          <div>
-            <img src="/agenciesAgencyLogo1.png" alt="hoba" />
-          </div>
-          <div>
-            <img src="/agenciesAgencyLogo2.png" alt="hoba" />
-          </div>
-          <div>
-            <img src="/agenciesAgencyLogo3.png" alt="hoba" />
-          </div>
-          <SlideImgWrapper>
-            <img src="/agenciesAgencyLogo4.png" alt="hoba" />
-          </SlideImgWrapper>
-        </SlideWrapper>
-        <SlideWrapper>
-          <SlideImgWrapper>
-            <img src="/agenciesAgencyLogo.png" alt="hoba" />
-          </SlideImgWrapper>
-          <div>
-            <img src="/agenciesAgencyLogo1.png" alt="hoba" />
-          </div>
-          <div>
-            <img src="/agenciesAgencyLogo2.png" alt="hoba" />
-          </div>
-          <div>
-            <img src="/agenciesAgencyLogo3.png" alt="hoba" />
-          </div>
-          <SlideImgWrapper>
-            <img src="/agenciesAgencyLogo4.png" alt="hoba" />
-          </SlideImgWrapper>
-        </SlideWrapper>
-        <SlideWrapper>
-          <SlideImgWrapper>
-            <img src="/agenciesAgencyLogo.png" alt="hoba" />
-          </SlideImgWrapper>
-          <div>
-            <img src="/agenciesAgencyLogo1.png" alt="hoba" />
-          </div>
-          <div>
-            <img src="/agenciesAgencyLogo2.png" alt="hoba" />
-          </div>
-          <div>
-            <img src="/agenciesAgencyLogo3.png" alt="hoba" />
-          </div>
-          <SlideImgWrapper>
-            <img src="/agenciesAgencyLogo4.png" alt="hoba" />
-          </SlideImgWrapper>
-        </SlideWrapper>
-      </Slide>
-    </SliderBorder>
-  );
-};
-
 const SubscribeWrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
@@ -470,7 +478,8 @@ const SpecialOfferButton = styled.button`
 const SpecialOffersWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
+  margin: auto;
 `;
 
 function SpecialOffers(props) {
@@ -518,16 +527,74 @@ function WatchAllOffers(props) {
   );
 }
 
-const TextWrapper = styled.span`
-  overflow: hidden;
-  height: 2em;
-  line-height: 1em;
-`;
 const HeadingWrapper = styled.div`
   display: flex;
 `;
 
-/*http://jsfiddle.net/Feid/yptwsg21/4/  пример функции с текстом на жкверях*/
+class HiddenTxt extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      hidden: true,
+      show: false
+    };
+    this.showComponentOnClick = this.showComponentOnClick.bind(this);
+    this.hideComponentOnClick = this.hideComponentOnClick.bind(this);
+    this.hideButton = this.hideButton.bind(this);
+    this.showButton = this.showButton.bind(this);
+  }
+  showComponentOnClick(event) {
+    this.setState({ hidden: false });
+  }
+  hideComponentOnClick(event) {
+    this.setState({ show: true });
+  }
+  hideButton(event) {
+    this.setState({ hidden: true });
+  }
+  showButton(event) {
+    this.setState({ show: false });
+  }
+
+  render(props) {
+    let ShowHiddenComponent = this.state.hidden ? { display: "none" } : {};
+    let hideHComponent = this.state.show ? { display: "none" } : {};
+    let moreTxt = "...Show more";
+    let lesstxt = "...Show less";
+
+    return (
+      <div>
+        {this.props.shownText}
+        <span style={ShowHiddenComponent}>{this.props.hiddentext}</span>
+        <a
+          onClick={e => {
+            this.showComponentOnClick(e);
+            this.hideComponentOnClick(e);
+          }}
+          style={hideHComponent}
+        >
+          {moreTxt}
+        </a>
+        <a
+          onClick={e => {
+            this.hideButton();
+            this.showButton();
+          }}
+          style={ShowHiddenComponent}
+        >
+          {lesstxt}
+        </a>
+      </div>
+    );
+  }
+}
+
+const TextForSomeInfo =
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at nisi ullamcorper, commodo ipsum eu, auctor risus. Sed lectus ex, faucibus at placerat eget, hendrerit ac tortor. Vivamus id pellentesque turpis. Morbi luctus leo sed placerat aliquet. Morbi finibus consequat sem non ultrices. Etiam non tempor orci. In neque mi, efficitur ut sapien sit amet, ullamcorper fermentum est. In fermentum, turpis ut scelerisque ornare, lectus metus hendrerit tellus, in volutpat erat lorem ac turpis. Nullam eleifend luctus mi, in vulputate nulla scelerisque in. Nulla ut laoreet arcu. Cras facilisis nulla sed pulvinar fermentum. Vivamus rutrum ac metus ac tincidunt. Cras laoreet volutpat odio, nec iaculis dui varius non. Proin at tempor quam, ornare tincidunt purus. Aenean dignissim pharetra ultricies. Praesent fermentum nulla ac erat blandit, nec dictum magna aliquet. Mauris aliquet elementum massa, nec tincidunt nisl vulputate id. Fusce interdum diam ac dapibus ultricies. Maecenas risus quam, maximus nec pretium vel, varius et dolor. Vestibulum sodales tellus justo, et mattis augue faucibus sit amet. Vestibulum porta tincidunt massa vel facilisis. Vivamus vestibulum laoreet orci. Pellentesque sollicitudin, purus eu sollicitudin scelerisque, metus lorem iaculis leo, vel interdum turpis nibh ac mi. Pellentesque eu blandit augue. Suspendisse feugiat quam diam, et dignissim augue pulvinar eu. Donec posuere purus quis libero porta viverra. Fusce placerat lacinia feugiat. Pellentesque facilisis imperdiet metus nec venenatis. Nam dui ipsum, pellentesque quis turpis in, vulputate interdum mauris. Duis feugiat eros eget arcu sagittis consequat. Donec et dapibus erat, a pellentesque quam. Nam bibendum vel massa bibendum cursus. Vestibulum eu risus sem. Mauris at nunc neque. Mauris nec consequat orci, venenatis feugiat magna. Duis posuere, sapien ac aliquet tincidunt, nunc ex tincidunt eros, in placerat purus lacus id mi. In efficitur urna felis. Sed semper ipsum magna, sed ultrices dui sollicitudin vel. Sed vestibulum imperdiet risus, ac aliquet lorem pulvinar ut. Quisque sit amet iaculis nisi, sed mattis dolor. Phasellus quis justo eu purus tincidunt luctus. Curabitur dictum nec purus at bibendum. Morbi ac feugiat augue. Donec est urna, vulputate non volutpat a, congue quis sapien. Quisque laoreet nulla at diam hendrerit dignissim. Nullam rhoncus pretium ipsum, at euismod sapien cursus quis. Quisque elementum libero a eros commodo gravida. Nullam vehicula porttitor feugiat. Aliquam facilisis augue quis sem consequat congue. Fusce ultricies viverra nunc, ac porttitor tortor interdum at. Pellentesque id est ut metus suscipit mollis. Vestibulum ut faucibus urna, eu malesuada urna. Cras at imperdiet felis, in vehicula elit. Cras pellentesque tellus et est efficitur blandit. Nullam mattis quis nisl vel sodales. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.";
+const VisibleInfo = TextForSomeInfo.substr(0, 300);
+const HiddenInfo = TextForSomeInfo.substr(301);
+
 function SomeInfo(props) {
   return (
     <div>
@@ -536,164 +603,100 @@ function SomeInfo(props) {
           <img src={props.plane} alt="plane" />
           <h2>Как купить дешевые авиабилеты</h2>
         </HeadingWrapper>
-        <TextWrapper>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nibh
-          nulla, sollicitudin nec interdum sed, porta nec ex. Fusce iaculis odio
-          tristique sem mattis, ut finibus augue aliquam. Pellentesque interdum
-          turpis a dolor interdum mollis. Vestibulum finibus, mi in faucibus
-          egestas, erat lorem luctus ipsum, vitae eleifend mauris mi et massa.
-          Duis congue nibh ut leo pretium, sed convallis est placerat. Aenean
-          eget est eu tellus finibus sagittis eu elementum tortor. Suspendisse
-          et turpis eu nisl eleifend egestas. In congue dui elit, id lacinia sem
-          mollis vitae. Curabitur accumsan vitae arcu et imperdiet. Praesent
-          accumsan pellentesque felis eget eleifend. Nullam est velit, placerat
-          dictum rutrum in, porta vitae nisl. Cras tempus ante nunc, non iaculis
-          odio tristique non. Etiam nec dolor nibh. Sed aliquet hendrerit lorem
-          quis pharetra. Nulla iaculis ac mi vel varius. Etiam malesuada
-          dignissim nisi, non bibendum urna tincidunt eget. Integer consectetur
-          risus nisl, nec aliquet nulla convallis sed. Maecenas luctus gravida
-          augue ac finibus. Fusce sagittis ac velit in cursus. Vestibulum
-          hendrerit justo in efficitur malesuada. Vestibulum gravida sed ligula
-          vel interdum. Quisque elementum accumsan neque eget efficitur. Sed
-          tincidunt dolor in leo aliquam pretium.
-        </TextWrapper>
-        <a href="123.com">Подробнее</a>
+        <HiddenTxt shownText={VisibleInfo} hiddentext={HiddenInfo} />
       </div>
       <div>
         <HeadingWrapper>
           <img src={props.hint} alt="@" />
           <h2>электронный авиабилет</h2>
         </HeadingWrapper>
-        <TextWrapper>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nibh
-          nulla, sollicitudin nec interdum sed, porta nec ex. Fusce iaculis odio
-          tristique sem mattis, ut finibus augue aliquam. Pellentesque interdum
-          turpis a dolor interdum mollis. Vestibulum finibus, mi in faucibus
-          egestas, erat lorem luctus ipsum, vitae eleifend mauris mi et massa.
-          Duis congue nibh ut leo pretium, sed convallis est placerat. Aenean
-          eget est eu tellus finibus sagittis eu elementum tortor. Suspendisse
-          et turpis eu nisl eleifend egestas. In congue dui elit, id lacinia sem
-          mollis vitae. Curabitur accumsan vitae arcu et imperdiet. Praesent
-          accumsan pellentesque felis eget eleifend. Nullam est velit, placerat
-          dictum rutrum in, porta vitae nisl. Cras tempus ante nunc, non iaculis
-          odio tristique non. Etiam nec dolor nibh. Sed aliquet hendrerit lorem
-          quis pharetra. Nulla iaculis ac mi vel varius. Etiam malesuada
-          dignissim nisi, non bibendum urna tincidunt eget. Integer consectetur
-          risus nisl, nec aliquet nulla convallis sed. Maecenas luctus gravida
-          augue ac finibus. Fusce sagittis ac velit in cursus. Vestibulum
-          hendrerit justo in efficitur malesuada. Vestibulum gravida sed ligula
-          vel interdum. Quisque elementum accumsan neque eget efficitur. Sed
-          tincidunt dolor in leo aliquam pretium.
-          <span>Тест</span>
-        </TextWrapper>
+        <HiddenTxt shownText={VisibleInfo} hiddentext={HiddenInfo} />
       </div>
       <div>
         <HeadingWrapper>
           <img src={props.book} alt="book" />
           <h2>20 советов авиапутешественникам</h2>
         </HeadingWrapper>
-        <TextWrapper>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nibh
-          nulla, sollicitudin nec interdum sed, porta nec ex. Fusce iaculis odio
-          tristique sem mattis, ut finibus augue aliquam. Pellentesque interdum
-          turpis a dolor interdum mollis. Vestibulum finibus, mi in faucibus
-          egestas, erat lorem luctus ipsum, vitae eleifend mauris mi et massa.
-          Duis congue nibh ut leo pretium, sed convallis est placerat. Aenean
-          eget est eu tellus finibus sagittis eu elementum tortor. Suspendisse
-          et turpis eu nisl eleifend egestas. In congue dui elit, id lacinia sem
-          mollis vitae. Curabitur accumsan vitae arcu et imperdiet. Praesent
-          accumsan pellentesque felis eget eleifend. Nullam est velit, placerat
-          dictum rutrum in, porta vitae nisl. Cras tempus ante nunc, non iaculis
-          odio tristique non. Etiam nec dolor nibh. Sed aliquet hendrerit lorem
-          quis pharetra. Nulla iaculis ac mi vel varius. Etiam malesuada
-          dignissim nisi, non bibendum urna tincidunt eget. Integer consectetur
-          risus nisl, nec aliquet nulla convallis sed. Maecenas luctus gravida
-          augue ac finibus. Fusce sagittis ac velit in cursus. Vestibulum
-          hendrerit justo in efficitur malesuada. Vestibulum gravida sed ligula
-          vel interdum. Quisque elementum accumsan neque eget efficitur. Sed
-          tincidunt dolor in leo aliquam pretium.
-        </TextWrapper>
+        <HiddenTxt shownText={VisibleInfo} hiddentext={HiddenInfo} />
+        <div />
+      </div>
+    </div>
+  );
+}
+fetch(
+  "http://autocomplete.travelpayouts.com/places2?term=Mos&locale=ru&types[]=city"
+)
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(myJson) {
+    console.log(JSON.stringify(myJson));
+  });
+
+function Body() {
+  return (
+    <div>
+      <div className="container">
+        <div className="col-xl-12">
+          <div className="row">
+            <MostPopularPlacesFromMyCity CityFrom="Киев" />
+            <CategoriesMenu />
+            <GetTopCityByPrice />
+            <BestTicketsPriceInThisMonth />
+            <BestPriceTicketsList />
+            <AdditionalInfo />
+            <SectionWrapper className="col-xl-10">
+              <Subscribe vk={vk} twit={twit} fb={fb} rss={rss} />
+            </SectionWrapper>
+          </div>
+        </div>
+      </div>
+      <SpecialOffersBackGround>
+        <div className="container">
+          <div className="col-xl-12">
+            <div className="row">
+              <SectionWrapper className="col-xl-10">
+                <h2>Спецпредложения на авиабилеты</h2>
+
+                <SpecialOffersWrapper>
+                  <SpecialOffers
+                    price="499"
+                    CompanyLogo={pobeda}
+                    timeLeft="45 дней"
+                    companyName="Победа"
+                  />
+                  <SpecialOffers
+                    price="20 680"
+                    img={calen}
+                    CompanyLogo={pobeda}
+                    timeLeft="10 дней"
+                    companyName="Lufthansa"
+                  />
+                  <SpecialOffers
+                    price="20 360"
+                    img={calen}
+                    CompanyLogo={pobeda}
+                    timeLeft="19 дней"
+                    companyName="Lufthansa"
+                  />
+                </SpecialOffersWrapper>
+                <WatchAllOffers />
+              </SectionWrapper>
+            </div>
+          </div>
+        </div>
+      </SpecialOffersBackGround>
+      <div className="container">
+        <div className="col-xl-12">
+          <div className="row">
+            <SectionWrapper className="col-xl-10">
+              <SomeInfo plane={planeIcon} hint={emailIcon} book={booksIcon} />
+            </SectionWrapper>
+          </div>
+        </div>
       </div>
     </div>
   );
 }
 
-export default function Body() {
-  return (
-    <div>
-      <PopularDirections
-        img={compass}
-        alt="compass"
-        CityFrom="Moskow"
-        CityHref="123.com"
-      />
-      <WhereToBlock>
-        <WhereTo
-          text="КУДА УГОДНО"
-          img={earth}
-          alt="Earth"
-          WhereHref="123.com"
-        />
-
-        <WhereTo text="СОЛНЦЕ И МОРЕ" img={sun} alt="Sun" WhereHref="123.com" />
-        <WhereTo
-          text="ШОПИНГ И ГОРОД"
-          img={shopping}
-          alt="Shopping"
-          WhereHref="123.com"
-        />
-        <WhereTo
-          text="КУЛЬТУРА И ИСТОРИЯ"
-          img={history}
-          alt="History"
-          WhereHref="123.com"
-        />
-        <WhereTo
-          text="НОЧНАЯ ЖИЗНЬ"
-          img={nightL}
-          alt="Night"
-          WhereHref="123.com"
-        />
-        <WhereTo
-          text="ОТДЫХ С ДЕТЬМИ"
-          img={kids}
-          alt="Kids"
-          WhereHref="123.com"
-        />
-      </WhereToBlock>
-      <GetTopCityByPrice />
-      <BestPrices img={calen} />
-      <BestPriceTicketsList />
-      <AdditionalInfo />
-      <Slideshow />
-      <Subscribe vk={vk} twit={twit} fb={fb} rss={rss} />
-      <SpecialOffersBackGround>
-        <h2>Спецпредложения на авиабилеты</h2>
-        <SpecialOffersWrapper>
-          <SpecialOffers
-            price="499"
-            CompanyLogo={pobeda}
-            timeLeft="45 дней"
-            companyName="Победа"
-          />
-          <SpecialOffers
-            price="20 680"
-            img={calen}
-            CompanyLogo={pobeda}
-            timeLeft="10 дней"
-            companyName="Lufthansa"
-          />
-          <SpecialOffers
-            price="20 360"
-            img={calen}
-            CompanyLogo={pobeda}
-            timeLeft="19 дней"
-            companyName="Lufthansa"
-          />
-        </SpecialOffersWrapper>
-        <WatchAllOffers />
-      </SpecialOffersBackGround>
-      <SomeInfo plane={planeIcon} hint={emailIcon} book={booksIcon} />
-    </div>
-  );
-}
+export default Body;
