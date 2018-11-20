@@ -16,33 +16,44 @@ import winStore from "./images/winStore.png";
 
 const MobileAdBackGround = styled.div`
   background-color: blue;
+  margin-top: 5%;
 `;
 const MobileAdWrapper = styled.div`
-  margin: auto;
   display: flex;
+  margin: auto;
+  justify-content: space-around;
   color: white;
-  justify-content: space-evenly;
 `;
-const ImageWrapper = styled.div`
-  background-color: red;
-  border-style: none;
-  margin: none;
+const MobilePicWrapper = styled.div`
+  position: relative;
+  width: 20%;
 `;
-const MobileAddPic = styled.img``;
+const MobileAddPic = styled.img`
+  position: absolute;
+  bottom: 0px;
+`;
+const MobileAppLinks = styled.div`
+  margin-top: 68px;
+  margin-bottom: 68px;
+`;
 const MobileAddLinkWrapper = styled.div`
   display: flex;
 `;
+
 function MobileAd(props) {
   return (
     <MobileAdBackGround>
       <MobileAdWrapper className="col-xl-10">
-        <ImageWrapper>
+        <MobilePicWrapper>
           <MobileAddPic src="/backgroundImage.png" alt="MobilePhoneImg" />
-        </ImageWrapper>
-        <div>
+        </MobilePicWrapper>
+        <MobileAppLinks>
           <h1>Скачай мобильное приложение Aviasales.ru</h1>
           <p>
-            <span>⭐⭐⭐⭐⭐</span> Более 103 000 оценок
+            <span role="img" aria-label="stars">
+              ⭐⭐⭐⭐⭐
+            </span>{" "}
+            Более 103 000 оценок
           </p>
           <MobileAddLinkWrapper>
             <div>
@@ -53,18 +64,18 @@ function MobileAd(props) {
             </div>
             <div>
               <a href="123.com">
-                <img src={props.android} alt="apple" />
+                <img src={props.android} alt="android" />
                 <span>Android | </span>
               </a>
             </div>
             <div>
               <a href="123.com">
-                <img src={props.wf} alt="apple" />
+                <img src={props.wf} alt="windows" />
                 <span>Windows Phone</span>
               </a>
             </div>
           </MobileAddLinkWrapper>
-        </div>
+        </MobileAppLinks>
       </MobileAdWrapper>
     </MobileAdBackGround>
   );
@@ -73,12 +84,24 @@ const FooterInfoWrapper = styled.div`
   display: flex;
   margin: auto;
   justify-content: space-between;
-  border-bottom-style: thin;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-color: grey;
+  padding-bottom: 2%;
+  margin-bottom: 5%;
+`;
+const StyledUl = styled.ul`
+  list-style-type: none;
+`;
+const StyledInfoLink = styled.a`
+  text-decoration: none;
+  font-weight: bold;
+  color: black;
 `;
 function FooterInfoList() {
   return (
     <FooterInfoWrapper>
-      <ul>
+      <StyledUl>
         <li>
           <h2>Страны</h2>
         </li>
@@ -89,10 +112,10 @@ function FooterInfoList() {
         <li>Болгария</li>
         <li>Грузия</li>
         <li>
-          <a href="123.com">Все страны-></a>
+          <StyledInfoLink href="123.com">Все страны-></StyledInfoLink>
         </li>
-      </ul>
-      <ul>
+      </StyledUl>
+      <StyledUl>
         <li>
           <h2>Города</h2>
         </li>
@@ -103,10 +126,10 @@ function FooterInfoList() {
         <li>Екатеринбург</li>
         <li>Лондон</li>
         <li>
-          <a href="123.com">Все города-></a>
+          <StyledInfoLink href="123.com">Все города-></StyledInfoLink>
         </li>
-      </ul>
-      <ul>
+      </StyledUl>
+      <StyledUl>
         <li>
           <h2>Авиакомпании</h2>
         </li>
@@ -117,10 +140,10 @@ function FooterInfoList() {
         <li>Emirates</li>
         <li>KLM</li>
         <li>
-          <a href="123.com">Все авиакомпании-></a>
+          <StyledInfoLink href="123.com">Все авиакомпании-></StyledInfoLink>
         </li>
-      </ul>
-      <ul>
+      </StyledUl>
+      <StyledUl>
         <li>
           <h2>Аэропорты</h2>
         </li>
@@ -131,10 +154,10 @@ function FooterInfoList() {
         <li>Владивосток</li>
         <li>Гамбург</li>
         <li>
-          <a href="123.com">Все аеропорты-></a>
+          <StyledInfoLink href="123.com">Все аеропорты-></StyledInfoLink>
         </li>
-      </ul>
-      <ul>
+      </StyledUl>
+      <StyledUl>
         <li>
           <h2>Направления</h2>
         </li>
@@ -144,8 +167,8 @@ function FooterInfoList() {
         <li>MOW-MRV</li>
         <li>LED-MOW</li>
         <li>MOW-BKK</li>
-      </ul>
-      <ul>
+      </StyledUl>
+      <StyledUl>
         <li>
           <h2>Сервисы</h2>
         </li>
@@ -156,11 +179,12 @@ function FooterInfoList() {
         <li>Таблица цен</li>
         <li>Блог</li>
         <li>Помощь</li>
-      </ul>
+      </StyledUl>
     </FooterInfoWrapper>
   );
 }
 const CompanyInfoFooterWrapper = styled.div`
+  margin-right: 300px;
   display: flex;
   margin: auto;
   justify-content: space-between;

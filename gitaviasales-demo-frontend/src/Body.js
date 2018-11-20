@@ -190,7 +190,8 @@ let LowestPriceToBarcelona = FullInfoAboutFly.filter(a => {
   });
 const FlyToCityBlock = styled.div`
   box-shadow: 0 3px 8px -3px grey;
-  margin-bottom: 1%;
+  margin-top:1%;
+  margin-bottom:1%;
 `;
 const FlyToCityWrapper = styled.div`
   display: flex;
@@ -198,10 +199,16 @@ const FlyToCityWrapper = styled.div`
 `;
 const FlyToCityInfoWrapper = styled.div`
   display: flex;
-  flex-direction: column;
 `;
+
 const FlyToCityAddInfo = styled.span`
   color: grey;
+`;
+
+
+const FlyToCityInnerRaper = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 const FlyToCityImg = styled.img`
   width: 100%;
@@ -209,17 +216,20 @@ const FlyToCityImg = styled.img`
 `;
 function FlyToCity(props) {
   return (
-    <FlyToCityBlock className="col-xl-6 col-lg-6 col-md-12">
+    <FlyToCityBlock className="col-xl-5 col-lg-5 col-md-12">
       <FlyToCityImg src={props.cityImg} alt="cityImage" />
       <FlyToCityWrapper>
         <FlyToCityInfoWrapper>
-          {props.cityTo}
-          <FlyToCityAddInfo>{props.countryTo}</FlyToCityAddInfo>
+          <img src={flagRu} alt="flag" />
+          <FlyToCityInnerRaper>
+            {props.cityTo}
+            <FlyToCityAddInfo>{props.countryTo}</FlyToCityAddInfo>
+          </FlyToCityInnerRaper>
         </FlyToCityInfoWrapper>
-        <FlyToCityInfoWrapper>
+        <FlyToCityInnerRaper>
           <a href="123.com">Найти от {props.ticketPrice} ₽</a>
           <FlyToCityAddInfo>{props.dateStart}</FlyToCityAddInfo>
-        </FlyToCityInfoWrapper>
+        </FlyToCityInnerRaper>
       </FlyToCityWrapper>
     </FlyToCityBlock>
   );
@@ -227,7 +237,7 @@ function FlyToCity(props) {
 
 const TopCityWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: wrap;
   margin: auto;
   margin-top: 2%;

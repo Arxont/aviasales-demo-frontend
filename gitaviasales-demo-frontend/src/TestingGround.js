@@ -1,6 +1,8 @@
 import React from "react";
+/*
 import Header from "./Header";
 import styled from "styled-components";
+
 import DoubleRangeSlider from "./DoubleSlider";
 import {
   Accordion,
@@ -329,6 +331,8 @@ const Test2 = styled.div`
   width: 100%;
   margin-left: 5%;
 `;
+
+
 export default function TicketsBody() {
   return (
     <BodyWrapper>
@@ -339,4 +343,8 @@ export default function TicketsBody() {
       </Test2>
     </BodyWrapper>
   );
+}
+*/
+export default function TicketsBody() {
+  return <div>1</div>;
 }
