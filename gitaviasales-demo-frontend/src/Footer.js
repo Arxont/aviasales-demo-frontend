@@ -82,16 +82,17 @@ function MobileAd(props) {
 }
 const FooterInfoWrapper = styled.div`
   display: flex;
+  width: 100%;
   margin: auto;
   justify-content: space-between;
   border-bottom-style: solid;
   border-bottom-width: 1px;
   border-color: grey;
-  padding-bottom: 2%;
   margin-bottom: 5%;
 `;
 const StyledUl = styled.ul`
   list-style-type: none;
+  padding: 0;
 `;
 const StyledInfoLink = styled.a`
   text-decoration: none;
@@ -184,66 +185,72 @@ function FooterInfoList() {
   );
 }
 const CompanyInfoFooterWrapper = styled.div`
-  margin-right: 300px;
   display: flex;
-  margin: auto;
+  width: 100%;
   justify-content: space-between;
 `;
-const InfoWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+
+const UsefulLinksWrapper = styled.div`
+  width: 50%;
 `;
-const StoreliknWrapper = styled.div``;
+const InfoWrapper = styled.div`
+  width: 40%;
+`;
+const UsefulLinks = styled.a`
+  text-decoration: none;
+  color: black;
+`;
+const StoreDownloadLinks = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+const RightsInfo = styled.p`
+  text-align: end;
+`;
 function CompanyInfoFooter() {
   return (
     <CompanyInfoFooterWrapper>
-      <InfoWrapper>
-        <p>
-          <a href="123.com">О компании </a>
-          <a href="123.com">Партнерская программа </a>
-          <a href="123.com">Реклама </a> <a href="123.com">Вакансии </a>
-          <a href="123.com">Помощь </a> <a href="123.com">Правила </a>
-          <a href="123.com"> White Label авиабилеты</a>
-        </p>
-        <p>
-          <a href="123.com">
-            <img src={vkLogo} alt="VK" />
-            Вконтакте{" "}
-          </a>
-          <a href="123.com">
-            <img src={fbLogo} alt="FB" />
-            Фейсбук{" "}
-          </a>
-          <a href="123.com">
-            <img src={instLogo} alt="INST" />
-            Инстаграм{" "}
-          </a>
-          <a href="123.com">
-            <img src={twitLogo} alt="TWIT" />
-            Твиттер{" "}
-          </a>
-          <a href="123.com">
-            <img src={vbLogo} alt="VIB" />
-            Вайбер{" "}
-          </a>
-        </p>
-        <p>Поиск и бронирование отелей</p>
-      </InfoWrapper>
-      <InfoWrapper>
+      <UsefulLinksWrapper>
         <div>
+          <UsefulLinks href="123.com">О компании </UsefulLinks>
+          <UsefulLinks href="123.com">Партнерская программа </UsefulLinks>
+          <UsefulLinks href="123.com">Реклама </UsefulLinks>
+          <UsefulLinks href="123.com">Вакансии </UsefulLinks>
+          <UsefulLinks href="123.com">Помощь </UsefulLinks>
+          <UsefulLinks href="123.com">Правила </UsefulLinks>
+          <UsefulLinks href="123.com">White Label авиабилеты</UsefulLinks>
+        </div>
+        <div>
+          <UsefulLinks href="123.com">
+            <img src={vkLogo} alt="VK" /> Вконтакте{" "}
+          </UsefulLinks>
+          <UsefulLinks href="123.com">
+            <img src={fbLogo} alt="FB" /> Фейсбук{" "}
+          </UsefulLinks>
+          <UsefulLinks href="123.com">
+            <img src={instLogo} alt="INST" /> Инстаграм{" "}
+          </UsefulLinks>
+          <UsefulLinks href="123.com">
+            <img src={twitLogo} alt="TWIT" /> Твиттер{" "}
+          </UsefulLinks>
+          <UsefulLinks href="123.com">
+            <img src={vbLogo} alt="VIB" /> Вайбер{" "}
+          </UsefulLinks>
+        </div>
+        <p>Поиск и бронирование отелей</p>
+      </UsefulLinksWrapper>
+      <InfoWrapper>
+        <StoreDownloadLinks>
           <img src={appStore} alt="AppStore" />{" "}
           <img src={playStore} alt="PlayStore" />{" "}
           <img src={winStore} alt="WinStore" />{" "}
-        </div>
-        <p>© 2007-2018, Aviasales- дешевые авиабилеты</p>
+        </StoreDownloadLinks>
+        <RightsInfo>© 2007-2018, Aviasales- дешевые авиабилеты</RightsInfo>
       </InfoWrapper>
     </CompanyInfoFooterWrapper>
   );
 }
-const SectionWrapper = styled.div`
-  margin: auto;
-`;
+
 export default function Footer() {
   return (
     <div>

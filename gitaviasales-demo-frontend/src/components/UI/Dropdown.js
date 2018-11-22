@@ -31,22 +31,27 @@ let cityAndCountry = join(country, city, "id", "countryId", function(
   };
 });
 
-const CitiesWrapper = styled.div`
+const CitiesContainer = styled.div`
   position: relative;
+  display: flex;
+  justify-content: space-between;
 `;
-const CityNameAndCountryWrapper = styled.div`
+const CityNameAndCountry = styled.span`
+  width: 70%;
   display: inline-block;
   left: auto;
   margin: 5px 0;
-  width: 70%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   height: 17px;
 `;
-const CityAbbreviationWrapper = styled.div`
+const CityAbbreviation = styled.span`
   display: inline-block;
-  position: absolute;
+  color: grey;
+  font-style: Regular;
+  fontsize: 12px;
+  line-height: 18px;
   right: 0;
   margin: 5px 0;
   overflow: hidden;
@@ -54,25 +59,38 @@ const CityAbbreviationWrapper = styled.div`
   white-space: nowrap;
   height: 17px;
 `;
+const CountryName = styled.span`
+  color: grey;
+`;
 class Cities extends React.Component {
   render() {
     return (
-      <CitiesWrapper>
-        <CityNameAndCountryWrapper>
-          {this.props.data.cityName},{this.props.data.countryId}
-        </CityNameAndCountryWrapper>{" "}
-        <CityAbbreviationWrapper>
-          {this.props.data.CityAbbreviation}
-        </CityAbbreviationWrapper>
-      </CitiesWrapper>
+      <CitiesContainer>
+        <CityNameAndCountry>
+          {this.props.data.cityName},{" "}
+          <CountryName>{this.props.data.countryId}</CountryName>
+        </CityNameAndCountry>{" "}
+        <CityAbbreviation>{this.props.data.CityAbbreviation}</CityAbbreviation>
+      </CitiesContainer>
     );
   }
 }
 
+const Container = styled.div`
+  position: relative;
+`;
 const ContentDiv = styled.div`
-  width: 180px;
+  width: 100%;
+  position: absolute;
+  background-color: white;
+`;
+const FlyAnywhere = styled.div`
+  width: 100%;
+  position: absolute;
+  background-color: white;
 `;
 const CityInput = styled.input`
+  width: 100%;
   cursor: pointer;
   margin: auto;
   margin-bottom: 2px;
@@ -106,7 +124,7 @@ class DropdownList extends React.Component {
     const HideDiv = this.state.hiddenDiv ? { display: "none" } : {};
 
     return (
-      <div>
+      <Container>
         <CityInput
           type="text"
           placeholder="Выберите город"
@@ -122,7 +140,7 @@ class DropdownList extends React.Component {
             })}
           </div>
         </ContentDiv>
-      </div>
+      </Container>
     );
   }
 }
@@ -160,12 +178,12 @@ class DropdownListWithFlyAnyWhere extends React.Component {
       })
       .slice(0, 6);
     const HideDiv = this.state.hiddenDiv ? { display: "none" } : {};
-    const HideTest = this.state.hiddenFlyAnywhereBlock
+    const HideFlyAnywhere = this.state.hiddenFlyAnywhereBlock
       ? { display: "none" }
       : {};
 
     return (
-      <div>
+      <Container>
         <CityInput
           type="text"
           placeholder="Город прибытия"
@@ -174,7 +192,6 @@ class DropdownListWithFlyAnyWhere extends React.Component {
           onClick={this.ShowHiddenFlyAnywhereBlockOnClick}
           onKeyDown={this.showDiwOnClick}
         />
-
         <ContentDiv style={HideDiv}>
           <div>
             {filteredCities.map(item => {
@@ -182,8 +199,8 @@ class DropdownListWithFlyAnyWhere extends React.Component {
             })}
           </div>
         </ContentDiv>
-        <div style={HideTest}>Куда угодно</div>
-      </div>
+        <FlyAnywhere style={HideFlyAnywhere}>Куда угодно</FlyAnywhere>
+      </Container>
     );
   }
 }

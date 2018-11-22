@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import Carousel from "nuka-carousel";
+
 import "flexboxgrid2";
 
 import FullInfoAboutFly from "./components/DataFilter";
@@ -26,12 +28,19 @@ import booksIcon from "./images/booksIcon.png";
 const SectionWrapper = styled.div`
   margin: auto;
 `;
-
+const SliderWrapper = styled.div`
+  margin: auto;
+  margin-top: 10%;
+  margin-bottom: 10%;
+  border: 10px solid transparent;
+  border-top-style: none;
+  border-image: url("/border.png") 30 round;
+  padding-bottom: 50px;
+`;
 const MostPopularPlacesWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-center;
-  background-color: red;
   margin: auto;
   margin-top: 5%;
 `;
@@ -47,7 +56,7 @@ const CityLink = styled.a`
 function MostPopularPlacesFromMyCity(props) {
   return (
     <MostPopularPlacesWrapper className="col-xl-10">
-      <img src={calen} alt="img" />
+      <img src={compass} alt="img" />
       <MostPopularPlacesTxtWrapper>
         Популярные направления
         <br className="hidden-md hidden-lg hidden-xl" /> перелетов
@@ -61,7 +70,7 @@ function MostPopularPlacesFromMyCity(props) {
 function BestTicketsPriceInThisMonth() {
   return (
     <MostPopularPlacesWrapper className="col-xl-10">
-      <img src={compass} alt="img" />
+      <img src={calen} alt="img" />
       <MostPopularPlacesTxtWrapper>
         Лучшие цены на авиабилеты
         <br className="hidden-md hidden-lg hidden-xl" /> за последний месяц
@@ -97,7 +106,6 @@ function Category(props) {
 const CategoriesMenuWrapper = styled.div`
   margin: auto;
   margin-top: 2%;
-  background-color: red;
   display: flex;
   justify-content: space-around;
 `;
@@ -190,8 +198,8 @@ let LowestPriceToBarcelona = FullInfoAboutFly.filter(a => {
   });
 const FlyToCityBlock = styled.div`
   box-shadow: 0 3px 8px -3px grey;
-  margin-top:1%;
-  margin-bottom:1%;
+  margin-top: 1%;
+  margin-bottom: 1%;
 `;
 const FlyToCityWrapper = styled.div`
   display: flex;
@@ -204,7 +212,6 @@ const FlyToCityInfoWrapper = styled.div`
 const FlyToCityAddInfo = styled.span`
   color: grey;
 `;
-
 
 const FlyToCityInnerRaper = styled.div`
   display: flex;
@@ -313,15 +320,26 @@ let FilteredSimpferopolTopFiveLowestTickets = removeDuplicates(
   "cityFrom"
 );
 
+const UnStyledLi = styled.li`
+  list-style-type: none;
+`;
+const SeparatedTxtInLi = styled.span`
+  display: flex;
+  justify-content: space-between;
+`;
+const StyledTicketPrice = styled.span`
+  color: #00bae8;
+`;
 let listSimpferopolTickets = FilteredSimpferopolTopFiveLowestTickets.slice(
   0,
   5
 ).map(top => (
-  <div>
-    <li>
-      Из {top.cityFrom} от {top.ticketPrice} ₽
-    </li>
-  </div>
+  <UnStyledLi>
+    <SeparatedTxtInLi>
+      <span>Из {top.cityFrom}</span>
+      <StyledTicketPrice> от {top.ticketPrice} ₽</StyledTicketPrice>
+    </SeparatedTxtInLi>
+  </UnStyledLi>
 ));
 let ErevanTopFiveLowestTickets = FullInfoAboutFly.filter(a => {
   return a.toCity === "Ереван";
@@ -336,11 +354,12 @@ let FilteredErevanTopFiveLowestTickets = removeDuplicates(
 
 let listErevanTickets = FilteredErevanTopFiveLowestTickets.slice(0, 5).map(
   top => (
-    <div>
-      <li>
-        Из {top.cityFrom} от {top.ticketPrice} ₽
-      </li>
-    </div>
+    <UnStyledLi>
+      <SeparatedTxtInLi>
+        <span>Из {top.cityFrom}</span>
+        <StyledTicketPrice>от {top.ticketPrice} ₽</StyledTicketPrice>
+      </SeparatedTxtInLi>
+    </UnStyledLi>
   )
 );
 let KishenevTopFiveLowestTickets = FullInfoAboutFly.filter(a => {
@@ -356,17 +375,17 @@ let FilteredKishenevTopFiveLowestTickets = removeDuplicates(
 
 let listKishenevTickets = FilteredKishenevTopFiveLowestTickets.slice(0, 5).map(
   top => (
-    <div>
-      <li>
-        Из {top.cityFrom} от {top.ticketPrice} ₽
-      </li>
-    </div>
+    <UnStyledLi>
+      <SeparatedTxtInLi>
+        <span>Из {top.cityFrom}</span>
+        <StyledTicketPrice>от {top.ticketPrice} ₽</StyledTicketPrice>
+      </SeparatedTxtInLi>
+    </UnStyledLi>
   )
 );
 
 const BestPriceTicketsListWrapper = styled.div`
   display: flex;
-  background-color: red;
   margin: auto;
   margin-top: 2%;
   justify-content: space-between;
@@ -375,20 +394,29 @@ const BestPriceTicketsListWrapper = styled.div`
     flex-direction: column;
   }
 `;
+const BestPriceTicketsColumn = styled.div`
+  width: 30%;
+`;
 function BestPriceTicketsList() {
   return (
     <BestPriceTicketsListWrapper className="col-xl-10 col-lg-10 col-md-10 col-sm-12">
-      <div>{listSimpferopolTickets}</div>
-      <div>{listErevanTickets}</div>
-      <div>{listKishenevTickets}</div>
+      <BestPriceTicketsColumn>{listSimpferopolTickets}</BestPriceTicketsColumn>
+      <BestPriceTicketsColumn>{listErevanTickets}</BestPriceTicketsColumn>
+      <BestPriceTicketsColumn>{listKishenevTickets}</BestPriceTicketsColumn>
     </BestPriceTicketsListWrapper>
   );
 }
 
 const AdditionalInfoWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
   margin: auto;
+  margin-top: 5%;
+`;
+
+const StyledAddInfo = styled.div`
+  color: grey;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
 `;
 function AdditionalInfo() {
   return (
@@ -401,33 +429,73 @@ function AdditionalInfo() {
         Поиск и сравнение цен на авиабилеты среди 100 агенств и 728
         авиакомпаний.
       </p>
-      <p>
+      <StyledAddInfo>
         Цены найденные пользователями за последние 48 часов не являются офертой.
-      </p>
+      </StyledAddInfo>
     </AdditionalInfoWrapper>
   );
 }
+const CarouselWrapper = styled.div`
+  margin: auto;
+`;
+class LogoSlider extends React.Component {
+  render() {
+    return (
+      <CarouselWrapper className="col-xl-10">
+        <Carousel autoGenerateStyleTag={true} cellAlign="left" autoplay={true}>
+          <img src="/agenciesAgencyLogo.png" alt="Logo" />
+          <img src="/agenciesAgencyLogo1.png" alt="Logo" />
+          <img src="/agenciesAgencyLogo2.png" alt="Logo" />
+          <img src="/agenciesAgencyLogo3.png" alt="Logo" />
+          <img src="/agenciesAgencyLogo4.png" alt="Logo" />
+        </Carousel>
+      </CarouselWrapper>
+    );
+  }
+}
+
 const SubscribeWrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
 `;
+const SubscribeInfo = styled.div`
+  width: 40%;
+`;
 const LinkWrapper = styled.div`
-  display: flex;
+width:50%;
+display:flex
+align-items:center;
+`;
+
+const SocialSubscribeWrapper = styled.div`
+  margin-left: 5%;
 `;
 const SendEmailButton = styled.button`
   background-color: orange;
+`;
+const SubscribeHeader = styled.p`
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+`;
+
+const SubscribeText = styled.p`
+  font-size: 16px;
+  line-height: 20px;
 `;
 
 function Subscribe(props) {
   return (
     <SubscribeWrapper>
-      <div>
-        <h2>Хотите знать все о скидках на авиабилеты?</h2>
-        <p>
+      <SubscribeInfo>
+        <SubscribeHeader>
+          Хотите знать все о скидках на авиабилеты?
+        </SubscribeHeader>
+        <SubscribeText>
           Вы можете подписаться на нашу рассылку через социальные сети или по
           электронной почте
-        </p>
-      </div>
+        </SubscribeText>
+      </SubscribeInfo>
       <LinkWrapper>
         <a href="123.com">
           <img src={props.twit} alt="twit" />
@@ -441,10 +509,10 @@ function Subscribe(props) {
         <a href="123.com">
           <img src={props.rss} alt="rss" />
         </a>
-        <div>
+        <SocialSubscribeWrapper>
           <input type="text" name="Email" value="Ваш email" />
           <SendEmailButton>Подписаться</SendEmailButton>
-        </div>
+        </SocialSubscribeWrapper>
       </LinkWrapper>
     </SubscribeWrapper>
   );
@@ -470,7 +538,7 @@ const SpecialOfferHeader = styled.div`
 `;
 const SpecialOfferBody = styled.div`
   display: flex;
-  flex-direction: row;
+  justify-content: space-between;
   background-color: white;
 `;
 const SpecialOfferFooter = styled.div`
@@ -479,6 +547,10 @@ const SpecialOfferFooter = styled.div`
   background-color: white;
 `;
 const SpecialOfferButton = styled.button`
+  width: 90%;
+  margin: auto;
+  margin-bottom: 2%;
+  border-radius: 10px;
   color: red;
   background-color: white;
   border-style: solid;
@@ -491,7 +563,21 @@ const SpecialOffersWrapper = styled.div`
   justify-content: space-between;
   margin: auto;
 `;
-
+const SpecialOfferCompanyLogoImgContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+const SpecialofferPrice = styled.p`
+  text-align: end;
+  font-size: 20px;
+  line-height: 16px;
+`;
+const SpecialOfferExpireTime = styled.p`
+  color: red;
+  text-align: end;
+  font-size: 12px;
+  line-height: 15px;
+`;
 function SpecialOffers(props) {
   return (
     <SpecialOfferBlock>
@@ -500,12 +586,14 @@ function SpecialOffers(props) {
         <img src={props.img} alt={props.alt} />
       </SpecialOfferHeader>
       <SpecialOfferBody>
-        <div>
+        <SpecialOfferCompanyLogoImgContainer>
           <img src={props.CompanyLogo} alt="Company Logo" />
-        </div>
+        </SpecialOfferCompanyLogoImgContainer>
         <div>
-          <p>От {props.price} ₽</p>
-          <p>Осталось {props.timeLeft}</p>
+          <SpecialofferPrice>От {props.price} ₽</SpecialofferPrice>
+          <SpecialOfferExpireTime>
+            Осталось {props.timeLeft}
+          </SpecialOfferExpireTime>
         </div>
       </SpecialOfferBody>
       <SpecialOfferFooter>
@@ -521,26 +609,31 @@ function SpecialOffers(props) {
   );
 }
 
-const WatchAllOffersWrapper = styled.div`
+const WatchAllOffersContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   color: white;
 `;
 
+const AllOffers = styled.a`
+  color:white;one;
+`;
 function WatchAllOffers(props) {
   return (
-    <WatchAllOffersWrapper>
-      <a href="123.com">Смотреть все предложения</a>
+    <WatchAllOffersContainer>
+      <AllOffers href="123.com">
+        <p>Смотреть все предложения</p>
+      </AllOffers>
       <p>* Средняя цена по направлению</p>
-    </WatchAllOffersWrapper>
+    </WatchAllOffersContainer>
   );
 }
 
-const HeadingWrapper = styled.div`
-  display: flex;
+const ColoredHiddenTxtButton = styled.a`
+  color: #00ace2;
+  cursor: pointer;
 `;
-
 class HiddenTxt extends React.Component {
   constructor() {
     super();
@@ -570,14 +663,14 @@ class HiddenTxt extends React.Component {
   render(props) {
     let ShowHiddenComponent = this.state.hidden ? { display: "none" } : {};
     let hideHComponent = this.state.show ? { display: "none" } : {};
-    let moreTxt = "...Show more";
-    let lesstxt = "...Show less";
+    let moreTxt = "...Подробнее";
+    let lesstxt = "Скрыть";
 
     return (
       <div>
         {this.props.shownText}
         <span style={ShowHiddenComponent}>{this.props.hiddentext}</span>
-        <a
+        <ColoredHiddenTxtButton
           onClick={e => {
             this.showComponentOnClick(e);
             this.hideComponentOnClick(e);
@@ -585,8 +678,8 @@ class HiddenTxt extends React.Component {
           style={hideHComponent}
         >
           {moreTxt}
-        </a>
-        <a
+        </ColoredHiddenTxtButton>
+        <ColoredHiddenTxtButton
           onClick={e => {
             this.hideButton();
             this.showButton();
@@ -594,7 +687,7 @@ class HiddenTxt extends React.Component {
           style={ShowHiddenComponent}
         >
           {lesstxt}
-        </a>
+        </ColoredHiddenTxtButton>
       </div>
     );
   }
@@ -609,24 +702,23 @@ function SomeInfo(props) {
   return (
     <div>
       <div>
-        <HeadingWrapper>
+        <p>
           <img src={props.plane} alt="plane" />
-          <h2>Как купить дешевые авиабилеты</h2>
-        </HeadingWrapper>
+          Как купить дешевые авиабилеты
+        </p>
         <HiddenTxt shownText={VisibleInfo} hiddentext={HiddenInfo} />
       </div>
       <div>
-        <HeadingWrapper>
-          <img src={props.hint} alt="@" />
-          <h2>электронный авиабилет</h2>
-        </HeadingWrapper>
+        <p>
+          <img src={props.hint} alt="@" /> Электронный авиабилет
+        </p>
         <HiddenTxt shownText={VisibleInfo} hiddentext={HiddenInfo} />
       </div>
       <div>
-        <HeadingWrapper>
-          <img src={props.book} alt="book" />
-          <h2>20 советов авиапутешественникам</h2>
-        </HeadingWrapper>
+        <p>
+          {" "}
+          <img src={props.book} alt="book" /> 20 советов авиапутешественникам
+        </p>
         <HiddenTxt shownText={VisibleInfo} hiddentext={HiddenInfo} />
         <div />
       </div>
@@ -655,6 +747,21 @@ function Body() {
             <BestTicketsPriceInThisMonth />
             <BestPriceTicketsList />
             <AdditionalInfo />
+          </div>
+        </div>
+      </div>
+      <SliderWrapper>
+      <div className="container">
+        <div className="col-xl-12">
+          <div className="row">
+            <LogoSlider />
+          </div>
+        </div>
+      </div>
+      </SliderWrapper>
+      <div className="container">
+        <div className="col-xl-12">
+          <div className="row">
             <SectionWrapper className="col-xl-10">
               <Subscribe vk={vk} twit={twit} fb={fb} rss={rss} />
             </SectionWrapper>
