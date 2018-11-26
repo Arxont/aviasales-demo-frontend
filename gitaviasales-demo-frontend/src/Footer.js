@@ -89,6 +89,9 @@ const FooterInfoWrapper = styled.div`
   border-bottom-width: 1px;
   border-color: grey;
   margin-bottom: 5%;
+  @media (max-width: 1000px) {
+    flex-wrap: wrap;
+  }
 `;
 const StyledUl = styled.ul`
   list-style-type: none;
@@ -188,13 +191,22 @@ const CompanyInfoFooterWrapper = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-between;
+  @media (max-width: 1000px) {
+    flex-direction: column;
+  }
 `;
 
 const UsefulLinksWrapper = styled.div`
   width: 50%;
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
 `;
 const InfoWrapper = styled.div`
   width: 40%;
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
 `;
 const UsefulLinks = styled.a`
   text-decoration: none;
@@ -203,9 +215,13 @@ const UsefulLinks = styled.a`
 const StoreDownloadLinks = styled.div`
   display: flex;
   justify-content: space-between;
+  @media (max-width: 1000px) {
+    width: 60%;
+  }
 `;
 const RightsInfo = styled.p`
   text-align: end;
+  background-color: red;
 `;
 function CompanyInfoFooter() {
   return (

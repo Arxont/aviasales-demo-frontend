@@ -322,7 +322,7 @@ let FilteredSimpferopolTopFiveLowestTickets = removeDuplicates(
   "cityFrom"
 );
 
-const UnStyledLi = styled.li`
+const ListedContainer = styled.li`
   list-style-type: none;
 `;
 const SeparatedTxtInLi = styled.span`
@@ -336,12 +336,12 @@ let listSimpferopolTickets = FilteredSimpferopolTopFiveLowestTickets.slice(
   0,
   5
 ).map(top => (
-  <UnStyledLi>
+  <ListedContainer>
     <SeparatedTxtInLi>
       <span>Из {top.cityFrom}</span>
       <StyledTicketPrice> от {top.ticketPrice} ₽</StyledTicketPrice>
     </SeparatedTxtInLi>
-  </UnStyledLi>
+  </ListedContainer>
 ));
 let ErevanTopFiveLowestTickets = FullInfoAboutFly.filter(a => {
   return a.toCity === "Ереван";
@@ -356,12 +356,12 @@ let FilteredErevanTopFiveLowestTickets = removeDuplicates(
 
 let listErevanTickets = FilteredErevanTopFiveLowestTickets.slice(0, 5).map(
   top => (
-    <UnStyledLi>
+    <ListedContainer>
       <SeparatedTxtInLi>
         <span>Из {top.cityFrom}</span>
         <StyledTicketPrice>от {top.ticketPrice} ₽</StyledTicketPrice>
       </SeparatedTxtInLi>
-    </UnStyledLi>
+    </ListedContainer>
   )
 );
 let KishenevTopFiveLowestTickets = FullInfoAboutFly.filter(a => {
@@ -377,17 +377,18 @@ let FilteredKishenevTopFiveLowestTickets = removeDuplicates(
 
 let listKishenevTickets = FilteredKishenevTopFiveLowestTickets.slice(0, 5).map(
   top => (
-    <UnStyledLi>
+    <ListedContainer>
       <SeparatedTxtInLi>
         <span>Из {top.cityFrom}</span>
         <StyledTicketPrice>от {top.ticketPrice} ₽</StyledTicketPrice>
       </SeparatedTxtInLi>
-    </UnStyledLi>
+    </ListedContainer>
   )
 );
 
 const BestPriceTicketsListWrapper = styled.div`
   display: flex;
+  flex-wrap: wrap;
   margin: auto;
   margin-top: 2%;
   justify-content: space-between;
@@ -397,14 +398,22 @@ const BestPriceTicketsListWrapper = styled.div`
   }
 `;
 const BestPriceTicketsColumn = styled.div`
-  width: 30%;
+  @media (max-width: 1000px) {
+    margin-bottom: 3%;
+  }
 `;
 function BestPriceTicketsList() {
   return (
     <BestPriceTicketsListWrapper className="col-xl-10 col-lg-10 col-md-10 col-sm-12">
-      <BestPriceTicketsColumn>{listSimpferopolTickets}</BestPriceTicketsColumn>
-      <BestPriceTicketsColumn>{listErevanTickets}</BestPriceTicketsColumn>
-      <BestPriceTicketsColumn>{listKishenevTickets}</BestPriceTicketsColumn>
+      <BestPriceTicketsColumn className="col-xl-4 col-lg-4 col-md-12">
+        {listSimpferopolTickets}
+      </BestPriceTicketsColumn>
+      <BestPriceTicketsColumn className="col-xl-4 col-lg-4 col-md-12">
+        {listErevanTickets}
+      </BestPriceTicketsColumn>
+      <BestPriceTicketsColumn className="col-xl-4 col-lg-4 col-md-12">
+        {listKishenevTickets}
+      </BestPriceTicketsColumn>
     </BestPriceTicketsListWrapper>
   );
 }
@@ -453,14 +462,19 @@ const RightControlButton = styled.img`
 `;
 
 const CarouselImg = styled.img`
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+`;
+const SliderText = styled.p`
+  text-align: center;
 `;
 class LogoSlider extends React.Component {
   render() {
     return (
       <CarouselWrapper className="col-xl-10">
-        <p>Дешевые билеты от крупнейший авиакомпаний и агенств</p>
+        <SliderText>
+          Дешевые билеты от крупнейший авиакомпаний и агенств
+        </SliderText>
         <Carousel
           slidesToShow={3}
           cellAlign="left"
@@ -501,16 +515,37 @@ class LogoSlider extends React.Component {
 const SubscribeWrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
+  margin-bottom: 5%;
+  @media (max-width: 1000px) {
+    flex-direction: column;
+    background-color: red;
+  }
 `;
 const SubscribeInfo = styled.div`
   width: 40%;
+  @media (max-width: 1000px) {
+    margin: auto;
+    width: 80%;
+    background-color: green;
+  }
 `;
-const LinkWrapper = styled.div`
-width:50%;
-display:flex
-align-items:center;
+const UrlContainer = styled.div`
+  width: 50%;
+  display: flex;
+  align-items: center;
+  @media (max-width: 1000px) {
+    flex-direction: column;
+    width: 100%;
+  }
 `;
 
+const LinkWrapper = styled.div`
+  display: flex;
+  @media (max-width: 1000px) {
+    margin-top: 3%;
+    margin-bottom: 3%;
+  }
+`;
 const SocialSubscribeWrapper = styled.div`
   margin-left: 5%;
 `;
@@ -540,24 +575,26 @@ function Subscribe(props) {
           электронной почте
         </SubscribeText>
       </SubscribeInfo>
-      <LinkWrapper>
-        <a href="123.com">
-          <img src={props.twit} alt="twit" />
-        </a>
-        <a href="123.com">
-          <img src={props.fb} alt="Fb" />
-        </a>
-        <a href="123.com">
-          <img src={props.vk} alt="Vk" />
-        </a>
-        <a href="123.com">
-          <img src={props.rss} alt="rss" />
-        </a>
+      <UrlContainer>
+        <LinkWrapper>
+          <a href="123.com">
+            <img src={props.twit} alt="twit" />
+          </a>
+          <a href="123.com">
+            <img src={props.fb} alt="Fb" />
+          </a>
+          <a href="123.com">
+            <img src={props.vk} alt="Vk" />
+          </a>
+          <a href="123.com">
+            <img src={props.rss} alt="rss" />
+          </a>
+        </LinkWrapper>
         <SocialSubscribeWrapper>
           <input type="text" name="Email" value="Ваш email" />
           <SendEmailButton>Подписаться</SendEmailButton>
         </SocialSubscribeWrapper>
-      </LinkWrapper>
+      </UrlContainer>
     </SubscribeWrapper>
   );
 }
@@ -570,7 +607,6 @@ const SpecialOffersBackGround = styled.div`
 const SpecialOfferBlock = styled.div`
   display: flex;
   flex-direction: column;
-  width: 30%;
 `;
 const SpecialOfferHeader = styled.div`
   display: flex;
@@ -624,7 +660,7 @@ const SpecialOfferExpireTime = styled.p`
 `;
 function SpecialOffers(props) {
   return (
-    <SpecialOfferBlock>
+    <SpecialOfferBlock className="col-xl-3 col-lg-3 col-md-3">
       <SpecialOfferHeader>
         <p>Билеты от {props.price} Рублей!</p>
         <img src={props.img} alt={props.alt} />
@@ -771,13 +807,9 @@ function SomeInfo(props) {
 }
 fetch(
   "http://autocomplete.travelpayouts.com/places2?term=Mos&locale=ru&types[]=city"
-)
-  .then(function(response) {
-    return response.json();
-  })
-  .then(function(myJson) {
-    console.log(JSON.stringify(myJson));
-  });
+).then(function(response) {
+  return response.json();
+});
 
 function Body() {
   return (
@@ -794,7 +826,7 @@ function Body() {
           </div>
         </div>
       </div>
-      <SliderWrapper>
+      <SliderWrapper className="col-sm-hidden">
         <div className="container">
           <div className="col-xl-12">
             <div className="row">
@@ -816,7 +848,7 @@ function Body() {
         <div className="container">
           <div className="col-xl-12">
             <div className="row">
-              <SectionWrapper className="col-xl-10">
+              <SectionWrapper className="col-xl-10 col-lg-10 col-md-12">
                 <h2>Спецпредложения на авиабилеты</h2>
 
                 <SpecialOffersWrapper>
