@@ -24,6 +24,8 @@ import twit from "./images/twitter.png";
 import emailIcon from "./images/emailIcon.png";
 import planeIcon from "./images/planeIcon.png";
 import booksIcon from "./images/booksIcon.png";
+import leftArrow from "./images/leftArrow.png";
+import rightArrow from "./images/rightArrow.png";
 
 const SectionWrapper = styled.div`
   margin: auto;
@@ -438,16 +440,58 @@ function AdditionalInfo() {
 const CarouselWrapper = styled.div`
   margin: auto;
 `;
+const LeftControlButton = styled.img`
+  border-radius: 20px;
+  cursor: pointer;
+  &:hover {
+    color: red;
+  }
+`;
+const RightControlButton = styled.img`
+  border-radius: 20px;
+  cursor: pointer;
+`;
+
+const CarouselImg = styled.img`
+  margin-top: 50px;
+  margin-bottom: 50px;
+`;
 class LogoSlider extends React.Component {
   render() {
     return (
       <CarouselWrapper className="col-xl-10">
-        <Carousel autoGenerateStyleTag={true} cellAlign="left" autoplay={true}>
-          <img src="/agenciesAgencyLogo.png" alt="Logo" />
-          <img src="/agenciesAgencyLogo1.png" alt="Logo" />
-          <img src="/agenciesAgencyLogo2.png" alt="Logo" />
-          <img src="/agenciesAgencyLogo3.png" alt="Logo" />
-          <img src="/agenciesAgencyLogo4.png" alt="Logo" />
+        <p>Дешевые билеты от крупнейший авиакомпаний и агенств</p>
+        <Carousel
+          slidesToShow={3}
+          cellAlign="left"
+          autoplay={true}
+          cellSpacing={50}
+          slideWidth={0.5}
+          renderCenterLeftControls={({ previousSlide }) => (
+            <LeftControlButton
+              onClick={previousSlide}
+              src={leftArrow}
+              alt="left"
+            />
+          )}
+          renderCenterRightControls={({ nextSlide }) => (
+            <RightControlButton
+              onClick={nextSlide}
+              src={rightArrow}
+              alt="left"
+            />
+          )}
+        >
+          <CarouselImg src="/agenciesAgencyLogo.png" alt="Logo" />
+          <CarouselImg src="/agenciesAgencyLogo1.png" alt="Logo" />
+          <CarouselImg src="/agenciesAgencyLogo2.png" alt="Logo" />
+          <CarouselImg src="/agenciesAgencyLogo3.png" alt="Logo" />
+          <CarouselImg src="/agenciesAgencyLogo4.png" alt="Logo" />
+          <CarouselImg src="/agenciesAgencyLogo.png" alt="Logo" />
+          <CarouselImg src="/agenciesAgencyLogo1.png" alt="Logo" />
+          <CarouselImg src="/agenciesAgencyLogo2.png" alt="Logo" />
+          <CarouselImg src="/agenciesAgencyLogo3.png" alt="Logo" />
+          <CarouselImg src="/agenciesAgencyLogo4.png" alt="Logo" />
         </Carousel>
       </CarouselWrapper>
     );
@@ -751,13 +795,13 @@ function Body() {
         </div>
       </div>
       <SliderWrapper>
-      <div className="container">
-        <div className="col-xl-12">
-          <div className="row">
-            <LogoSlider />
+        <div className="container">
+          <div className="col-xl-12">
+            <div className="row">
+              <LogoSlider />
+            </div>
           </div>
         </div>
-      </div>
       </SliderWrapper>
       <div className="container">
         <div className="col-xl-12">
