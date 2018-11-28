@@ -26,15 +26,20 @@ const MobileAdWrapper = styled.div`
 `;
 const MobilePicWrapper = styled.div`
   position: relative;
-  width: 20%;
+  width: 30%;
 `;
 const MobileAddPic = styled.img`
   position: absolute;
+  height: 110%;
   bottom: 0px;
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
 `;
 const MobileAppLinks = styled.div`
   margin-top: 68px;
   margin-bottom: 68px;
+  width: 70%;
 `;
 const MobileAddLinkWrapper = styled.div`
   display: flex;
@@ -221,7 +226,9 @@ const StoreDownloadLinks = styled.div`
 `;
 const RightsInfo = styled.p`
   text-align: end;
-  background-color: red;
+  @media (max-width: 1000px) {
+    text-align: start;
+  }
 `;
 function CompanyInfoFooter() {
   return (
@@ -270,7 +277,6 @@ function CompanyInfoFooter() {
 export default function Footer() {
   return (
     <div>
-      <MobileAd apple={apple} android={android} wf={wf} />
       <div className="container">
         <div className="col-xl-12">
           <div className="row">

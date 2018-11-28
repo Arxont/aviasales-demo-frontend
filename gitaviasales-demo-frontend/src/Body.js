@@ -6,6 +6,7 @@ import "flexboxgrid2";
 
 import FullInfoAboutFly from "./components/DataFilter";
 
+import pic from "./images/pic.png";
 import earth from "./images/earth.svg";
 import sun from "./images/sun.svg";
 import shopping from "./images/shopping.svg";
@@ -17,6 +18,7 @@ import pen from "./images/pen.png";
 import calen from "./images/calen.svg";
 import flagRu from "./images/flagru.svg";
 import pobeda from "./images/pobeda.png";
+import lufthansa from "./images/lufthansa.png";
 import fb from "./images/faceBook.png";
 import vk from "./images/vk.png";
 import rss from "./images/rss.png";
@@ -26,6 +28,9 @@ import planeIcon from "./images/planeIcon.png";
 import booksIcon from "./images/booksIcon.png";
 import leftArrow from "./images/leftArrow.png";
 import rightArrow from "./images/rightArrow.png";
+import apple from "./images/apple.png";
+import android from "./images/android.png";
+import wf from "./images/wf.png";
 
 const SectionWrapper = styled.div`
   margin: auto;
@@ -461,9 +466,17 @@ const RightControlButton = styled.img`
   cursor: pointer;
 `;
 
-const CarouselImg = styled.img`
-  margin-top: 100px;
-  margin-bottom: 100px;
+const ImagesContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  width: 80%;
+  margin: auto;
+  justify-content: space-around;
+`;
+const LogoImage = styled.img`
+  margin-bottom: 5%;
 `;
 const SliderText = styled.p`
   text-align: center;
@@ -476,11 +489,7 @@ class LogoSlider extends React.Component {
           Дешевые билеты от крупнейший авиакомпаний и агенств
         </SliderText>
         <Carousel
-          slidesToShow={3}
-          cellAlign="left"
           autoplay={true}
-          cellSpacing={50}
-          slideWidth={0.5}
           renderCenterLeftControls={({ previousSlide }) => (
             <LeftControlButton
               onClick={previousSlide}
@@ -496,16 +505,27 @@ class LogoSlider extends React.Component {
             />
           )}
         >
-          <CarouselImg src="/agenciesAgencyLogo.png" alt="Logo" />
-          <CarouselImg src="/agenciesAgencyLogo1.png" alt="Logo" />
-          <CarouselImg src="/agenciesAgencyLogo2.png" alt="Logo" />
-          <CarouselImg src="/agenciesAgencyLogo3.png" alt="Logo" />
-          <CarouselImg src="/agenciesAgencyLogo4.png" alt="Logo" />
-          <CarouselImg src="/agenciesAgencyLogo.png" alt="Logo" />
-          <CarouselImg src="/agenciesAgencyLogo1.png" alt="Logo" />
-          <CarouselImg src="/agenciesAgencyLogo2.png" alt="Logo" />
-          <CarouselImg src="/agenciesAgencyLogo3.png" alt="Logo" />
-          <CarouselImg src="/agenciesAgencyLogo4.png" alt="Logo" />
+          <ImagesContainer>
+            <LogoImage src="/agenciesAgencyLogo.png" alt="Logo" />
+            <LogoImage src="/agenciesAgencyLogo1.png" alt="Logo" />
+            <LogoImage src="/agenciesAgencyLogo2.png" alt="Logo" />
+            <LogoImage src="/agenciesAgencyLogo3.png" alt="Logo" />
+            <LogoImage src="/agenciesAgencyLogo4.png" alt="Logo" />
+          </ImagesContainer>
+          <ImagesContainer>
+            <LogoImage src="/agenciesAgencyLogo.png" alt="Logo" />
+            <LogoImage src="/agenciesAgencyLogo1.png" alt="Logo" />
+            <LogoImage src="/agenciesAgencyLogo2.png" alt="Logo" />
+            <LogoImage src="/agenciesAgencyLogo3.png" alt="Logo" />
+            <LogoImage src="/agenciesAgencyLogo4.png" alt="Logo" />
+          </ImagesContainer>
+          <ImagesContainer>
+            <LogoImage src="/agenciesAgencyLogo.png" alt="Logo" />
+            <LogoImage src="/agenciesAgencyLogo1.png" alt="Logo" />
+            <LogoImage src="/agenciesAgencyLogo2.png" alt="Logo" />
+            <LogoImage src="/agenciesAgencyLogo3.png" alt="Logo" />
+            <LogoImage src="/agenciesAgencyLogo4.png" alt="Logo" />
+          </ImagesContainer>
         </Carousel>
       </CarouselWrapper>
     );
@@ -518,7 +538,6 @@ const SubscribeWrapper = styled.div`
   margin-bottom: 5%;
   @media (max-width: 1000px) {
     flex-direction: column;
-    background-color: red;
   }
 `;
 const SubscribeInfo = styled.div`
@@ -526,7 +545,7 @@ const SubscribeInfo = styled.div`
   @media (max-width: 1000px) {
     margin: auto;
     width: 80%;
-    background-color: green;
+    text-align: center;
   }
 `;
 const UrlContainer = styled.div`
@@ -600,92 +619,141 @@ function Subscribe(props) {
 }
 
 const SpecialOffersBackGround = styled.div`
-  display: flex;
-  flex-direction: column;
   background-color: blue;
 `;
-const SpecialOfferBlock = styled.div`
-  display: flex;
-  flex-direction: column;
+const SpecialOffersContainer = styled.div`
+  background-color: white;
+  height: 300px;
+  font-size: 12px;
+  line-height: 20px;
+  text-align: start;
 `;
-const SpecialOfferHeader = styled.div`
-  display: flex;
-  height: 50px;
-  background-color: red;
-  color: white;
-  flex-direction: row;
-  justify-content: space-around;
-`;
-const SpecialOfferBody = styled.div`
+const SpecialOffersHeader = styled.div`
   display: flex;
   justify-content: space-between;
-  background-color: white;
+  background-color: red;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 15%;
+  color: white;
+  font-size: 12px;
+  line-height: 20px;
 `;
-const SpecialOfferFooter = styled.div`
+const HeaderInfoWrapper = styled.span`
+  width: 80%;
+  text-overflow: ellipsis;
+`;
+
+const SpecialOffersBody = styled.div`
+  height: 50%;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 12px;
+  line-height: 16px;
+`;
+const PriceInfoWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  background-color: white;
+  justify-content: space-between;
 `;
-const SpecialOfferButton = styled.button`
+const LogotypeImg = styled.img`
+  width: 50%;
+`;
+const PriceInfo = styled.div`
+  text-align: end;
+  font-size: 20px;
+  line-height: 16px;
+`;
+const AlertInfo = styled.p`
+  color: red;
+  font-size: 12px;
+  line-height: 15px;
+`;
+
+/* без врапера кнопка не хочет центрироваться*/
+const SpecialOffersFooter = styled.div`
   width: 90%;
   margin: auto;
-  margin-bottom: 2%;
-  border-radius: 10px;
+`;
+const SpecialOfferButton = styled.button`
+  width: 100%;
   color: red;
   background-color: white;
   border-style: solid;
   border-color: red;
 `;
 
-const SpecialOffersWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin: auto;
+const Test = styled.div`
+  margin-bottom: 5%;
 `;
-const SpecialOfferCompanyLogoImgContainer = styled.div`
-  display: flex;
-  align-items: center;
-`;
-const SpecialofferPrice = styled.p`
-  text-align: end;
-  font-size: 20px;
-  line-height: 16px;
-`;
-const SpecialOfferExpireTime = styled.p`
-  color: red;
-  text-align: end;
-  font-size: 12px;
-  line-height: 15px;
-`;
-function SpecialOffers(props) {
+function SpecialOffersCard(props) {
   return (
-    <SpecialOfferBlock className="col-xl-3 col-lg-3 col-md-3">
-      <SpecialOfferHeader>
-        <p>Билеты от {props.price} Рублей!</p>
-        <img src={props.img} alt={props.alt} />
-      </SpecialOfferHeader>
-      <SpecialOfferBody>
-        <SpecialOfferCompanyLogoImgContainer>
-          <img src={props.CompanyLogo} alt="Company Logo" />
-        </SpecialOfferCompanyLogoImgContainer>
-        <div>
-          <SpecialofferPrice>От {props.price} ₽</SpecialofferPrice>
-          <SpecialOfferExpireTime>
-            Осталось {props.timeLeft}
-          </SpecialOfferExpireTime>
-        </div>
-      </SpecialOfferBody>
-      <SpecialOfferFooter>
-        <p>
-          Билеты от {props.price} рублей! Специальное предложение от
-          авиакомпании {props.companyName}
-        </p>
-        <SpecialOfferButton>
-          <p>Узнать подробности</p>
-        </SpecialOfferButton>
-      </SpecialOfferFooter>
-    </SpecialOfferBlock>
+    <Test className="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+      <SpecialOffersContainer>
+        <SpecialOffersHeader>
+          <HeaderInfoWrapper>
+            <p>
+              {props.flyTo} от {props.price} рублей!
+            </p>
+          </HeaderInfoWrapper>
+          <img src={props.headerPic} alt="pic" />
+        </SpecialOffersHeader>
+        <SpecialOffersBody>
+          <PriceInfoWrapper>
+            <LogotypeImg src={props.companyLogo} alt="logo" />
+            <PriceInfo>
+              <p> От {props.price}₽ </p>
+              <AlertInfo>Осталось {props.timeLeft} дней</AlertInfo>
+            </PriceInfo>
+          </PriceInfoWrapper>
+          <p>
+            {props.ticketInfo} от {props.price} рублей! Специальное предложение
+            от авиакомпании {props.companyName}
+          </p>
+        </SpecialOffersBody>
+        <SpecialOffersFooter>
+          <SpecialOfferButton>
+            <p>Узнать подробности</p>
+          </SpecialOfferButton>
+        </SpecialOffersFooter>
+      </SpecialOffersContainer>
+    </Test>
+  );
+}
+
+const SpecialOfferWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+function SpecialOffers() {
+  return (
+    <SpecialOfferWrapper className="between-xl">
+      <SpecialOffersCard
+        flyTo="Билеты"
+        price="499"
+        companyLogo={pobeda}
+        timeLeft="45"
+        ticketInfo="Билеты"
+        companyName="Победа"
+      />
+      <SpecialOffersCard
+        flyTo="В Нью Йорк"
+        price="20680"
+        companyLogo={lufthansa}
+        headerPic={pic}
+        timeLeft="19"
+        ticketInfo="Из Москвы в США"
+        companyName="Lufthansa"
+      />
+      <SpecialOffersCard
+        flyTo="В Лос Анжелес"
+        price="22360"
+        companyLogo={lufthansa}
+        headerPic={pic}
+        timeLeft="19"
+        ticketInfo="Из Москвы в США"
+        companyName="Lufthansa"
+      />
+    </SpecialOfferWrapper>
   );
 }
 
@@ -710,7 +778,7 @@ function WatchAllOffers(props) {
   );
 }
 
-const ColoredHiddenTxtButton = styled.a`
+const HiddenTxtButton = styled.a`
   color: #00ace2;
   cursor: pointer;
 `;
@@ -750,7 +818,7 @@ class HiddenTxt extends React.Component {
       <div>
         {this.props.shownText}
         <span style={ShowHiddenComponent}>{this.props.hiddentext}</span>
-        <ColoredHiddenTxtButton
+        <HiddenTxtButton
           onClick={e => {
             this.showComponentOnClick(e);
             this.hideComponentOnClick(e);
@@ -758,8 +826,8 @@ class HiddenTxt extends React.Component {
           style={hideHComponent}
         >
           {moreTxt}
-        </ColoredHiddenTxtButton>
-        <ColoredHiddenTxtButton
+        </HiddenTxtButton>
+        <HiddenTxtButton
           onClick={e => {
             this.hideButton();
             this.showButton();
@@ -767,7 +835,7 @@ class HiddenTxt extends React.Component {
           style={ShowHiddenComponent}
         >
           {lesstxt}
-        </ColoredHiddenTxtButton>
+        </HiddenTxtButton>
       </div>
     );
   }
@@ -778,9 +846,13 @@ const TextForSomeInfo =
 const VisibleInfo = TextForSomeInfo.substr(0, 300);
 const HiddenInfo = TextForSomeInfo.substr(301);
 
+const SomeInfoContainer = styled.div`
+  text-align: start;
+  margin-bottom: 5%;
+`;
 function SomeInfo(props) {
   return (
-    <div>
+    <SomeInfoContainer>
       <div>
         <p>
           <img src={props.plane} alt="plane" />
@@ -802,7 +874,7 @@ function SomeInfo(props) {
         <HiddenTxt shownText={VisibleInfo} hiddentext={HiddenInfo} />
         <div />
       </div>
-    </div>
+    </SomeInfoContainer>
   );
 }
 fetch(
@@ -810,84 +882,142 @@ fetch(
 ).then(function(response) {
   return response.json();
 });
+const MobileAdContainer = styled.div`
+  position: relative;
+  height: 300px;
+  margin: auto;
+  color: white;
+`;
 
+const MobileAdPic = styled.img`
+  position: absolute;
+  height: 110%;
+  width: 20%;
+  left: 0px;
+  bottom: 0px;
+  @media (max-width: 700px) {
+    height: 60%;
+  }
+`;
+const MobileAdHeader = styled.div`
+  position: absolute;
+  top: 15%;
+  right: 5%;
+  width: 60%;
+  height: 20%;
+  text-align: start;
+  @media (max-width: 700px) {
+    width: 90%;
+    left: 5%;
+    right: 5%;
+    top:2%;
+  }
+`;
+const MobileAdHeadline = styled.span`
+  font-size: 32px;
+  line-height: 40px;
+  @media (max-width: 700px) {
+    font-size: 24px;
+    line-height: 28px;
+  }
+`;
+const MobileAdLinkBody = styled.div`
+  position: absolute;
+  top: 50%;
+  right: 25%;
+  width: 40%;
+  height: 20%;
+  display: flex;
+  justify-content: space-between;
+  @media (max-width: 700px) {
+    top: 60%;
+    bottom: 0px;
+    flex-direction: column;
+    height: 40%;
+  }
+`;
+const MobileAdContent = styled.a`
+  text-decoration: none;
+  color: white;
+`;
+function MobileAd() {
+  return (
+    <MobileAdContainer>
+      <MobileAdPic src="/backgroundImage.png" alt="MobilePhoneImg" />
+      <MobileAdHeader>
+        <MobileAdHeadline>
+          Скачай мобильное приложение Aviasales.ru
+        </MobileAdHeadline>
+        <p>
+          <span role="img" aria-label="stars">
+            ⭐⭐⭐⭐⭐
+          </span>{" "}
+          Более 103 000 оценок
+        </p>
+      </MobileAdHeader>
+      <MobileAdLinkBody>
+        <MobileAdContent href="123.com">
+          <img src={apple} alt="apple" />
+          <span>Iphone или Ipod </span>
+        </MobileAdContent>
+        <MobileAdContent href="123.com">
+          <img src={android} alt="android" />
+          <span>Android </span>
+        </MobileAdContent>
+        <MobileAdContent href="123.com">
+          <img src={wf} alt="windows" />
+          <span>Windows Phone</span>
+        </MobileAdContent>
+      </MobileAdLinkBody>
+    </MobileAdContainer>
+  );
+}
 function Body() {
   return (
     <div>
-      <div className="container">
-        <div className="col-xl-12">
-          <div className="row">
-            <MostPopularPlacesFromMyCity CityFrom="Киев" />
-            <CategoriesMenu />
-            <GetTopCityByPrice />
-            <BestTicketsPriceInThisMonth />
-            <BestPriceTicketsList />
-            <AdditionalInfo />
-          </div>
+      <div className="row center-xl">
+        <div className="col-xl-10 col-sm-12">
+          <MostPopularPlacesFromMyCity CityFrom="Киев" />
+          <CategoriesMenu />
+          <GetTopCityByPrice />
+          <BestTicketsPriceInThisMonth />
+          <BestPriceTicketsList />
+          <AdditionalInfo />
         </div>
       </div>
-      <SliderWrapper className="col-sm-hidden">
-        <div className="container">
-          <div className="col-xl-12">
-            <div className="row">
-              <LogoSlider />
-            </div>
+      <SliderWrapper className="hidden-sm">
+        <div className="row center-xl">
+          <div className="col-xl-10 col-sm-12">
+            <LogoSlider />
           </div>
         </div>
       </SliderWrapper>
-      <div className="container">
-        <div className="col-xl-12">
-          <div className="row">
-            <SectionWrapper className="col-xl-10">
-              <Subscribe vk={vk} twit={twit} fb={fb} rss={rss} />
-            </SectionWrapper>
-          </div>
+      <div className="row center-xl">
+        <div className="col-xl-10 col-sm-12">
+          <Subscribe vk={vk} twit={twit} fb={fb} rss={rss} />
         </div>
       </div>
       <SpecialOffersBackGround>
-        <div className="container">
-          <div className="col-xl-12">
-            <div className="row">
-              <SectionWrapper className="col-xl-10 col-lg-10 col-md-12">
-                <h2>Спецпредложения на авиабилеты</h2>
-
-                <SpecialOffersWrapper>
-                  <SpecialOffers
-                    price="499"
-                    CompanyLogo={pobeda}
-                    timeLeft="45 дней"
-                    companyName="Победа"
-                  />
-                  <SpecialOffers
-                    price="20 680"
-                    img={calen}
-                    CompanyLogo={pobeda}
-                    timeLeft="10 дней"
-                    companyName="Lufthansa"
-                  />
-                  <SpecialOffers
-                    price="20 360"
-                    img={calen}
-                    CompanyLogo={pobeda}
-                    timeLeft="19 дней"
-                    companyName="Lufthansa"
-                  />
-                </SpecialOffersWrapper>
-                <WatchAllOffers />
-              </SectionWrapper>
-            </div>
+        <div className="row center-xl">
+          <div className="col-xl-10 col-sm-12">
+            <h2>Спецпредложения на авиабилеты</h2>
+            <SpecialOffers />
+            <WatchAllOffers />
           </div>
         </div>
       </SpecialOffersBackGround>
-      <div className="container">
-        <div className="col-xl-12">
-          <div className="row">
-            <SectionWrapper className="col-xl-10">
-              <SomeInfo plane={planeIcon} hint={emailIcon} book={booksIcon} />
-            </SectionWrapper>
-          </div>
+      <div className="row center-xl">
+        <div className="col-xl-10 col-sm-12">
+          <SomeInfo plane={planeIcon} hint={emailIcon} book={booksIcon} />
         </div>
       </div>
+      <SpecialOffersBackGround>
+        <div className="row center-xl">
+          <div className="col-xl-10 col-sm-12">
+            <MobileAd />
+          </div>
+        </div>
+      </SpecialOffersBackGround>
     </div>
   );
 }
