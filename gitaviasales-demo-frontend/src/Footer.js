@@ -14,77 +14,6 @@ import appStore from "./images/appStore.png";
 import playStore from "./images/playStore.png";
 import winStore from "./images/winStore.png";
 
-const MobileAdBackGround = styled.div`
-  background-color: blue;
-  margin-top: 5%;
-`;
-const MobileAdWrapper = styled.div`
-  display: flex;
-  margin: auto;
-  justify-content: space-around;
-  color: white;
-`;
-const MobilePicWrapper = styled.div`
-  position: relative;
-  width: 30%;
-`;
-const MobileAddPic = styled.img`
-  position: absolute;
-  height: 110%;
-  bottom: 0px;
-  @media (max-width: 1000px) {
-    width: 100%;
-  }
-`;
-const MobileAppLinks = styled.div`
-  margin-top: 68px;
-  margin-bottom: 68px;
-  width: 70%;
-`;
-const MobileAddLinkWrapper = styled.div`
-  display: flex;
-`;
-
-function MobileAd(props) {
-  return (
-    <MobileAdBackGround>
-      <MobileAdWrapper className="col-xl-10">
-        <MobilePicWrapper>
-          <MobileAddPic src="/backgroundImage.png" alt="MobilePhoneImg" />
-        </MobilePicWrapper>
-        <MobileAppLinks>
-          <h1>Скачай мобильное приложение Aviasales.ru</h1>
-          <p>
-            <span role="img" aria-label="stars">
-              ⭐⭐⭐⭐⭐
-            </span>{" "}
-            Более 103 000 оценок
-          </p>
-          <MobileAddLinkWrapper>
-            <div>
-              <a href="123.com">
-                <img src={props.apple} alt="apple" />
-                <span>Iphone или Ipod | </span>
-              </a>
-            </div>
-            <div>
-              <a href="123.com">
-                <img src={props.android} alt="android" />
-                <span>Android | </span>
-              </a>
-            </div>
-            <div>
-              <a href="123.com">
-                <img src={props.wf} alt="windows" />
-                <span>Windows Phone</span>
-              </a>
-            </div>
-          </MobileAddLinkWrapper>
-        </MobileAppLinks>
-      </MobileAdWrapper>
-    </MobileAdBackGround>
-  );
-}
 const FooterInfoWrapper = styled.div`
   display: flex;
   width: 100%;
@@ -277,12 +206,10 @@ function CompanyInfoFooter() {
 export default function Footer() {
   return (
     <div>
-      <div className="container">
-        <div className="col-xl-12">
-          <div className="row">
-            <FooterInfoList />
-            <CompanyInfoFooter />
-          </div>
+      <div className="row">
+        <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <FooterInfoList />
+          <CompanyInfoFooter />
         </div>
       </div>
     </div>

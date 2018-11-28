@@ -220,9 +220,15 @@ const FlyToCityAddInfo = styled.span`
   color: grey;
 `;
 
-const FlyToCityInnerRaper = styled.div`
+const CityAndCountry = styled.div`
   display: flex;
   flex-direction: column;
+  text-align: start;
+`;
+const TicketsAndStartDate = styled.div`
+display: flex;
+  flex-direction: column;
+  text-align: end;
 `;
 const FlyToCityImg = styled.img`
   width: 100%;
@@ -230,20 +236,20 @@ const FlyToCityImg = styled.img`
 `;
 function FlyToCity(props) {
   return (
-    <FlyToCityBlock className="col-xl-5 col-lg-5 col-md-12">
+    <FlyToCityBlock className="col-xl-5 col-lg-5 col-lg-5 col-md-12">
       <FlyToCityImg src={props.cityImg} alt="cityImage" />
       <FlyToCityWrapper>
         <FlyToCityInfoWrapper>
-          <img src={flagRu} alt="flag" />
-          <FlyToCityInnerRaper>
+          <img src={props.flagImg} alt="flag" />
+          <CityAndCountry>
             {props.cityTo}
             <FlyToCityAddInfo>{props.countryTo}</FlyToCityAddInfo>
-          </FlyToCityInnerRaper>
+          </CityAndCountry>
         </FlyToCityInfoWrapper>
-        <FlyToCityInnerRaper>
+        <TicketsAndStartDate>
           <a href="123.com">Найти от {props.ticketPrice} ₽</a>
           <FlyToCityAddInfo>{props.dateStart}</FlyToCityAddInfo>
-        </FlyToCityInnerRaper>
+        </TicketsAndStartDate>
       </FlyToCityWrapper>
     </FlyToCityBlock>
   );
@@ -262,6 +268,7 @@ function GetTopCityByPrice() {
     <TopCityWrapper className="col-xl-10">
       <FlyToCity
         cityImg="/krasnodar.png"
+        flagImg={flagRu}
         cityTo={LowestPriceToKrasnodar.toCity}
         countryTo={LowestPriceToKrasnodar.countryTo}
         ticketPrice={LowestPriceToKrasnodar.ticketPrice}
@@ -269,6 +276,7 @@ function GetTopCityByPrice() {
       />
       <FlyToCity
         cityImg="/sochi.png"
+        flagImg={flagRu}
         cityTo={LowestPriceToSochi.toCity}
         countryTo={LowestPriceToSochi.countryTo}
         ticketPrice={LowestPriceToSochi.ticketPrice}
@@ -276,6 +284,7 @@ function GetTopCityByPrice() {
       />
       <FlyToCity
         cityImg="/piter.png"
+        flagImg={flagRu}
         cityTo={LowestPriceToSaintPetersburg.toCity}
         countryTo={LowestPriceToSaintPetersburg.countryTo}
         ticketPrice={LowestPriceToSaintPetersburg.ticketPrice}
@@ -283,6 +292,7 @@ function GetTopCityByPrice() {
       />
       <FlyToCity
         cityImg="/mineralvody.png"
+        flagImg={flagRu}
         cityTo={LowestPriceToMineralnieVody.toCity}
         countryTo={LowestPriceToMineralnieVody.countryTo}
         ticketPrice={LowestPriceToMineralnieVody.ticketPrice}
@@ -290,6 +300,7 @@ function GetTopCityByPrice() {
       />
       <FlyToCity
         cityImg="/simpferopol.jpg"
+        flagImg={flagRu}
         cityTo={LowestPriceToSimpferopol.toCity}
         countryTo={LowestPriceToSimpferopol.countryTo}
         ticketPrice={LowestPriceToSimpferopol.ticketPrice}
@@ -330,11 +341,19 @@ let FilteredSimpferopolTopFiveLowestTickets = removeDuplicates(
 const ListedContainer = styled.li`
   list-style-type: none;
 `;
-const SeparatedTxtInLi = styled.span`
+const CityAndPrice = styled.span`
   display: flex;
   justify-content: space-between;
 `;
-const StyledTicketPrice = styled.span`
+const City = styled.span`
+width:60%;
+white-space: nowrap;
+  overflow: hidden
+  text-align:start;
+  text-overflow: ellipsis;
+
+`;
+const TicketPrice = styled.span`
   color: #00bae8;
 `;
 let listSimpferopolTickets = FilteredSimpferopolTopFiveLowestTickets.slice(
@@ -342,10 +361,10 @@ let listSimpferopolTickets = FilteredSimpferopolTopFiveLowestTickets.slice(
   5
 ).map(top => (
   <ListedContainer>
-    <SeparatedTxtInLi>
-      <span>Из {top.cityFrom}</span>
-      <StyledTicketPrice> от {top.ticketPrice} ₽</StyledTicketPrice>
-    </SeparatedTxtInLi>
+    <CityAndPrice>
+      <City>Из {top.cityFrom}</City>
+      <TicketPrice> от {top.ticketPrice} ₽</TicketPrice>
+    </CityAndPrice>
   </ListedContainer>
 ));
 let ErevanTopFiveLowestTickets = FullInfoAboutFly.filter(a => {
@@ -362,10 +381,10 @@ let FilteredErevanTopFiveLowestTickets = removeDuplicates(
 let listErevanTickets = FilteredErevanTopFiveLowestTickets.slice(0, 5).map(
   top => (
     <ListedContainer>
-      <SeparatedTxtInLi>
-        <span>Из {top.cityFrom}</span>
-        <StyledTicketPrice>от {top.ticketPrice} ₽</StyledTicketPrice>
-      </SeparatedTxtInLi>
+      <CityAndPrice>
+        <City>Из {top.cityFrom}</City>
+        <TicketPrice> от {top.ticketPrice} ₽</TicketPrice>
+      </CityAndPrice>
     </ListedContainer>
   )
 );
@@ -383,10 +402,10 @@ let FilteredKishenevTopFiveLowestTickets = removeDuplicates(
 let listKishenevTickets = FilteredKishenevTopFiveLowestTickets.slice(0, 5).map(
   top => (
     <ListedContainer>
-      <SeparatedTxtInLi>
-        <span>Из {top.cityFrom}</span>
-        <StyledTicketPrice>от {top.ticketPrice} ₽</StyledTicketPrice>
-      </SeparatedTxtInLi>
+      <CityAndPrice>
+        <City>Из {top.cityFrom}</City>
+        <TicketPrice> от {top.ticketPrice} ₽</TicketPrice>
+      </CityAndPrice>
     </ListedContainer>
   )
 );
@@ -432,7 +451,6 @@ const StyledAddInfo = styled.div`
   color: grey;
   font-size: 14px;
   line-height: 20px;
-  text-align: center;
 `;
 function AdditionalInfo() {
   return (
@@ -636,11 +654,13 @@ const SpecialOffersHeader = styled.div`
   padding-right: 10px;
   height: 15%;
   color: white;
-  font-size: 12px;
+  font-size: 16px;
   line-height: 20px;
 `;
 const HeaderInfoWrapper = styled.span`
   width: 80%;
+  white-space: nowrap;
+  overflow: hidden
   text-overflow: ellipsis;
 `;
 
@@ -808,7 +828,7 @@ class HiddenTxt extends React.Component {
     this.setState({ show: false });
   }
 
-  render(props) {
+  render() {
     let ShowHiddenComponent = this.state.hidden ? { display: "none" } : {};
     let hideHComponent = this.state.show ? { display: "none" } : {};
     let moreTxt = "...Подробнее";
@@ -904,13 +924,12 @@ const MobileAdHeader = styled.div`
   top: 15%;
   right: 5%;
   width: 60%;
-  height: 20%;
   text-align: start;
   @media (max-width: 700px) {
     width: 90%;
     left: 5%;
     right: 5%;
-    top:2%;
+    top: 2%;
   }
 `;
 const MobileAdHeadline = styled.span`
@@ -921,12 +940,11 @@ const MobileAdHeadline = styled.span`
     line-height: 28px;
   }
 `;
-const MobileAdLinkBody = styled.div`
+const MobileAdBody = styled.div`
   position: absolute;
-  top: 50%;
+  top: 60%;
   right: 25%;
   width: 40%;
-  height: 20%;
   display: flex;
   justify-content: space-between;
   @media (max-width: 700px) {
@@ -939,6 +957,9 @@ const MobileAdLinkBody = styled.div`
 const MobileAdContent = styled.a`
   text-decoration: none;
   color: white;
+`;
+const WinImg = styled.img`
+  height: 22px;
 `;
 function MobileAd() {
   return (
@@ -955,7 +976,7 @@ function MobileAd() {
           Более 103 000 оценок
         </p>
       </MobileAdHeader>
-      <MobileAdLinkBody>
+      <MobileAdBody>
         <MobileAdContent href="123.com">
           <img src={apple} alt="apple" />
           <span>Iphone или Ipod </span>
@@ -965,18 +986,18 @@ function MobileAd() {
           <span>Android </span>
         </MobileAdContent>
         <MobileAdContent href="123.com">
-          <img src={wf} alt="windows" />
+          <WinImg src={wf} alt="windows" />
           <span>Windows Phone</span>
         </MobileAdContent>
-      </MobileAdLinkBody>
+      </MobileAdBody>
     </MobileAdContainer>
   );
 }
 function Body() {
   return (
     <div>
-      <div className="row center-xl">
-        <div className="col-xl-10 col-sm-12">
+      <div className="row center-xl center-lg center-md center-sm center-es">
+        <div className="col-xl-10 col-lg-10 col-md-10 col-sm-12">
           <MostPopularPlacesFromMyCity CityFrom="Киев" />
           <CategoriesMenu />
           <GetTopCityByPrice />
@@ -985,35 +1006,35 @@ function Body() {
           <AdditionalInfo />
         </div>
       </div>
-      <SliderWrapper className="hidden-sm">
-        <div className="row center-xl">
-          <div className="col-xl-10 col-sm-12">
+      <SliderWrapper className="">
+        <div className="row center-xl center-lg center-md center-sm center-es">
+          <div className="col-xl-10 col-lg-10 col-md-10 col-sm-12">
             <LogoSlider />
           </div>
         </div>
       </SliderWrapper>
-      <div className="row center-xl">
-        <div className="col-xl-10 col-sm-12">
+      <div className="row center-xl center-lg center-md center-sm center-es">
+        <div className="col-xl-10 col-lg-10 col-md-10 col-sm-12">
           <Subscribe vk={vk} twit={twit} fb={fb} rss={rss} />
         </div>
       </div>
       <SpecialOffersBackGround>
-        <div className="row center-xl">
-          <div className="col-xl-10 col-sm-12">
+        <div className="row center-xl center-lg center-md center-sm center-es">
+          <div className="col-xl-10 col-lg-10 col-md-10 col-sm-12">
             <h2>Спецпредложения на авиабилеты</h2>
             <SpecialOffers />
             <WatchAllOffers />
           </div>
         </div>
       </SpecialOffersBackGround>
-      <div className="row center-xl">
-        <div className="col-xl-10 col-sm-12">
+      <div className="row center-xl center-lg center-md center-sm center-es">
+        <div className="col-xl-10 col-lg-10 col-md-10 col-sm-12">
           <SomeInfo plane={planeIcon} hint={emailIcon} book={booksIcon} />
         </div>
       </div>
       <SpecialOffersBackGround>
-        <div className="row center-xl">
-          <div className="col-xl-10 col-sm-12">
+        <div className="row center-xl center-lg center-md center-sm center-es">
+          <div className="col-xl-10 col-lg-10 col-md-10 col-sm-12">
             <MobileAd />
           </div>
         </div>
