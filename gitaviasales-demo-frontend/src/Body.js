@@ -226,7 +226,7 @@ const CityAndCountry = styled.div`
   text-align: start;
 `;
 const TicketsAndStartDate = styled.div`
-display: flex;
+  display: flex;
   flex-direction: column;
   text-align: end;
 `;
@@ -897,11 +897,20 @@ function SomeInfo(props) {
     </SomeInfoContainer>
   );
 }
+let Yopta1 = fetch(
+  "http://autocomplete.travelpayouts.com/places2?term=Mos&locale=ru&types[]=city&token=3168eb2e19e0d0762d68c83d9bde678d"
+)
+  .then(function(response) {
+    return response.json();
+  })
+  ;
+
 fetch(
-  "http://autocomplete.travelpayouts.com/places2?term=Mos&locale=ru&types[]=city"
-).then(function(response) {
-  return response.json();
-});
+  "http://www.travelpayouts.com/whereami?locale=ru&callback=useriata&ip=194.146.110.31&token=3168eb2e19e0d0762d68c83d9bde678d"
+)
+.then(response => response.text())
+.then(text1 =>console.log(text1));
+
 const MobileAdContainer = styled.div`
   position: relative;
   height: 300px;
