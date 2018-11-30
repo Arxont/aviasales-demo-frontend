@@ -32,18 +32,76 @@ import apple from "./images/apple.png";
 import android from "./images/android.png";
 import wf from "./images/wf.png";
 
-const SectionWrapper = styled.div`
-  margin: auto;
-`;
-const SliderWrapper = styled.div`
-  margin: auto;
-  margin-top: 10%;
-  margin-bottom: 10%;
-  border: 10px solid transparent;
-  border-top-style: none;
-  border-image: url("/border.png") 30 round;
-  padding-bottom: 50px;
-`;
+const API = "https://hn.algolia.com/api/v1/search?query=";
+const DEFAULT_QUERY = "redux";
+/*
+class Zadralo extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      hits: []
+    };
+  }
+
+  componentDidMount() {
+    fetch(API + DEFAULT_QUERY)
+      .then(response => response.json())
+      .then(data => this.setState({ hits: data.hits }));
+  }
+  render() {
+    const { hits } = this.state;
+
+    return (
+      <ul>
+        {hits.map(hit => (
+          <li key={hit.objectID}>
+            <a href={hit.url}>{hit.title}</a>
+          </li>
+        ))}
+      </ul>
+    );
+  }
+}
+*/ class Qwerty extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      infoByIp: []
+    };
+  }
+  componentDidMount() {
+    fetch(
+      "http://api.ipapi.com/check?access_key=4e69fb73d1764a00abae2b683a9e5c48"
+    )
+      .then(response => response.json())
+      .then(data => this.setState({ infoByIp: data }));
+  }
+  render() {
+    let userIp = this.state;
+  
+
+    return Object.entries(userIp).map(([key, value], i) => {
+      return (
+        <div>
+          Ip is: {value.ip} and city is: {value.city}
+        </div>
+      );
+    });
+  }
+}
+
+fetch("http://api.ipapi.com/check?access_key=4e69fb73d1764a00abae2b683a9e5c48")
+  .then(response => response.json())
+  .then(json => console.log(json));
+
+fetch(
+  "http://www.travelpayouts.com/whereami?locale=ru&callback=useriata&ip=194.146.110.31&token=3168eb2e19e0d0762d68c83d9bde678d"
+)
+  .then(response => response.text())
+  // .then(text1 => console.log(text1));
+
 const MostPopularPlacesWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -356,6 +414,7 @@ white-space: nowrap;
 const TicketPrice = styled.span`
   color: #00bae8;
 `;
+
 let listSimpferopolTickets = FilteredSimpferopolTopFiveLowestTickets.slice(
   0,
   5
@@ -469,6 +528,17 @@ function AdditionalInfo() {
     </AdditionalInfoWrapper>
   );
 }
+
+const SliderWrapper = styled.div`
+  margin: auto;
+  margin-top: 10%;
+  margin-bottom: 10%;
+  border: 10px solid transparent;
+  border-top-style: none;
+  border-image: url("/border.png") 30 round;
+  padding-bottom: 50px;
+`;
+
 const CarouselWrapper = styled.div`
   margin: auto;
 `;
@@ -897,19 +967,6 @@ function SomeInfo(props) {
     </SomeInfoContainer>
   );
 }
-let Yopta1 = fetch(
-  "http://autocomplete.travelpayouts.com/places2?term=Mos&locale=ru&types[]=city&token=3168eb2e19e0d0762d68c83d9bde678d"
-)
-  .then(function(response) {
-    return response.json();
-  })
-  ;
-
-fetch(
-  "http://www.travelpayouts.com/whereami?locale=ru&callback=useriata&ip=194.146.110.31&token=3168eb2e19e0d0762d68c83d9bde678d"
-)
-.then(response => response.text())
-.then(text1 =>console.log(text1));
 
 const MobileAdContainer = styled.div`
   position: relative;
@@ -1048,6 +1105,7 @@ function Body() {
           </div>
         </div>
       </SpecialOffersBackGround>
+      <Qwerty />
     </div>
   );
 }
