@@ -5,7 +5,7 @@ import {
   DropdownListWithFlyAnyWhere
 } from "./components/UI/Dropdown";
 import "flexboxgrid2";
-
+import TicketsBody from "./TestingGround";
 import AviasalesLogo from "./images/aviasales.svg";
 import plane from "./images/plane.svg";
 
@@ -47,13 +47,42 @@ const ButtonTxt = styled.span`
 const ButtonImg = styled.img`
   margin: auto;
 `;
-function FindTicketsButton() {
-  return (
-    <TicketButton>
-      <ButtonTxt>Найти билеты</ButtonTxt> <ButtonImg src={plane} alt="plane" />
-    </TicketButton>
-  );
+
+const RoomContext = React.createContext();
+class RoomStore extends React.Component {
+  state = {
+    isHidden: true
+  };
+
+  toggleHidden = () => {
+    this.setState(state => ({ isHidden: !this.state.isHidden }));
+  };
+
+  render() {
+    return (
+      <RoomContext.Provider
+        value={{
+          isHidden: !this.state.isHidden,
+          toggleHidden: this.toggleHidden
+        }}
+      >
+        {!this.state.isHidden && <TicketsBody />}
+        {this.props.children}
+      </RoomContext.Provider>
+    );
+  }
 }
+
+const FindTicketsButton = () => (
+  <RoomContext.Consumer>
+    {({ isHidden, toggleHidden }) => (
+      <TicketButton onClick={toggleHidden}>
+        <ButtonTxt>Найти билеты</ButtonTxt>{" "}
+        <ButtonImg src={plane} alt="plane" />
+      </TicketButton>
+    )}
+  </RoomContext.Consumer>
+);
 
 const TicketChoiceWrapper = styled.div`
   display: flex;
@@ -100,23 +129,25 @@ const Slogan = styled.p`
 `;
 function Header() {
   return (
-    <HeaderBackground>
-      <div className="container">
-        <div className="col-xl-12">
-          <Logo />
-          <div className="row">
-            <HeadlineContainer>
-              <Headline>Поиск дешевых авиабилетов</Headline>
-              <Slogan className="hidden-xs hidden-sm">
-                Лучший способ купить авиабилеты дешево
-              </Slogan>
-            </HeadlineContainer>
-            <TicketChoice />
-            <FindTicketsButton />
+    <RoomStore>
+      <HeaderBackground>
+        <div className="container">
+          <div className="col-xl-12">
+            <Logo />
+            <div className="row">
+              <HeadlineContainer>
+                <Headline>Поиск дешевых авиабилетов</Headline>
+                <Slogan className="hidden-xs hidden-sm">
+                  Лучший способ купить авиабилеты дешево
+                </Slogan>
+              </HeadlineContainer>
+              <TicketChoice />
+              <FindTicketsButton />
+            </div>
           </div>
         </div>
-      </div>
-    </HeaderBackground>
+      </HeaderBackground>
+    </RoomStore>
   );
 }
 
