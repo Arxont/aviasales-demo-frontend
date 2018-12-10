@@ -58,7 +58,7 @@ function FindTicketsButton() {
 const TicketChoiceWrapper = styled.div`
   display: flex;
   margin: auto;
-  justify-content: space-between;
+  justify-content: space-around;
   background-color: red;
   @media (max-width: 768px) {
     flex-wrap: wrap;

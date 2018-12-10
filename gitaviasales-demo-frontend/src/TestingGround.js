@@ -1,6 +1,4 @@
 import React from "react";
-/*
-import Header from "./Header";
 import styled from "styled-components";
 
 import DoubleRangeSlider from "./DoubleSlider";
@@ -11,7 +9,7 @@ import {
   AccordionItemBody
 } from "react-accessible-accordion";
 import "react-accessible-accordion/dist/minimal-example.css";
-import Footer from "./Footer";
+
 import plane from "./images/plane.svg";
 
 const TestDiv = styled.div`
@@ -332,7 +330,6 @@ const Test2 = styled.div`
   margin-left: 5%;
 `;
 
-
 export default function TicketsBody() {
   return (
     <BodyWrapper>
@@ -343,8 +340,4 @@ export default function TicketsBody() {
       </Test2>
     </BodyWrapper>
   );
-}
-*/
-export default function TicketsBody() {
-  return <div>1</div>;
 }

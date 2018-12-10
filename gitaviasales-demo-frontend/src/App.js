@@ -15,23 +15,13 @@ const GlobalStyle = createGlobalStyle`
 
   }
 `;
-function BodyThatCanChange() {
-  return (
-    <Router>
-      <Switch>
-        <Route exact path="/" component={Body} />
-        <Route path="/Tickets" component={TicketsBody} />
-        <Route component={Error} />
-      </Switch>
-    </Router>
-  );
-}
+
 function FirstPage() {
   return (
     <div>
-      <Header />
       <GlobalStyle />
-      <BodyThatCanChange />
+      <Header />
+      <Body />
       <Footer />
     </div>
   );
@@ -42,6 +32,7 @@ function AviaSales() {
     <Router>
       <Switch>
         <Route exact path="/" component={FirstPage} />
+        <Route path="/Tickets" component={TicketsBody} />
         <Route component={Error} />
       </Switch>
     </Router>

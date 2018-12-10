@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import Carousel from "nuka-carousel";
-
 import "flexboxgrid2";
 
 import FullInfoAboutFly from "./components/DataFilter";
@@ -32,62 +31,6 @@ import apple from "./images/apple.png";
 import android from "./images/android.png";
 import wf from "./images/wf.png";
 
-fetch(
-  "http://api.travelpayouts.com/data/ru/countries.json?token=3168eb2e19e0d0762d68c83d9bde678d"
-)
-  .then(useriata => useriata.json())
-  .then(response => console.log(response));
-
-/*
-fetch(
-  "http://api.travelpayouts.com/v2/prices/latest"
-)
-  .then(useriata => useriata.json())
-  .then(response => console.log(response));
-
-fetch("http://api.ipapi.com/check?access_key=4e69fb73d1764a00abae2b683a9e5c48")
-  .then(response => response.json())
-  .then(response => console.log(response));
-
-fetch(
-  "http://www.travelpayouts.com/whereami?locale=ru&callback=useriata&ip=62.105.128.0"
-)
-  .then(useriata => useriata.text())
-  .then(response => console.log(response));
-
-
-class Qwert extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      info: null
-    };
-  }
-  componentDidMount() {
-    fetch(
-      "http://api.ipapi.com/check?access_key=4e69fb73d1764a00abae2b683a9e5c48"
-    )
-      .then(response => response.json())
-      .then(qq => {
-        console.log(qq);
-        return qq;
-      })
-      .then(data => this.setState({ info: data }));
-  }
-  render() {
-    let { info } = this.state;
-
-    if (!info) return null;
-
-    return (
-      <div>
-        Ip is: {info.ip} and city is: {info.city}
-      </div>
-    );
-  }
-}
-*/
 
 const MostPopularPlacesWrapper = styled.div`
   display: flex;
@@ -101,6 +44,9 @@ const MostPopularPlacesTxtWrapper = styled.p`
   text-align: center;
 `;
 const CityLink = styled.a`
+  text-decoration: none;
+  color: #00ace2;
+  cursor: pointer;
   @media (max-width: 300px) {
     display: block;
   }
@@ -121,26 +67,25 @@ class MostPopularPlacesFromMyCity extends React.Component {
       .then(response => response.json())
       .then(myIp => {
         return fetch(
-          `http://www.travelpayouts.com/whereami?locale=ru&callback=useriata&ip=${
+          `http://www.travelpayouts.com/whereami?locale=ru&ip=${
             myIp.ip
           }&token=3168eb2e19e0d0762d68c83d9bde678d`
         );
       })
-      .then(useriata => useriata.text())
+      .then(userData => userData.json())
       .then(info => this.setState({ myCity: info }));
   }
   render() {
     let { myCity } = this.state;
     if (!myCity) return null;
-    console.log(myCity);
     return (
       <MostPopularPlacesWrapper className="col-xl-10">
         <img src={compass} alt="img" />
         <MostPopularPlacesTxtWrapper>
           Популярные направления
           <br className="hidden-md hidden-lg hidden-xl" /> перелетов
-          <br className="hidden-sm hidden-xs" /> из города
-          <CityLink href="123.com">{myCity.name}</CityLink>
+          <br className="hidden-sm hidden-xs" /> из города{" "}
+          <CityLink href="123.com">{myCity.name}</CityLink>{" "}
           <img src={pen} alt="pen" />
         </MostPopularPlacesTxtWrapper>
       </MostPopularPlacesWrapper>

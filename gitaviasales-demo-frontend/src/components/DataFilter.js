@@ -1,22 +1,5 @@
 import { city, country, routes } from "./DataArrays";
-/*
-fetch(
-  `http://api.travelpayouts.com/data/ru/airlines.json&token=3168eb2e19e0d0762d68c83d9bde678d`,
-  { mode: "cors" },
-  {
-    method: "GET",
-    withCredentials: true,
-    credentials: "include",
-    headers: {
-      Authorization: `X-Access-Token` + "3168eb2e19e0d0762d68c83d9bde678d",
-      "Content-Type": "json"
-    }
-  }
-).then(response => {
-  let content = response.json();
-  console.log(content);
-});
-*/
+
 function join(lookupTable, mainTable, lookupKey, mainKey, select) {
   var l = lookupTable.length,
     m = mainTable.length,
