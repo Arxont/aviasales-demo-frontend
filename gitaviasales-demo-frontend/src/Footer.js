@@ -2,9 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import "flexboxgrid2";
 
-import apple from "./images/apple.png";
-import android from "./images/android.png";
-import wf from "./images/wf.png";
+
 import vkLogo from "./images/vkLogo.png";
 import fbLogo from "./images/fbLogo.png";
 import twitLogo from "./images/twitLogo.png";

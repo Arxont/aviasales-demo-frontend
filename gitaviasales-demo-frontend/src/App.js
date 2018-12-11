@@ -3,7 +3,7 @@ import "normalize.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 
-import Header from "./Header";
+import { Header } from "./Header";
 import Body from "./Body";
 import Error from "./components/Error";
 import TicketsBody from "./TestingGround";

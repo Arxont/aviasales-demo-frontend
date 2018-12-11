@@ -4,6 +4,7 @@ import Carousel from "nuka-carousel";
 import "flexboxgrid2";
 
 import FullInfoAboutFly from "./components/DataFilter";
+import { SuperTest, StateManager } from "./Header";
 
 import pic from "./images/pic.png";
 import earth from "./images/earth.svg";
@@ -30,7 +31,6 @@ import rightArrow from "./images/rightArrow.png";
 import apple from "./images/apple.png";
 import android from "./images/android.png";
 import wf from "./images/wf.png";
-
 
 const MostPopularPlacesWrapper = styled.div`
   display: flex;
@@ -1022,7 +1022,8 @@ function MobileAd() {
 }
 function Body() {
   return (
-    <div>
+    <StateManager>
+      <SuperTest />
       <div className="row center-xl center-lg center-md center-sm center-es">
         <div className="col-xl-10 col-lg-10 col-md-10 col-sm-12">
           <MostPopularPlacesFromMyCity CityFrom="Киев" />
@@ -1066,7 +1067,8 @@ function Body() {
           </div>
         </div>
       </SpecialOffersBackGround>
-    </div>
+ 
+    </StateManager>
   );
 }
 

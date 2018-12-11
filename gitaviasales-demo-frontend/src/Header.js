@@ -23,20 +23,23 @@ function Logo() {
   );
 }
 
+const TicketButtonWrapper = styled.div`
+  width: 100%;
+  margin: auto;
+  margin-top: 10%;
+  border-radius: 5px;
+  margin-bottom: 5%;
+  @media (min-width: 500px) {
+    width: 300px;
+  }
+`;
 const TicketButton = styled.button`
   background-color: orange;
   text-align: center;
   cursor: pointer;
   width: 100%;
   border-style: none;
-  margin: auto;
-  margin-top: 10%;
-  border-radius: 5px;
-  margin-bottom: 5%;
   height: 64px;
-  @media (min-width: 500px) {
-    width: 300px;
-  }
 `;
 const ButtonTxt = styled.span`
   color: white;
@@ -48,40 +51,45 @@ const ButtonImg = styled.img`
   margin: auto;
 `;
 
-const RoomContext = React.createContext();
-class RoomStore extends React.Component {
+const Context = React.createContext();
+
+class StateManager extends React.Component {
   state = {
-    isHidden: true
+    hiddenComponent: true
   };
-
-  toggleHidden = () => {
-    this.setState(state => ({ isHidden: !this.state.isHidden }));
+  toggleComponent = () => {
+    this.setState(state => ({ hiddenComponent: !state.hiddenComponent }));
   };
-
   render() {
     return (
-      <RoomContext.Provider
+      <Context.Provider
         value={{
-          isHidden: !this.state.isHidden,
-          toggleHidden: this.toggleHidden
+          hiddenComponent: !this.state.hiddenComponent && <TicketsBody />,
+          toggleHidden: this.toggleComponent.bind(this)
         }}
       >
-        {!this.state.isHidden && <TicketsBody />}
         {this.props.children}
-      </RoomContext.Provider>
+      </Context.Provider>
     );
   }
 }
 
 const FindTicketsButton = () => (
-  <RoomContext.Consumer>
-    {({ isHidden, toggleHidden }) => (
-      <TicketButton onClick={toggleHidden}>
-        <ButtonTxt>Найти билеты</ButtonTxt>{" "}
-        <ButtonImg src={plane} alt="plane" />
-      </TicketButton>
+  <Context.Consumer>
+    {({ toggleHidden }) => (
+      <TicketButtonWrapper>
+        <TicketButton onClick={toggleHidden}>
+          <ButtonTxt>Найти билеты</ButtonTxt>{" "}
+          <ButtonImg src={plane} alt="plane" />
+        </TicketButton>
+      </TicketButtonWrapper>
     )}
-  </RoomContext.Consumer>
+  </Context.Consumer>
+);
+const SuperTest = () => (
+  <Context.Consumer>
+    {({ hiddenComponent }) => <div>{hiddenComponent && <TicketsBody />}</div>}
+  </Context.Consumer>
 );
 
 const TicketChoiceWrapper = styled.div`
@@ -129,7 +137,7 @@ const Slogan = styled.p`
 `;
 function Header() {
   return (
-    <RoomStore>
+    <StateManager>
       <HeaderBackground>
         <div className="container">
           <div className="col-xl-12">
@@ -147,8 +155,8 @@ function Header() {
           </div>
         </div>
       </HeaderBackground>
-    </RoomStore>
+      <SuperTest />
+    </StateManager>
   );
 }
-
-export default Header;
+export { Header, SuperTest, StateManager };
