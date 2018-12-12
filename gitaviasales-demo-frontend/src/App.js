@@ -3,8 +3,8 @@ import "normalize.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 
-import { Header } from "./Header";
-import Body from "./Body";
+import Header from "./Header";
+import { StateManager, SecondPage, MainPage } from "./components/Context";
 import Error from "./components/Error";
 import TicketsBody from "./TestingGround";
 import Footer from "./Footer";
@@ -18,12 +18,13 @@ const GlobalStyle = createGlobalStyle`
 
 function FirstPage() {
   return (
-    <div>
+    <StateManager>
       <GlobalStyle />
       <Header />
-      <Body />
+      <SecondPage />
+      <MainPage />
       <Footer />
-    </div>
+    </StateManager>
   );
 }
 

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import "flexboxgrid2";
 
 import DoubleRangeSlider from "./DoubleSlider";
 import {
@@ -16,152 +17,167 @@ const TestDiv = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const SomeP = styled.div`
-  background-color: red;
+const Title = styled.p`
+  text-align: start;
+  display: flex;
+  justify-content: space-between;
 `;
 const Hoba = { one: "Москва", two: "Барселона" };
-const Example = props => (
-  <Accordion>
-    <AccordionItem>
-      <AccordionItemTitle>
-        <SomeP>
-          <img src={plane} alt="plane" />
-          Пересадки
-          <button type="button">X</button>
-        </SomeP>
-      </AccordionItemTitle>
-      <AccordionItemBody>
-        <div>
-          <input name="isGoing" type="checkbox" />
-          Без пересадок 7712Р
-        </div>
-        <div>
-          <input name="isGoing" type="checkbox" />1 пересадка 11190Р
-        </div>
-        <div>
-          <input name="isGoing" type="checkbox" />2 пересадки 16821Р
-        </div>
-        <div>
-          <input name="isGoing" type="checkbox" />3 пересадки 23986Р
-        </div>
-      </AccordionItemBody>
-    </AccordionItem>
-    <AccordionItem>
-      <AccordionItemTitle>
-        <h3>Время вылета и прибытия</h3>
-      </AccordionItemTitle>
-      <AccordionItemBody>
-        <div>
-          <h4>
-            {Hoba.one}
-            *картинка*
-            {Hoba.two}
-          </h4>
-          Вылет из {props.from}:
-          <DoubleRangeSlider minValue={20} maxValue={300} />
-          Прибытие в {props.to}:<DoubleRangeSlider />
-        </div>
-        <div>
-          <h4> Барселона*картинка*Москва</h4>
-          Вылет из Барселоны:
-          <DoubleRangeSlider />
-          Прибытие в Москву:
-          <DoubleRangeSlider />
-        </div>
-      </AccordionItemBody>
-    </AccordionItem>
-    <AccordionItem>
-      <AccordionItemTitle>
-        <h3>Багаж</h3>
-      </AccordionItemTitle>
-      <AccordionItemBody />
-    </AccordionItem>
-    <AccordionItem>
-      <AccordionItemTitle>
-        <h3>Длительность пересадки</h3>
-      </AccordionItemTitle>
-      <AccordionItemBody />
-    </AccordionItem>
-    <AccordionItem>
-      <AccordionItemTitle>
-        <h3>Время в пути</h3>
-      </AccordionItemTitle>
-      <AccordionItemBody>
-        <div>
-          <h4> Москава*картинка*Барселона</h4>
-          <DoubleRangeSlider />
-          <DoubleRangeSlider />
-        </div>
-      </AccordionItemBody>
-    </AccordionItem>
-    <AccordionItem>
-      <AccordionItemTitle>
-        <h3>Авиакомпании</h3>
-      </AccordionItemTitle>
-      <AccordionItemBody>
-        <div>
-          <input name="isGoing" type="checkbox" />
-          Несколько авиакомпаний
-          <p>
-            Показывать билеты с перелетами,
-            <br /> выполняемыми несколькими
-            <br />
-            авиакомпаниями включая выбранную
-          </p>
-          <h2>Альянсы</h2>
-          <TestDiv>
+
+const Gepa = styled(Accordion)`
+  color: red;
+  background:color:pink;
+  border-style:solid;
+`;
+
+const Gepa2 =styled(AccordionItem)`
+border-bottom-style:solid;
+`;
+
+function Filter(props) {
+  return (
+    <Gepa>
+      <Gepa2>
+        <AccordionItemTitle>
+          <Title>
+            <img src={plane} alt="plane" />
+            Пересадки
+            <button type="button">X</button>
+          </Title>
+        </AccordionItemTitle>
+        <AccordionItemBody>
+          <div>
             <input name="isGoing" type="checkbox" />
-            Все 12554Р
+            Без пересадок 7712Р
+          </div>
+          <div>
+            <input name="isGoing" type="checkbox" />1 пересадка 11190Р
+          </div>
+          <div>
+            <input name="isGoing" type="checkbox" />2 пересадки 16821Р
+          </div>
+          <div>
+            <input name="isGoing" type="checkbox" />3 пересадки 23986Р
+          </div>
+        </AccordionItemBody>
+      </Gepa2>
+      <AccordionItem>
+        <AccordionItemTitle>
+          <Title>Время вылета и прибытия</Title>
+        </AccordionItemTitle>
+        <AccordionItemBody>
+          <div>
+            <h4>
+              {Hoba.one}
+              *картинка*
+              {Hoba.two}
+            </h4>
+            Вылет из {props.from}:
+            <DoubleRangeSlider minValue={20} maxValue={300} />
+            Прибытие в {props.to}:<DoubleRangeSlider />
+          </div>
+          <div>
+            <h4> Барселона*картинка*Москва</h4>
+            Вылет из Барселоны:
+            <DoubleRangeSlider />
+            Прибытие в Москву:
+            <DoubleRangeSlider />
+          </div>
+        </AccordionItemBody>
+      </AccordionItem>
+      <AccordionItem>
+        <AccordionItemTitle>
+          <Title>Багаж</Title>
+        </AccordionItemTitle>
+        <AccordionItemBody />
+      </AccordionItem>
+      <AccordionItem>
+        <AccordionItemTitle>
+          <Title>Длительность пересадки</Title>
+        </AccordionItemTitle>
+        <AccordionItemBody />
+      </AccordionItem>
+      <AccordionItem>
+        <AccordionItemTitle>
+          <Title>Время в пути</Title>
+        </AccordionItemTitle>
+        <AccordionItemBody>
+          <div>
+            <h4> Москава*картинка*Барселона</h4>
+            <DoubleRangeSlider />
+            <DoubleRangeSlider />
+          </div>
+        </AccordionItemBody>
+      </AccordionItem>
+      <AccordionItem>
+        <AccordionItemTitle>
+          <Title>Авиакомпании</Title>
+        </AccordionItemTitle>
+        <AccordionItemBody>
+          <div>
             <input name="isGoing" type="checkbox" />
-            Star Alliance 53357Р
-            <input name="isGoing" type="checkbox" />
-            OneWorld 2544Р
-            <input name="isGoing" type="checkbox" />
-            SkyTeam 2531Р
-          </TestDiv>
-          <h2>Авиакомпании</h2>
-          <TestDiv>
-            <input name="isGoing" type="checkbox" />
-            Все
-            <input name="isGoing" type="checkbox" />
-            Aegan Airlines 134135P
-            <input name="isGoing" type="checkbox" />
-            Air Algerie 29500P
-            <input name="isGoing" type="checkbox" />
-            Air Europa 35652P
-            <input name="isGoing" type="checkbox" />
-            Air France 36574P
-            <input name="isGoing" type="checkbox" />
-            Belle Air 35667P
-          </TestDiv>
-        </div>
-      </AccordionItemBody>
-    </AccordionItem>
-    <AccordionItem>
-      <AccordionItemTitle>
-        <h3>Аэропорты</h3>
-      </AccordionItemTitle>
-      <AccordionItemBody />
-    </AccordionItem>
-    <AccordionItem>
-      <AccordionItemTitle>
-        <h3>Аэропорт пересадки</h3>
-      </AccordionItemTitle>
-      <AccordionItemBody />
-    </AccordionItem>
-    <AccordionItem>
-      <AccordionItemTitle>
-        <h3>Агенства</h3>
-      </AccordionItemTitle>
-      <AccordionItemBody />
-    </AccordionItem>
-    <AccordionItem>
-      <AccordionItemTitle>
-        <h3>Сбросить все фильтры</h3>
-      </AccordionItemTitle>
-    </AccordionItem>
-  </Accordion>
-);
+            Несколько авиакомпаний
+            <p>
+              Показывать билеты с перелетами,
+              <br /> выполняемыми несколькими
+              <br />
+              авиакомпаниями включая выбранную
+            </p>
+            <h2>Альянсы</h2>
+            <TestDiv>
+              <input name="isGoing" type="checkbox" />
+              Все 12554Р
+              <input name="isGoing" type="checkbox" />
+              Star Alliance 53357Р
+              <input name="isGoing" type="checkbox" />
+              OneWorld 2544Р
+              <input name="isGoing" type="checkbox" />
+              SkyTeam 2531Р
+            </TestDiv>
+            <h2>Авиакомпании</h2>
+            <TestDiv>
+              <input name="isGoing" type="checkbox" />
+              Все
+              <input name="isGoing" type="checkbox" />
+              Aegan Airlines 134135P
+              <input name="isGoing" type="checkbox" />
+              Air Algerie 29500P
+              <input name="isGoing" type="checkbox" />
+              Air Europa 35652P
+              <input name="isGoing" type="checkbox" />
+              Air France 36574P
+              <input name="isGoing" type="checkbox" />
+              Belle Air 35667P
+            </TestDiv>
+          </div>
+        </AccordionItemBody>
+      </AccordionItem>
+      <AccordionItem>
+        <AccordionItemTitle>
+          <Title>Аэропорты</Title>
+        </AccordionItemTitle>
+        <AccordionItemBody />
+      </AccordionItem>
+      <AccordionItem>
+        <AccordionItemTitle>
+          <Title>Аэропорт пересадки</Title>
+        </AccordionItemTitle>
+        <AccordionItemBody />
+      </AccordionItem>
+      <AccordionItem>
+        <AccordionItemTitle>
+          <Title>Агенства</Title>
+        </AccordionItemTitle>
+        <AccordionItemBody />
+      </AccordionItem>
+      <AccordionItem>
+        <AccordionItemTitle>
+          <Title>Сбросить все фильтры</Title>
+        </AccordionItemTitle>
+      </AccordionItem>
+    </Gepa>
+  );
+}
 
 const MainBodyWrapper = styled.div`
   display: flex;
@@ -320,24 +336,28 @@ function MainBody() {
     </MainBodyWrapper>
   );
 }
-const BodyWrapper = styled.div`
-  display: flex;
-`;
+
 const Test2 = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-left: 5%;
+  margin-top: 16px;
 `;
 
+const Test3 = styled.div`
+  display: flex;
+`;
 export default function TicketsBody() {
   return (
-    <BodyWrapper>
-      <Example from={Hoba.one} to={Hoba.two} />
-
-      <Test2>
-        <MainBody />
-      </Test2>
-    </BodyWrapper>
+    <div className="row center-xl center-lg center-md center-sm center-es">
+      <Test3 className="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-xs-12">
+        <div className="col-xl-3 col-lg-3  hidden-md hidden-sm hidden-xs">
+          <Filter from={Hoba.one} to={Hoba.two} />
+        </div>
+        <Test2 className="col-xl-7 col-lg-7 col-md-12">
+          <MainBody />
+        </Test2>
+      </Test3>
+    </div>
   );
 }

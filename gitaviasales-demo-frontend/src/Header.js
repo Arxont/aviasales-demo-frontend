@@ -5,7 +5,7 @@ import {
   DropdownListWithFlyAnyWhere
 } from "./components/UI/Dropdown";
 import "flexboxgrid2";
-import TicketsBody from "./TestingGround";
+import { Context } from "./components/Context";
 import AviasalesLogo from "./images/aviasales.svg";
 import plane from "./images/plane.svg";
 
@@ -51,29 +51,6 @@ const ButtonImg = styled.img`
   margin: auto;
 `;
 
-const Context = React.createContext();
-
-class StateManager extends React.Component {
-  state = {
-    hiddenComponent: true
-  };
-  toggleComponent = () => {
-    this.setState(state => ({ hiddenComponent: !state.hiddenComponent }));
-  };
-  render() {
-    return (
-      <Context.Provider
-        value={{
-          hiddenComponent: !this.state.hiddenComponent && <TicketsBody />,
-          toggleHidden: this.toggleComponent.bind(this)
-        }}
-      >
-        {this.props.children}
-      </Context.Provider>
-    );
-  }
-}
-
 const FindTicketsButton = () => (
   <Context.Consumer>
     {({ toggleHidden }) => (
@@ -84,11 +61,6 @@ const FindTicketsButton = () => (
         </TicketButton>
       </TicketButtonWrapper>
     )}
-  </Context.Consumer>
-);
-const SuperTest = () => (
-  <Context.Consumer>
-    {({ hiddenComponent }) => <div>{hiddenComponent && <TicketsBody />}</div>}
   </Context.Consumer>
 );
 
@@ -137,26 +109,23 @@ const Slogan = styled.p`
 `;
 function Header() {
   return (
-    <StateManager>
-      <HeaderBackground>
-        <div className="container">
-          <div className="col-xl-12">
-            <Logo />
-            <div className="row">
-              <HeadlineContainer>
-                <Headline>Поиск дешевых авиабилетов</Headline>
-                <Slogan className="hidden-xs hidden-sm">
-                  Лучший способ купить авиабилеты дешево
-                </Slogan>
-              </HeadlineContainer>
-              <TicketChoice />
-              <FindTicketsButton />
-            </div>
+    <HeaderBackground>
+      <div className="container">
+        <div className="col-xl-12">
+          <Logo />
+          <div className="row">
+            <HeadlineContainer>
+              <Headline>Поиск дешевых авиабилетов</Headline>
+              <Slogan className="hidden-xs hidden-sm">
+                Лучший способ купить авиабилеты дешево
+              </Slogan>
+            </HeadlineContainer>
+            <TicketChoice />
+            <FindTicketsButton />
           </div>
         </div>
-      </HeaderBackground>
-      <SuperTest />
-    </StateManager>
+      </div>
+    </HeaderBackground>
   );
 }
-export { Header, SuperTest, StateManager };
+export default Header;
