@@ -10,7 +10,6 @@ import {
 } from "react-accessible-accordion";
 import "react-accessible-accordion/dist/minimal-example.css";
 import plane from "../../images/plane.svg";
-
 const AccordionTitle = styled(AccordionItemTitle)`
   display: flex;
   justify-content: space-between;

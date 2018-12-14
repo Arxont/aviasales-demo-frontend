@@ -4,160 +4,178 @@ import "flexboxgrid2";
 import Filter from "./components/UI/Accordion";
 import plane from "./images/plane.svg";
 import DoubleRangeSlider from "./components/UI/DoubleSlider";
+/*
+fetch(
+  "http://api.travelpayouts.com/v2/prices/latest?currency=rub&period_type=year&page=1&limit=5&show_to_affiliates=true&sorting=price&token=3168eb2e19e0d0762d68c83d9bde678d"
+)
+  .then(response => response.json())
+  .then(response => console.log(response));
+
+class TicketsPrice extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      Tickets: null
+    };
+  }
+  componentDidMount() {
+    fetch(
+      "http://api.travelpayouts.com/v2/prices/latest?currency=rub&period_type=year&page=1&limit=5&show_to_affiliates=true&sorting=price&token=3168eb2e19e0d0762d68c83d9bde678d"
+    )
+      .then(response => response.json())
+      .then(response => console.log(response))
+      .then(info => this.setState({ Tickets: info }));
+  }
+  render() {
+    let Tickets = this.state;
+    if (!Tickets) return null;
+    return <div>{Tickets.return_date} QQQQQQ</div>;
+  }
+}
+*/
 const MainBodyWrapper = styled.div`
   display: flex;
 `;
 const MenuWrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
   border-style: solid;
 `;
-const TicketButton = styled.button`
+const TicketsContainer = styled.button`
+  width: 80%;
+  margin: auto;
+  border-radius: 5px;
   display: flex;
-  background-color: orange;
   margin-top: 20px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
+  background-color: orange;
   justify-content: space-evenly;
   border-style: none;
 `;
-const FindTicket = styled.p`
+const GetTickets = styled.span`
   color: white;
   font-family: Roboto;
-  font-size: 28px;
-  line-height: 33px;
+  line-height: 18px;
+  font-size: 16px;
 `;
-const ImgWrap = styled.div`
-  dipslay: flex;
-`;
+
 function FindTickets(props) {
   return (
     <MenuWrap>
-      <ImgWrap>
-        <img src="123.com" alt="5" />
-        <img src="123.com" alt="15" />
-      </ImgWrap>
-      <TicketButton>
-        <FindTicket>Купить за {props.price} P</FindTicket>
-      </TicketButton>
+      <TicketsContainer>
+        <GetTickets>Купить за {props.price} ₽</GetTickets>
+      </TicketsContainer>
       <p>на {props.companyName}</p>
     </MenuWrap>
   );
 }
-const ByTicketBlock = styled.div`
-  display: flex;
-  flex-direction: column;
+
+const InfoContainer = styled.div`
   width: 100%;
-  background-color: green;
 `;
-const LogoAndButtonsBlock = styled.div`
+const Header = styled.div`
   display: flex;
   justify-content: space-between;
-  background-color: red;
 `;
-const ChooseFlyTimeIn = styled.div`
-  display: flex;
-  justify-content: space-between;
-  border-bottom-style: dotted;
-  margin-bottom: 1%;
+const Charter = styled.button`
+  border-radius: 15px;
+  border-color: blue;
+  background-color: white;
+  color: blue;
 `;
-const ChooseFlyTimeOut = styled.div`
+
+const DataWrapper = styled.span`
+  display: block;
+  color: grey;
+`;
+const DataWrapper1 = styled.span`
+  display: block;
+  color: grey;
+  background-color: blue;
+`;
+const Time = styled.span`
+  color: black;
+  line-height: 40px;
+  font-size: 28px;
+`;
+const Pin = styled.button`
+  border-radius: 50px;
+`;
+
+const FlightStart = props => (
+  <div>
+    <DataWrapper1>
+      <Pin>/</Pin> <Time>{props.Start}</Time>
+    </DataWrapper1>
+    <DataWrapper>{props.CityFrom}</DataWrapper>
+    <DataWrapper>{props.Date}</DataWrapper>
+  </div>
+);
+
+const FlightEnd = props => (
+  <div>
+    <DataWrapper1>
+      <Time>{props.End}</Time>
+    </DataWrapper1>
+    <DataWrapper>{props.CityTo}</DataWrapper>
+    <DataWrapper>{props.Date}</DataWrapper>
+  </div>
+);
+
+const Testik = styled.div`
+  width: 40%;
+`;
+const FlyContainer = styled.div`
   display: flex;
   justify-content: space-between;
 `;
 
-const FlyBlock = styled.div`
-  display: flex;
-`;
-const ChooseFlyTimeBlock = styled.div`
-  display: flex;
-  background-color: purple;
-`;
-const FlyInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-const RangeDiv = styled.div`
-  width: 100%;
-`;
-function FlySettings(props) {
-  return (
-    <ByTicketBlock>
-      <LogoAndButtonsBlock>
-        <img src="123.com" alt="ROSSIYA" />
-        <div>
-          <button type="button">Чартер</button>
-          <button type="button">
-            <img src={plane} alt="plane" />
-          </button>
-        </div>
-      </LogoAndButtonsBlock>
-      <ChooseFlyTimeIn>
-        <ChooseFlyTimeBlock>
-          <FlyInfo>
-            <FlyBlock>
-              <img src={plane} alt="plane" />
-              <p>00:05</p>
-            </FlyBlock>
-            <div>
-              <p>Москва</p>
-              <p>24 фев 2018,Сб</p>
-            </div>
-          </FlyInfo>
-        </ChooseFlyTimeBlock>
-        <RangeDiv>
-          <DoubleRangeSlider minValue={20} maxValue={300} />
-        </RangeDiv>
-        <ChooseFlyTimeBlock>
-          <FlyInfo>
-            <FlyBlock>
-              <img src={plane} alt="plane" />
-              <p>03:05</p>
-            </FlyBlock>
-            <div>
-              <p>Барселона</p>
-              <p>24 фев 2018,Сб</p>
-            </div>
-          </FlyInfo>
-        </ChooseFlyTimeBlock>
-      </ChooseFlyTimeIn>
-      <ChooseFlyTimeOut>
-        <ChooseFlyTimeBlock>
-          <FlyInfo>
-            <FlyBlock>
-              <img src={plane} alt="plane" />
-              <p>00:05</p>
-            </FlyBlock>
-            <div>
-              <p>Барселона</p>
-              <p>3 марта 2018,Сб</p>
-            </div>
-          </FlyInfo>
-        </ChooseFlyTimeBlock>
-        <RangeDiv>
-          <DoubleRangeSlider minValue={20} maxValue={300} />
-        </RangeDiv>
-        <ChooseFlyTimeBlock>
-          <FlyInfo>
-            <FlyBlock>
-              <img src={plane} alt="plane" />
-              <p>00:05</p>
-            </FlyBlock>
-            <div>
-              <p>Москва</p>
-              <p>3 марта 2018,Сб</p>
-            </div>
-          </FlyInfo>
-        </ChooseFlyTimeBlock>
-      </ChooseFlyTimeOut>
-    </ByTicketBlock>
-  );
-}
+const Departure = () => (
+  <FlyContainer>
+    <FlightStart Start="0.05" CityFrom="Москва" Date="24 февраля 2018, сб" />
+    <Testik>
+      <DoubleRangeSlider
+        maxValue={10}
+        minValue={0}
+        formatLabel={value => value.toFixed(2)}
+      />
+    </Testik>
+    <FlightEnd End="3.05" CityTo="Барселона" Date="24 февраля 2018, сб" />
+  </FlyContainer>
+);
+
+const Arrival = () => (
+  <FlyContainer>
+    <FlightStart Start="10.35" CityFrom="Барселона" Date="3 марта 2019, сб" />
+    <Testik>
+      <DoubleRangeSlider
+        maxValue={10}
+        minValue={0}
+        formatLabel={value => value.toFixed(2)}
+      />
+    </Testik>
+    <FlightEnd End="17.10" CityTo="Москва" Date="3 марта 2019, сб" />
+  </FlyContainer>
+);
+
+const TicketsInfo = () => (
+  <InfoContainer>
+    <Header>
+      <img src=" http://pics.avs.io/100/40/UN.png" alt="AirLines" />
+      <span>
+        <Charter>Чартер</Charter>
+        <button>-></button>
+      </span>
+    </Header>
+    <Departure />
+    <Arrival />
+  </InfoContainer>
+);
+
 function MainBody() {
   return (
     <MainBodyWrapper>
       <FindTickets price={7712} companyName={"Clickavia"} />
-      <FlySettings />
+      <TicketsInfo />
     </MainBodyWrapper>
   );
 }
